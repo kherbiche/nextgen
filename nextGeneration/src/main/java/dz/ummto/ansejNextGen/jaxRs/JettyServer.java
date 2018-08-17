@@ -25,8 +25,8 @@ public class JettyServer {
 	public JettyServer(int serverPort) throws Exception {
 		this.serverPort = serverPort;
 		Server server = configureServer();	        
-        server.start();
-        server.join();
+		server.start();
+		server.join();
 	}	
 
 	
@@ -37,8 +37,8 @@ public class JettyServer {
 		ServletHolder sh = new ServletHolder(servletContainer);                
 		Server server = new Server(serverPort);		
 		ServletContextHandler context = new ServletContextHandler(ServletContextHandler.NO_SESSIONS);
-        context.setContextPath("/");
-        context.addServlet(sh, "/*");
+		context.setContextPath("/");
+		context.addServlet(sh, "/*");
 		server.setHandler(context);
 		return server;
 	}

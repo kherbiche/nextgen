@@ -13,6 +13,9 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 /**
  * The <code>RegisterOne</code> class represents
  * 
@@ -21,6 +24,7 @@ import javax.ws.rs.core.UriBuilder;
  */
 public class RegisterOne {
 	
+	private static final Log logger = LogFactory.getLog(RegisterOne.class);
 	private final String  BASE_URI= "http://localhost:8089";
 	
 	private URI getBaseURI() {
@@ -33,8 +37,8 @@ public class RegisterOne {
 				.request(MediaType.APPLICATION_JSON)
 				.post(Entity.entity(list.get(0), MediaType.APPLICATION_JSON));
 		
-		System.out.println("message.getStatus(): "+message.getStatus());
-		System.out.println("message.getEntity(): "+message.getEntity());
-		System.out.println("message.toString(): "+message.toString());
+		logger.info("--- message.getStatus(): "+message.getStatus());
+		logger.info("--- message.getEntity(): "+message.getEntity());
+		logger.info("--- message.toString(): "+message.toString());
 	}
 }

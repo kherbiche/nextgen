@@ -21,6 +21,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import dz.ummto.ansejNextGen.registers.RegisterOne;
 
 /**
@@ -39,6 +42,7 @@ import dz.ummto.ansejNextGen.registers.RegisterOne;
 @SuppressWarnings("serial")
 public class Registration extends JFrame implements ActionListener {
 
+	private static final Log logger = LogFactory.getLog(Registration.class);
 	private JFrame g;
 	private JMenuBar jMenuBar1;
 	private JMenu jMenuFile, jMenuHelp;
@@ -55,9 +59,9 @@ public class Registration extends JFrame implements ActionListener {
 	 */
 	private void jbInit() /* throws Exception */ {
 		if(SwingUtilities.isEventDispatchThread()) {
-			System.out.println("jbInit: In the EDT");
+			logger.info("--- jbInit: In the EDT");
 		} else {
-			System.out.println("jbInit: Out of EDT");
+			logger.info("--- jbInit: Out of EDT");
 		}
 		jMenuFileExit = new JMenuItem();
 		jMenuHelpAbout = new JMenuItem();
@@ -215,7 +219,7 @@ public class Registration extends JFrame implements ActionListener {
 		String st2 = String.valueOf(jComboBox2.getSelectedItem());
 		String st3 = String.valueOf(jComboBox3.getSelectedItem());
 		String st4 = st1 + "/" + st2 + "/" + st3;
-		System.out.println("st4: "+st4);
+		logger.info("--- st4: "+st4);
 		return st4;
 	}
 
@@ -229,9 +233,9 @@ public class Registration extends JFrame implements ActionListener {
 	 */
 	public void actionPerformed(ActionEvent arg) {
 		if(SwingUtilities.isEventDispatchThread()) {
-			System.out.println("actionPerformed: In the EDT");
+			logger.info("--- actionPerformed: In the EDT");
 		} else {
-			System.out.println("actionPerformed: Out of EDT");
+			logger.fatal("--- actionPerformed: Out of EDT");
 		}
 		// this.registre1=A.getRegistre1();
 		Object ob = arg.getSource();
@@ -247,9 +251,7 @@ public class Registration extends JFrame implements ActionListener {
 			else {
 				JButton boutonCliqué = (JButton) arg.getSource();
 				if (boutonCliqué == jButton1) {
-					System.out.println(getFName());
-					System.out.println(getSName());
-					System.out.println(getDateBir());
+					logger.info("--- <"+getFName()+">---<"+getSName()+">---<"+getDateBir()+">");
 					
 					RegisterOne rOne = new RegisterOne();
 					rOne.register(Arrays.asList(getFName(),getSName(),getDateBir()));

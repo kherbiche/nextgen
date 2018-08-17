@@ -15,6 +15,12 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>dz.ummto.ansejNextGen</groupId>
+			<artifactId>logg</artifactId>
+			<version>${parent.version}</version>
+			<type>jar</type>
+		</dependency>
+		<dependency>
 			<groupId>org.glassfish.jersey.core</groupId>
 			<artifactId>jersey-client</artifactId>
 			<version>2.26</version>

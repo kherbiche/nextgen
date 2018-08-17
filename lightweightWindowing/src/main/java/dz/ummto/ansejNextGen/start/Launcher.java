@@ -6,6 +6,9 @@ package dz.ummto.ansejNextGen.start;
 
 import javax.swing.SwingUtilities;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import dz.ummto.ansejNextGen.registration.Registration;
 
 /**
@@ -17,6 +20,8 @@ import dz.ummto.ansejNextGen.registration.Registration;
  */
 public class Launcher {
 	
+	private static final Log logger = LogFactory.getLog(Launcher.class);
+	
 	public static void main(String[] args) {
 		Runnable code = new Runnable() {
 			public void run() {
@@ -25,10 +30,10 @@ public class Launcher {
 			}
 		};
 		if(SwingUtilities.isEventDispatchThread()) {
-			System.out.println("main: In the EDT");
+			logger.info("--- main: In the EDT");
 			code.run();
 		} else {
-			System.out.println("main:Out of EDT");
+			logger.info("--- main:Out of EDT");
 			SwingUtilities.invokeLater(code);
 		}
 	}

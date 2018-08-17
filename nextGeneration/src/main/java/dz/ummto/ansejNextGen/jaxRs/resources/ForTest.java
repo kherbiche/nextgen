@@ -10,23 +10,27 @@ import javax.ws.rs.container.AsyncResponse;
 import javax.ws.rs.container.Suspended;
 import javax.ws.rs.core.MediaType;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 @Path("/rest")
 public class ForTest {
-	
+
+	private static final Log loggerr = LogFactory.getLog(ForTest.class);
+
 	@Path("/test")
 	@POST
 	@Produces("application/json")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void newMail(@Suspended final AsyncResponse asyncResponse, String obj) throws IOException {
-		System.out.println("=== URI: /rest/test");
-		System.out.println("=== POST Content: "+obj);
+		loggerr.info("--- URI: /rest/test");
+		loggerr.info("--- POST Content: " + obj);
 		new Thread(new Runnable() {
 			public void run() {
-				System.out.println("mail was sent");
-                asyncResponse.resume("mail was sent");
+				loggerr.info("--- Processing");
+				asyncResponse.resume("TODO");
 			}
 		}).start();
 	}
-
 
 }

@@ -34,5 +34,6 @@
 	<modules>
 		<module>lightweightWindowing</module>
 		<module>nextGeneration</module>
+		<module>logg</module>
 	</modules>
 </project>
