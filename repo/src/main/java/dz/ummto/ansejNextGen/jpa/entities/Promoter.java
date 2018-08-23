@@ -4,6 +4,7 @@
  */
 package dz.ummto.ansejNextGen.jpa.entities;
 
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -22,12 +23,11 @@ import dz.ummto.ansejNextGen.jpa.Gender;
 @Table(name = "PROMOTER")
 public class Promoter {
 
-	private String lastName;
-	private String firstName;
+	@EmbeddedId
+	private PromoterId promoterId;
 	private Gender gender;
 	private String father;
 	private String mother;
-	private String birthDate;
 	private String birthCertNum;
 	private Address birthPlace;
 	private Address residence;
@@ -40,16 +40,14 @@ public class Promoter {
 	public Promoter() {
 	}
 
-	public Promoter(String lastName, String firstName, Gender gender, String father, String mother, String birthDate,
-			String birthCertNum, Address birthPlace, Address residence, String email, int phone, int anemCard,
-			EducLevel educLevel, String degree) {
+	public Promoter(PromoterId promoterId, Gender gender, String father, String mother, String birthCertNum,
+			Address birthPlace, Address residence, String email, int phone, int anemCard, EducLevel educLevel,
+			String degree) {
 		super();
-		this.lastName = lastName;
-		this.firstName = firstName;
+		this.promoterId = promoterId;
 		this.gender = gender;
 		this.father = father;
 		this.mother = mother;
-		this.birthDate = birthDate;
 		this.birthCertNum = birthCertNum;
 		this.birthPlace = birthPlace;
 		this.residence = residence;
@@ -60,20 +58,12 @@ public class Promoter {
 		this.degree = degree;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public PromoterId getPromoterId() {
+		return promoterId;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setPromoterId(PromoterId promoterId) {
+		this.promoterId = promoterId;
 	}
 
 	public Gender getGender() {
@@ -98,14 +88,6 @@ public class Promoter {
 
 	public void setMother(String mother) {
 		this.mother = mother;
-	}
-
-	public String getBirthDate() {
-		return birthDate;
-	}
-
-	public void setBirthDate(String birthDate) {
-		this.birthDate = birthDate;
 	}
 
 	public String getBirthCertNum() {
