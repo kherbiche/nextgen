@@ -6,6 +6,8 @@ package dz.ummto.ansejNextGen.jpa.entities;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Table;
 
 import dz.ummto.ansejNextGen.jpa.EducLevel;
@@ -25,6 +27,7 @@ public class Promoter {
 
 	@EmbeddedId
 	private PromoterId promoterId;
+	@Enumerated(EnumType.STRING)
 	private Gender gender;
 	private String father;
 	private String mother;
@@ -34,6 +37,7 @@ public class Promoter {
 	private String email;
 	private int phone;
 	private int anemCard;
+	@Enumerated(EnumType.STRING)
 	private EducLevel educLevel;
 	private String degree;
 

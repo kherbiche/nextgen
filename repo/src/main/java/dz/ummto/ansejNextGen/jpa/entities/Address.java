@@ -5,6 +5,8 @@
 package dz.ummto.ansejNextGen.jpa.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Table;
 
 import dz.ummto.ansejNextGen.jpa.TypeAddress;
@@ -22,6 +24,7 @@ public class Address {
 
 	private int id;
 	private String numAdress;
+	@Enumerated(EnumType.STRING)
 	private TypeAddress typeAddress;
 	private String streetName;
 	private String city;
