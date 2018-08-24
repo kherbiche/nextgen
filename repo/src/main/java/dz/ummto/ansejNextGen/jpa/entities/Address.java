@@ -9,7 +9,12 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
 
 import dz.ummto.ansejNextGen.jpa.TypeAddress;
 
@@ -24,6 +29,13 @@ import dz.ummto.ansejNextGen.jpa.TypeAddress;
 @Table(name = "ADDRESS")
 public class Address {
 
+	/*
+	 * @see <a href=
+	 *      "https://vladmihalcea.com/why-should-not-use-the-auto-jpa-generationtype-with-mysql-and-hibernate/">link</a>
+	 */
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+	@GenericGenerator(name = "native", strategy = "native")
 	private int id;
 
 	@Column(name = "NUM_ADDRESS", nullable = false, length = 4)
