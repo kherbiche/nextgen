@@ -4,6 +4,8 @@
  */
 package dz.ummto.ansejNextGen.jpa.entities;
 
+import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -17,6 +19,11 @@ import dz.ummto.ansejNextGen.jpa.Gender;
  * The <code>Promoter</code> class represents the abstraction of the project
  * instigator
  * 
+ * @see <a href=
+ *      "https://stackoverflow.com/questions/35082881/unable-to-map-2-address-in-employee-class-in-hibernate">link1</a>
+ * @see <a href=
+ *      "http://in.relation.to/2015/07/23/advanced-embeddable-mappings/">link2</a>
+ * 
  * @author L KHERBICHE
  * @since 0.0.1-RELEASE
  */
@@ -27,25 +34,45 @@ public class Promoter {
 
 	@EmbeddedId
 	private PromoterId promoterId;
+
 	@Enumerated(EnumType.STRING)
+	@Column(name = "GENDER", nullable = false, length = 6)
 	private Gender gender;
+
+	@Column(name = "FATHER", nullable = false, length = 20)
 	private String father;
+
+	@Column(name = "MOTHER", nullable = false, length = 20)
 	private String mother;
+
+	@Column(name = "BIRTH_CERT_NUM", nullable = false, length = 10)
 	private String birthCertNum;
-	private Address birthPlace;
+
+	@Embedded
+	private EmbeddedAddress birthPlace;
+
 	private Address residence;
+
 	private String email;
+
+	@Column(name = "PHONE", nullable = false, length = 13)
 	private int phone;
+
+	@Column(name = "ANEM_CARD", nullable = false, length = 15)
 	private int anemCard;
+
 	@Enumerated(EnumType.STRING)
+	@Column(name = "EDUC_LEVEL", nullable = false, length = 19)
 	private EducLevel educLevel;
+
+	@Column(name = "DEGREE", nullable = false, length = 50)
 	private String degree;
 
 	public Promoter() {
 	}
 
 	public Promoter(PromoterId promoterId, Gender gender, String father, String mother, String birthCertNum,
-			Address birthPlace, Address residence, String email, int phone, int anemCard, EducLevel educLevel,
+			EmbeddedAddress birthPlace, Address residence, String email, int phone, int anemCard, EducLevel educLevel,
 			String degree) {
 		super();
 		this.promoterId = promoterId;
@@ -102,11 +129,11 @@ public class Promoter {
 		this.birthCertNum = birthCertNum;
 	}
 
-	public Address getBirthPlace() {
+	public EmbeddedAddress getBirthPlace() {
 		return birthPlace;
 	}
 
-	public void setBirthPlace(Address birthPlace) {
+	public void setBirthPlace(EmbeddedAddress birthPlace) {
 		this.birthPlace = birthPlace;
 	}
 

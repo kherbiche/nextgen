@@ -6,6 +6,7 @@ package dz.ummto.ansejNextGen.jpa.entities;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 /**
@@ -19,8 +20,13 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class PromoterId implements Serializable {
 
+	@Column(name = "LAST_NAME", nullable = false, length = 20)
 	private String lastName;
+
+	@Column(name = "FIRST_NAME", nullable = false, length = 20)
 	private String firstName;
+
+	@Column(name = "BIRTH_DATE", nullable = false, length = 10)
 	private String birthDate;
 
 	public PromoterId(String lastName, String firstName, String birthDate) {

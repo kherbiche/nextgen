@@ -4,6 +4,8 @@
  */
 package dz.ummto.ansejNextGen.jpa.entities;
 
+import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -23,27 +25,21 @@ import dz.ummto.ansejNextGen.jpa.TypeAddress;
 public class Address {
 
 	private int id;
-	private String numAdress;
+
+	@Column(name = "NUM_ADDRESS", nullable = false, length = 4)
+	private int numAddress;
+
 	@Enumerated(EnumType.STRING)
+	@Column(name = "TYPE_ADDRESS", nullable = false, length = 6)
 	private TypeAddress typeAddress;
+
+	@Column(name = "STREET_NAME", nullable = false, length = 50)
 	private String streetName;
-	private String city;
-	private String zipCode;
-	private String country;
+
+	@Embedded
+	private EmbeddedAddress embeddedAddress;
 
 	public Address() {
-	}
-
-	public Address(int id, String numAdress, TypeAddress typeAddress, String streetName, String city, String zipCode,
-			String country) {
-		super();
-		this.id = id;
-		this.numAdress = numAdress;
-		this.typeAddress = typeAddress;
-		this.streetName = streetName;
-		this.city = city;
-		this.zipCode = zipCode;
-		this.country = country;
 	}
 
 	public int getId() {
@@ -54,12 +50,12 @@ public class Address {
 		this.id = id;
 	}
 
-	public String getNumAdress() {
-		return numAdress;
+	public int getNumAddress() {
+		return numAddress;
 	}
 
-	public void setNumAdress(String numAdress) {
-		this.numAdress = numAdress;
+	public void setNumAddress(int numAddress) {
+		this.numAddress = numAddress;
 	}
 
 	public TypeAddress getTypeAddress() {
@@ -78,28 +74,12 @@ public class Address {
 		this.streetName = streetName;
 	}
 
-	public String getCity() {
-		return city;
+	public EmbeddedAddress getEmbeddedAddress() {
+		return embeddedAddress;
 	}
 
-	public void setCity(String city) {
-		this.city = city;
-	}
-
-	public String getZipCode() {
-		return zipCode;
-	}
-
-	public void setZipCode(String zipCode) {
-		this.zipCode = zipCode;
-	}
-
-	public String getCountry() {
-		return country;
-	}
-
-	public void setCountry(String country) {
-		this.country = country;
+	public void setEmbeddedAddress(EmbeddedAddress embeddedAddress) {
+		this.embeddedAddress = embeddedAddress;
 	}
 
 }
