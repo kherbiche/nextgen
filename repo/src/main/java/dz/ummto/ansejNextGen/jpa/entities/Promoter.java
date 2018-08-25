@@ -12,6 +12,9 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import dz.ummto.ansejNextGen.jpa.EducLevel;
@@ -58,6 +61,8 @@ public class Promoter {
 			})
 	private EmbeddedAddress birthPlace;
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "FK_ADDRESS")
 	private Address residence;
 
 	@Column(name = "EMAIL", nullable = false, length = 60)
