@@ -4,6 +4,8 @@
  */
 package dz.ummto.ansejNextGen.jpa.entities;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -49,6 +51,11 @@ public class Address {
 	private String streetName;
 
 	@Embedded
+	@AttributeOverrides(value = {
+			@AttributeOverride(column = @Column(name = "CITY"), name = "city"),
+			@AttributeOverride(name = "zipCode", column = @Column(name = "ZIP_CODE")),
+			@AttributeOverride(name = "country", column = @Column(name = "COUNTRY"))
+			})
 	private EmbeddedAddress embeddedAddress;
 
 	public Address() {

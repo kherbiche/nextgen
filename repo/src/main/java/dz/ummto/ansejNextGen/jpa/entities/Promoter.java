@@ -4,6 +4,8 @@
  */
 package dz.ummto.ansejNextGen.jpa.entities;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.EmbeddedId;
@@ -49,10 +51,16 @@ public class Promoter {
 	private String birthCertNum;
 
 	@Embedded
+	@AttributeOverrides(value = {
+			@AttributeOverride(column = @Column(name = "BIRTH_CITY"), name = "city"),
+			@AttributeOverride(name = "zipCode", column = @Column(name = "BIRTH_ZIP_CODE")),
+			@AttributeOverride(name = "country", column = @Column(name = "BIRTH_COUNTRY"))
+			})
 	private EmbeddedAddress birthPlace;
 
 	private Address residence;
 
+	@Column(name = "EMAIL", nullable = false, length = 60)
 	private String email;
 
 	@Column(name = "PHONE", nullable = false, length = 13)
