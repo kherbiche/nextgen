@@ -29,6 +29,9 @@ public class PromoterId implements Serializable {
 	@Column(name = "BIRTH_DATE", nullable = false, length = 10)
 	private String birthDate;
 
+	public PromoterId() {
+	}
+
 	public PromoterId(String lastName, String firstName, String birthDate) {
 		super();
 		this.lastName = lastName;

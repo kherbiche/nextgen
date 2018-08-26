@@ -26,6 +26,16 @@ public class EmbeddedAddress {
 	@Column(name = "COUNTRY", nullable = false, length = 50)
 	private String country;
 
+	public EmbeddedAddress() {
+	}
+
+	public EmbeddedAddress(String city, int zipCode, String country) {
+		super();
+		this.city = city;
+		this.zipCode = zipCode;
+		this.country = country;
+	}
+
 	public String getCity() {
 		return city;
 	}
