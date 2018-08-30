@@ -36,7 +36,7 @@ public class EMProvider {
 		// entityManager = emf.createEntityManager();
 	}
 
-	protected static EntityManager getEntityManager() {
+	public static EntityManager getEntityManager() {
 		return emf.createEntityManager();
 	}
 }
