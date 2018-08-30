@@ -27,17 +27,16 @@ import javax.persistence.Persistence;
  * @since 0.0.1-RELEASE
  */
 public class EMProvider {
-	
+
 	private static final String persitenceUnitName = "ansePersiUnit";
 	private static EntityManagerFactory emf;
-	private static EntityManager entityManager;
-	
+
 	static {
 		emf = Persistence.createEntityManagerFactory(persitenceUnitName);
-		entityManager = emf.createEntityManager();
+		// entityManager = emf.createEntityManager();
 	}
 
 	protected static EntityManager getEntityManager() {
-		return entityManager;
+		return emf.createEntityManager();
 	}
 }

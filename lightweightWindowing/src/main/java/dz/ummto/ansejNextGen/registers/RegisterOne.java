@@ -35,7 +35,7 @@ public class RegisterOne {
 		final WebTarget target = JaxRsClient.getClient().target(getBaseURI());
 		Response message = target.path("/rest").path("/test")
 				.request(MediaType.APPLICATION_JSON)
-				.post(Entity.entity(list.get(0), MediaType.APPLICATION_JSON));
+				.post(Entity.entity(list, MediaType.APPLICATION_JSON));
 		
 		logger.info("--- message.getStatus(): "+message.getStatus());
 		logger.info("--- message.getEntity(): "+message.getEntity());
