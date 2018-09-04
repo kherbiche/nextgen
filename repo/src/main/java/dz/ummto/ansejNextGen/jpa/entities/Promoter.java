@@ -6,6 +6,7 @@ package dz.ummto.ansejNextGen.jpa.entities;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.EmbeddedId;
@@ -54,14 +55,12 @@ public class Promoter {
 	private String birthCertNum;
 
 	@Embedded
-	@AttributeOverrides(value = {
-			@AttributeOverride(column = @Column(name = "BIRTH_CITY"), name = "city"),
+	@AttributeOverrides(value = { @AttributeOverride(column = @Column(name = "BIRTH_CITY"), name = "city"),
 			@AttributeOverride(name = "zipCode", column = @Column(name = "BIRTH_ZIP_CODE")),
-			@AttributeOverride(name = "country", column = @Column(name = "BIRTH_COUNTRY"))
-			})
+			@AttributeOverride(name = "country", column = @Column(name = "BIRTH_COUNTRY")) })
 	private EmbeddedAddress birthPlace;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinColumn(name = "FK_ADDRESS")
 	private Address residence;
 
