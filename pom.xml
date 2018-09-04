@@ -9,6 +9,41 @@
 	<packaging>pom</packaging>
 	<name>root</name>
 
+	<mailingLists>
+		<mailingList>
+			<name>Lyes Kherbiche</name>
+			<post>kerbiche@gmail.com</post>
+		</mailingList>
+	</mailingLists>
+
+	<licenses>
+		<license>
+			<name>GNU LESSER GENERAL PUBLIC LICENSE</name>
+			<url>http://www.gnu.org/licenses/lgpl-3.0.en.html</url>
+			<comments>
+				Copyright (C) 2008-2018 ansejNextGen. 
+
+				ansejNextGen is free software: you can redistribute it and/or modify 
+				it under the terms of the GNU Lesser General Public License as published by 
+				the Free Software Foundation, either version 3 of the License, or 
+				(at your option) any later version. 
+
+				ansejNextGen is distributed in the hope that it will be useful, 
+				but WITHOUT ANY WARRANTY; without even the implied warranty of 
+				MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the 
+				GNU Lesser General Public License for more details.
+			</comments>
+		</license>
+	</licenses>
+
+	<issueManagement>
+		<system>GitHub</system>
+		<url>https://github.com/kherbiche/nextgen.git</url>
+	</issueManagement>
+	<scm>
+		<connection>scm:git:git://github.com/kherbiche/nextgen.git</connection>
+	</scm>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
