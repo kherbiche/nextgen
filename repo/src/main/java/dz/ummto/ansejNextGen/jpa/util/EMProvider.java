@@ -8,6 +8,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 /**
  * The <code>EMProvider</code> class represents the provider/wrapper of
  * {@link javax.persistence.EntityManager} which is not thread-safe.
@@ -28,15 +31,18 @@ import javax.persistence.Persistence;
  */
 public class EMProvider {
 
+	private static final Log logger = LogFactory.getLog(EMProvider.class);
 	private static final String persitenceUnitName = "ansePersiUnit";
 	private static EntityManagerFactory emf;
 
 	static {
+		logger.info("-- EMF instanciation");
 		emf = Persistence.createEntityManagerFactory(persitenceUnitName);
 		// entityManager = emf.createEntityManager();
 	}
 
 	public static EntityManager getEntityManager() {
+		logger.info("-- Entity manager instanciation");
 		return emf.createEntityManager();
 	}
 }

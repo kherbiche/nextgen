@@ -9,6 +9,9 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import dz.ummto.ansejNextGen.jpa.util.EMProvider;
 
 /**
@@ -26,6 +29,7 @@ import dz.ummto.ansejNextGen.jpa.util.EMProvider;
  */
 public abstract class AbstractJpaDao<K, E> implements IDao<K, E> {
 
+	protected static final Log logger = LogFactory.getLog(AbstractJpaDao.class);
 	public static final String FIND_ALL = "Entity.findAll";
 	protected Class<E> entityClass;
 	protected EntityManager entityManager;
@@ -33,6 +37,7 @@ public abstract class AbstractJpaDao<K, E> implements IDao<K, E> {
 	@SuppressWarnings("unchecked")
 	// @PostConstruct
 	public AbstractJpaDao() {
+		logger.info("-- AbstractJpaDao Constructor");
 		ParameterizedType genericSuperclass = (ParameterizedType) getClass().getGenericSuperclass();
 		this.entityClass = (Class<E>) genericSuperclass.getActualTypeArguments()[1];
 		entityManager = EMProvider.getEntityManager();

@@ -7,9 +7,6 @@ package dz.ummto.ansejNextGen.jpa.dao.impl;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 import dz.ummto.ansejNextGen.jpa.dao.AbstractJpaDao;
 import dz.ummto.ansejNextGen.jpa.dao.IDao;
 import dz.ummto.ansejNextGen.jpa.entities.Promoter;
@@ -25,8 +22,6 @@ import dz.ummto.ansejNextGen.jpa.entities.PromoterId;
  */
 @NamedQueries({ @NamedQuery(name = AbstractJpaDao.FIND_ALL, query = "select p from Promoter p") })
 public class PromoterDao extends AbstractJpaDao<PromoterId, Promoter> {
-
-	private static final Log logger = LogFactory.getLog(PromoterDao.class);
 
 	@Override
 	public Promoter update(Promoter entity) {
