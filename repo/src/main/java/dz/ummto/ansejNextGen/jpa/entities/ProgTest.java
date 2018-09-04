@@ -6,7 +6,8 @@ import org.apache.commons.logging.LogFactory;
 import dz.ummto.ansejNextGen.jpa.EducLevel;
 import dz.ummto.ansejNextGen.jpa.Gender;
 import dz.ummto.ansejNextGen.jpa.TypeAddress;
-import dz.ummto.ansejNextGen.jpa.dao.impl.PromoterDao;
+import dz.ummto.ansejNextGen.jpa.dao.DaoFactory;
+import dz.ummto.ansejNextGen.jpa.dao.IDao;
 
 public class ProgTest {
 	
@@ -38,26 +39,24 @@ public class ProgTest {
 		promo.setEducLevel(EducLevel.UNIV);
 		promo.setDegree("ingineer");
 		
-		/*
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("ansePersiUnit");
-		EntityManager entityManager = factory.createEntityManager();
-		entityManager.getTransaction().begin();
-
-		entityManager.persist(add);
-		entityManager.persist(promo);
-
-		entityManager.getTransaction().commit();
-
-		entityManager.close();
-		factory.close();
-		*/
 		PromoterId proId2 = new PromoterId("lyes", "kherbiche", "01/01/2018");
 		Promoter promo2 = new Promoter();
 		promo2.setPromoterId(proId2);
-		PromoterDao pDao = new PromoterDao();
-		pDao.remove(promo2);
+		
+		IDao<PromoterId, Promoter> pDao = (IDao<PromoterId, Promoter>) DaoFactory.getPromoterDao();
+		IDao<Integer, Address> addrDao = (IDao<Integer, Address>) DaoFactory.getAddressDao();
+		
+		pDao.save(promo);
 		Promoter found=pDao.findById(proId2);
-		logger.info("found "+found.getEmail());
+		if(found != null) {
+			logger.info("-- Promoter founded");
+			logger.info("-- class: "+found.getClass());
+			logger.info(found.getEmail()!=null ? found.getEmail() : "email null");
+		} else 
+			logger.info("promoter not found");
+		
+		pDao.remove(promo);
+		addrDao.remove(add);
 	}
 
 }

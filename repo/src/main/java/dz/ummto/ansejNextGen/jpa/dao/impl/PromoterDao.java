@@ -25,6 +25,7 @@ public class PromoterDao extends AbstractJpaDao<PromoterId, Promoter> {
 
 	@Override
 	public Promoter update(Promoter entity) {
+		logger.info("-- upDate on PromoterDao methode");
 		entityManager.getTransaction().begin();
 		entity = entityManager.merge(entity);
 		entityManager.getTransaction().commit();
