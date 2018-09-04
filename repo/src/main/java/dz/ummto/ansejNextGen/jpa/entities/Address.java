@@ -33,7 +33,8 @@ public class Address {
 
 	/*
 	 * @see <a href=
-	 *      "https://vladmihalcea.com/why-should-not-use-the-auto-jpa-generationtype-with-mysql-and-hibernate/">link</a>
+	 * "https://vladmihalcea.com/why-should-not-use-the-auto-jpa-generationtype-with-mysql-and-hibernate/"
+	 * >link</a>
 	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
@@ -51,11 +52,9 @@ public class Address {
 	private String streetName;
 
 	@Embedded
-	@AttributeOverrides(value = {
-			@AttributeOverride(column = @Column(name = "CITY"), name = "city"),
+	@AttributeOverrides(value = { @AttributeOverride(column = @Column(name = "CITY"), name = "city"),
 			@AttributeOverride(name = "zipCode", column = @Column(name = "ZIP_CODE")),
-			@AttributeOverride(name = "country", column = @Column(name = "COUNTRY"))
-			})
+			@AttributeOverride(name = "country", column = @Column(name = "COUNTRY")) })
 	private EmbeddedAddress embeddedAddress;
 
 	public Address() {

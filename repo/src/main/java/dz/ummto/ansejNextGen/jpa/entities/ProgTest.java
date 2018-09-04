@@ -1,21 +1,18 @@
 package dz.ummto.ansejNextGen.jpa.entities;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import dz.ummto.ansejNextGen.jpa.EducLevel;
 import dz.ummto.ansejNextGen.jpa.Gender;
 import dz.ummto.ansejNextGen.jpa.TypeAddress;
+import dz.ummto.ansejNextGen.jpa.dao.impl.PromoterDao;
 
 public class ProgTest {
+	
+	private static final Log logger = LogFactory.getLog(ProgTest.class);
 
 	public static void main(String[] args) {
-
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("ansePersiUnit");
-		EntityManager entityManager = factory.createEntityManager();
-
-		entityManager.getTransaction().begin();
 
 		EmbeddedAddress embAdd = new EmbeddedAddress("Nanterre",92000,"Fr");
 		Address add = new Address();
@@ -25,7 +22,7 @@ public class ProgTest {
 		add.setEmbeddedAddress(embAdd);
 
 		Promoter promo = new Promoter();
-		PromoterId proId = new PromoterId("lyes", "kherbiche", "01/01/2018");
+		PromoterId proId = new PromoterId("Ali", "kherbiche", "01/01/2018");
 		EmbeddedAddress birth = new EmbeddedAddress("LNI",15000,"Fr");
 		promo.setPromoterId(proId);
 		promo.setGender(Gender.M);
@@ -40,6 +37,11 @@ public class ProgTest {
 		promo.setAnemCard(1515151515);
 		promo.setEducLevel(EducLevel.UNIV);
 		promo.setDegree("ingineer");
+		
+		/*
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("ansePersiUnit");
+		EntityManager entityManager = factory.createEntityManager();
+		entityManager.getTransaction().begin();
 
 		entityManager.persist(add);
 		entityManager.persist(promo);
@@ -48,6 +50,14 @@ public class ProgTest {
 
 		entityManager.close();
 		factory.close();
+		*/
+		PromoterId proId2 = new PromoterId("lyes", "kherbiche", "01/01/2018");
+		Promoter promo2 = new Promoter();
+		promo2.setPromoterId(proId2);
+		PromoterDao pDao = new PromoterDao();
+		pDao.remove(promo2);
+		Promoter found=pDao.findById(proId2);
+		logger.info("found "+found.getEmail());
 	}
 
 }

@@ -7,7 +7,6 @@ package dz.ummto.ansejNextGen.jpa.dao;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 
 import dz.ummto.ansejNextGen.jpa.util.EMProvider;
@@ -32,8 +31,8 @@ public abstract class AbstractJpaDao<K, E> implements IDao<K, E> {
 	protected EntityManager entityManager;
 
 	@SuppressWarnings("unchecked")
-	@PostConstruct
-	public void init() {
+	// @PostConstruct
+	public AbstractJpaDao() {
 		ParameterizedType genericSuperclass = (ParameterizedType) getClass().getGenericSuperclass();
 		this.entityClass = (Class<E>) genericSuperclass.getActualTypeArguments()[1];
 		entityManager = EMProvider.getEntityManager();
@@ -52,7 +51,7 @@ public abstract class AbstractJpaDao<K, E> implements IDao<K, E> {
 
 	@Override
 	public void remove(final E entity) {
-		entityManager.remove(entityManager.merge(entity));
+		entityManager.remove(entityManager.contains(entity) ? entity : entityManager.merge(entity));
 	}
 
 	@Override
