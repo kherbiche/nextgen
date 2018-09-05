@@ -6,6 +6,9 @@ package dz.ummto.ansejNextGen.jpa.dao;
 
 import dz.ummto.ansejNextGen.jpa.dao.impl.AddressDao;
 import dz.ummto.ansejNextGen.jpa.dao.impl.PromoterDao;
+import dz.ummto.ansejNextGen.jpa.entities.Address;
+import dz.ummto.ansejNextGen.jpa.entities.Promoter;
+import dz.ummto.ansejNextGen.jpa.entities.PromoterId;
 
 /**
  * The <code>DaoFactory</code> class represents concrete DAO Factory
@@ -16,11 +19,11 @@ import dz.ummto.ansejNextGen.jpa.dao.impl.PromoterDao;
  */
 public class DaoFactory {
 
-	public static IDao<?, ?> getPromoterDao() {
+	public static IDao<PromoterId, Promoter> getPromoterDao() {
 		return new PromoterDao();
 	}
-	
-	public static IDao<?, ?> getAddressDao() {
+
+	public static IDao<Integer, Address> getAddressDao() {
 		return new AddressDao();
 	}
 
