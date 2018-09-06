@@ -4,21 +4,19 @@ export SONAR_HOST_URL='https://sonarcloud.io'
 export SONAR_ORGANIZATION='kherbiche-github'
 
 if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
-  echo "Building and analyzing a regular branch"
+  echo "Syphax Building and analyzing a regular branch"
   
   if [ "$TRAVIS_BRANCH" == "master" ]; then
-    mvn -settings .travis/settings.xml clean deploy sonar:sonar \
+    mvn clean install sonar:sonar \
 	  -Dsonar.organization=$SONAR_ORGANIZATION \
 	  -Dsonar.host.url=$SONAR_HOST_URL \
-	  -Dsonar.login=$SONAR_TOKEN \
-	  -Dpgp.skip=false
+	  -Dsonar.login=$SONAR_TOKEN
   elif [ "$TRAVIS_BRANCH" == "release" ]; then
-    mvn -settings .travis/settings.xml clean deploy sonar:sonar \
+    mvn clean install sonar:sonar \
           -Prelease
 	  -Dsonar.organization=$SONAR_ORGANIZATION \
 	  -Dsonar.host.url=$SONAR_HOST_URL \
-	  -Dsonar.login=$SONAR_TOKEN \
-	  -Dpgp.skip=false
+	  -Dsonar.login=$SONAR_TOKEN
   else
     mvn clean verify sonar:sonar \
 	  -Dsonar.organization=$SONAR_ORGANIZATION \
@@ -27,7 +25,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
 	  -Dsonar.branch.name=$TRAVIS_BRANCH
   fi
 else
-  echo "Building and analyzing a pull request from $TRAVIS_PULL_REQUEST_BRANCH branch"
+  echo "Yugerten Building and analyzing a pull request from $TRAVIS_PULL_REQUEST_BRANCH branch"
   
   mvn clean verify sonar:sonar \
     -Dsource.skip=true \
