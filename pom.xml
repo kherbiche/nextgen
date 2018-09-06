@@ -9,12 +9,28 @@
 	<packaging>pom</packaging>
 	<name>root</name>
 
+	<url>https://github.com/kherbiche/nextgen</url>
+	<inceptionYear>2008</inceptionYear>
+
 	<mailingLists>
 		<mailingList>
 			<name>Lyes Kherbiche</name>
 			<post>kerbiche@gmail.com</post>
 		</mailingList>
 	</mailingLists>
+
+	<developers>
+		<developer>
+			<name>Lyes Kherbiche</name>
+			<email>kerbiche@gmail.com</email>
+			<timezone>+2</timezone>
+			<roles>
+				<role>architect</role>
+				<role>developer</role>
+				<role>committer</role>
+			</roles>
+		</developer>
+	</developers>
 
 	<licenses>
 		<license>
@@ -41,8 +57,16 @@
 		<url>https://github.com/kherbiche/nextgen.git</url>
 	</issueManagement>
 	<scm>
-		<connection>scm:git:git://github.com/kherbiche/nextgen.git</connection>
+		<connection>scm:git:git@github.com/kherbiche/nextgen.git</connection>
+		<developerConnection>scm:git:git@github.com/kherbiche/nextgen.git</developerConnection>
+		<url>https://github.com/kherbiche/nextgen.git</url>
+		<tag>HEAD</tag>
 	</scm>
+	<ciManagement>
+		<system>Travis CI</system>
+		<url>https://travis-ci.com/kherbiche/nextgen</url>
+		<notifiers />
+	</ciManagement>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
