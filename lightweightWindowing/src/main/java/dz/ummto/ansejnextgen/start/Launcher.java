@@ -2,14 +2,14 @@
  * Copyright 2008, 2018 Lyes Kherbiche
  * <kerbiche@gmail.com>
  */
-package dz.ummto.ansejNextGen.start;
+package dz.ummto.ansejnextgen.start;
 
 import javax.swing.SwingUtilities;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import dz.ummto.ansejNextGen.registration.Registration;
+import dz.ummto.ansejnextgen.registration.Inscription;
 
 /**
  * The <code>Launcher</code> class represents the entry of
@@ -25,7 +25,7 @@ public class Launcher {
 	public static void main(String[] args) {
 		Runnable code = new Runnable() {
 			public void run() {
-				Registration registration = new Registration();
+				Inscription registration = new Inscription(null);
 				registration.setVisible(true);
 			}
 		};

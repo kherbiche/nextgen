@@ -2,7 +2,7 @@
  * Copyright 2008, 2018 Lyes Kherbiche
  * <kerbiche@gmail.com>
  */
-package dz.ummto.ansejNextGen.registers;
+package dz.ummto.ansejnextgen.registers;
 
 import java.net.URI;
 import java.util.List;

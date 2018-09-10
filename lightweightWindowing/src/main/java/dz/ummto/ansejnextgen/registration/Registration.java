@@ -2,7 +2,7 @@
  * Copyright 2008, 2018 Lyes Kherbiche
  * <kerbiche@gmail.com>
  */
-package dz.ummto.ansejNextGen.registration;
+package dz.ummto.ansejnextgen.registration;
 
 import java.awt.Color;
 import java.awt.Rectangle;
@@ -24,7 +24,7 @@ import javax.swing.SwingUtilities;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import dz.ummto.ansejNextGen.registers.RegisterOne;
+import dz.ummto.ansejnextgen.registers.RegisterOne;
 
 /**
  * The <code>Registration</code> class represents registration promoters swing

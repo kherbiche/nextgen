@@ -2,7 +2,7 @@
  * Copyright 2008, 2018 Lyes Kherbiche
  * <kerbiche@gmail.com>
  */
-package dz.ummto.ansejNextGen.start;
+package dz.ummto.ansejnextgen.start;
 
 /**
  * The <code>Ansej</code> class represents
