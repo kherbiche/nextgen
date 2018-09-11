@@ -5,6 +5,7 @@
 package dz.ummto.ansejnextgen.registration;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Rectangle;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
@@ -50,10 +51,7 @@ public class Inscription extends JFrame implements ActionListener {
 
 	private JFrame t;
 
-	private JMenuBar jMenuBar;
-	private JMenu jMenuFile, jMenuHelp;
 	private JMenuItem jMenuFileExit, jMenuHelpAbout;
-	private JPanel jPanIdentiPromoter, jPanCoordinate, jPanPromoProfil;
 	private JTextField jTFieldFirstName, jTFieldLastName, jTFieldDBirth, jTFieldNumAddrss, jTFieldCity, jTFieldTel, jTFieldFax,
 			jTFieldEmail, jTFieldSpecialty;
 	private JComboBox<String> jComboFami, jComBoxDegree, jComBoxExperience;
@@ -79,9 +77,9 @@ public class Inscription extends JFrame implements ActionListener {
 		this.setLocationRelativeTo(null);
 		this.getContentPane().setLayout(null);
 
-		jMenuBar = new JMenuBar();
-		jMenuFile = new JMenu("File");
-		jMenuHelp = new JMenu("Help");
+		JMenuBar jMenuBar = new JMenuBar();
+		JMenu jMenuFile = new JMenu("File");
+		JMenu jMenuHelp = new JMenu("Help");
 		jMenuFileExit = new JMenuItem("Exit");
 		jMenuFileExit.addActionListener(this);
 		jMenuHelpAbout = new JMenuItem("About");
@@ -93,7 +91,7 @@ public class Inscription extends JFrame implements ActionListener {
 
 		JLabel jLabAnsej2 = new JLabel("ANSEJ", SwingConstants.CENTER);
 		jLabAnsej2.setBackground(Color.orange);
-		jLabAnsej2.setFont(new java.awt.Font("Dialog", 1, 16));
+		jLabAnsej2.setFont(new java.awt.Font(Font.DIALOG, 1, 16));
 		jLabAnsej2.setForeground(Color.blue);
 		jLabAnsej2.setOpaque(true);
 		jLabAnsej2.setBounds(new Rectangle(0, 0, 93, 27));
@@ -106,19 +104,19 @@ public class Inscription extends JFrame implements ActionListener {
 
 		JLabel jLabSpace = new JLabel("Accompanying counselor space", SwingConstants.CENTER);
 		jLabSpace.setBackground(Color.lightGray);
-		jLabSpace.setFont(new java.awt.Font("Dialog", 3, 18));
+		jLabSpace.setFont(new java.awt.Font(Font.DIALOG, 3, 18));
 		jLabSpace.setOpaque(true);
 		jLabSpace.setBounds(new Rectangle(93, 0, 514, 27));
 		JLabel jLabContext = new JLabel("Follow-up of promoters", SwingConstants.RIGHT);
 		jLabContext.setBackground(Color.orange);
-		jLabContext.setFont(new java.awt.Font("SansSerif", 3, 13));
+		jLabContext.setFont(new java.awt.Font(Font.SANS_SERIF, 3, 13));
 		jLabContext.setOpaque(true);
 		jLabContext.setRequestFocusEnabled(true);
 		jLabContext.setIconTextGap(4);
 		jLabContext.setBounds(new Rectangle(0, 32, 700, 22));
 		JLabel jLabStage = new JLabel("Promoter Registration");
 		jLabStage.setBackground(Color.white);
-		jLabStage.setFont(new java.awt.Font("Dialog", 1, 13));
+		jLabStage.setFont(new java.awt.Font(Font.DIALOG, 1, 13));
 		jLabStage.setOpaque(true);
 		jLabStage.setRequestFocusEnabled(true);
 		jLabStage.setVerifyInputWhenFocusTarget(true);
@@ -157,7 +155,7 @@ public class Inscription extends JFrame implements ActionListener {
 		jTFieldEmail.setToolTipText("Email Address");
 
 		JLabel jLabFami = new JLabel("Family situation:", SwingConstants.LEFT);
-		jLabFami.setFont(new java.awt.Font("Dialog", 1, 11));
+		jLabFami.setFont(new java.awt.Font(Font.DIALOG, 1, 11));
 		jLabFami.setBounds(new Rectangle(9, 30, 124, 19));
 		jLabFami.setForeground(Color.GRAY);
 		String[] optionsFam = {"Single", "Married"};
@@ -168,7 +166,7 @@ public class Inscription extends JFrame implements ActionListener {
 		JLabel jLabHandic = new JLabel("Handicapped:");
 		jLabHandic.setBounds(new Rectangle(291, 30, 95, 19));
 		jLabHandic.setBackground(SystemColor.inactiveCaption);
-		jLabHandic.setFont(new java.awt.Font("Dialog", 1, 11));
+		jLabHandic.setFont(new java.awt.Font(Font.DIALOG, 1, 11));
 		jLabHandic.setOpaque(false);
 		jLabHandic.setForeground(Color.GRAY);
 		jRadioButton1 = new JRadioButton("Yes");
@@ -180,7 +178,7 @@ public class Inscription extends JFrame implements ActionListener {
 
 		JLabel jLabEducLevel = new JLabel("Education level:");
 		jLabEducLevel.setBounds(new Rectangle(25, 80, 114, 19));
-		jLabEducLevel.setFont(new java.awt.Font("Dialog", 1, 11));
+		jLabEducLevel.setFont(new java.awt.Font(Font.DIALOG, 1, 11));
 		jLabEducLevel.setForeground(Color.GRAY);
 		String[] optionsDegree = {"Intermediary", "Secondary school", "Bac", "Bac+1", "Bac+2", "Bac+3", "Bac+4", "Bac+5(or more)"};
 		jComBoxDegree = new JComboBox<String>(optionsDegree);
@@ -193,7 +191,7 @@ public class Inscription extends JFrame implements ActionListener {
 
 		JLabel jLabExperience = new JLabel("Professional experience:");
 		jLabExperience.setBounds(new Rectangle(279, 80, 173, 19));
-		jLabExperience.setFont(new java.awt.Font("Dialog", 1, 11));
+		jLabExperience.setFont(new java.awt.Font(Font.DIALOG, 1, 11));
 		jLabExperience.setForeground(Color.GRAY);
 		String[] optionsExperience = {"Without", "Experience < 3 years", "Experience 3 years(or more)"};
 		jComBoxExperience = new JComboBox<String>(optionsExperience);
@@ -203,7 +201,7 @@ public class Inscription extends JFrame implements ActionListener {
 		jButton1 = new JButton("Ok");
 		jButton1.setBackground(Color.green);
 		jButton1.setBounds(new Rectangle(389, 154, 144, 22));
-		jButton1.setFont(new java.awt.Font("Dialog", 1, 13));
+		jButton1.setFont(new java.awt.Font(Font.DIALOG, 1, 13));
 		jButton1.setForeground(Color.yellow);
 		jButton1.addActionListener(this);
 		jButton2 = new JButton("Cancel");
@@ -217,9 +215,9 @@ public class Inscription extends JFrame implements ActionListener {
 		buttonGroup.add(jRadioButton1);
 		buttonGroup.add(jRadioBHandic);
 
-		jPanIdentiPromoter = new JPanel();
+		JPanel jPanIdentiPromoter = new JPanel();
 		jPanIdentiPromoter.setBorder(BorderFactory.createTitledBorder("Identification du promoteur"));
-		jPanIdentiPromoter.setFont(new java.awt.Font("Dialog", 1, 14));
+		jPanIdentiPromoter.setFont(new java.awt.Font(Font.DIALOG, 1, 14));
 		jPanIdentiPromoter.setBackground(SystemColor.inactiveCaptionText);
 		jPanIdentiPromoter.setBounds(new Rectangle(0, 75, 700, 55));
 		jPanIdentiPromoter.setLayout(null);
@@ -227,7 +225,7 @@ public class Inscription extends JFrame implements ActionListener {
 		jPanIdentiPromoter.add(jTFieldLastName, null);
 		jPanIdentiPromoter.add(jTFieldDBirth, null);
 
-		jPanCoordinate = new JPanel();
+		JPanel jPanCoordinate = new JPanel();
 		jPanCoordinate.setBorder(BorderFactory.createTitledBorder("Promoter coordinate"));
 		jPanCoordinate.setBackground(SystemColor.inactiveCaptionText);
 		jPanCoordinate.setBounds(new Rectangle(0, 138, 700, 122));
@@ -238,7 +236,7 @@ public class Inscription extends JFrame implements ActionListener {
 		jPanCoordinate.add(jTFieldFax, null);
 		jPanCoordinate.add(jTFieldEmail, null);
 
-		jPanPromoProfil = new JPanel();
+		JPanel jPanPromoProfil = new JPanel();
 		jPanPromoProfil.setBorder(BorderFactory.createTitledBorder("Promoter profile"));
 		jPanPromoProfil.setBackground(SystemColor.inactiveCaptionText);
 		jPanPromoProfil.setBounds(new Rectangle(0, 260, 700, 220));
@@ -347,18 +345,6 @@ public class Inscription extends JFrame implements ActionListener {
 	public void update() {
 		dispose();
 		JOptionPane.showConfirmDialog(null, "Inscription reussie  ", "Juste un test", JOptionPane.PLAIN_MESSAGE);
-	}
-
-	public void update1() {
-	}
-
-	public void update2() {
-	}
-
-	public void update4(int i, String j) {
-	}
-
-	public void update(JFrame f) {
 	}
 
 }
