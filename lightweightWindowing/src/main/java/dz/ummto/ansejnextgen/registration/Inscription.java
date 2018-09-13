@@ -26,6 +26,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.border.EtchedBorder;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -52,9 +53,9 @@ public class Inscription extends JFrame implements ActionListener {
 	private JFrame t;
 
 	private JMenuItem jMenuFileExit, jMenuHelpAbout;
-	private JTextField jTFieldFirstName, jTFieldLastName, jTFieldDBirth, jTFieldNumAddrss, jTFieldCity, jTFieldTel, jTFieldFax,
+	private JTextField jTFieldFirstName, jTFieldLastName, jTFieldDBirth, jTFieldFather, jTFieldMother, jTFieldBirthCity, jTFieldBirthZipCode, jTFieldBirthCountry, jTFieldNumAddrss, jTFieldStreetName, jTFieldCity, jTFieldZipCode, jTFieldCountry, jTFieldTel, jTFieldFax,
 			jTFieldEmail, jTFieldSpecialty;
-	private JComboBox<String> jComboFami, jComBoxDegree, jComBoxExperience;
+	private JComboBox<String> jComboGender, jComboTypeAddr, jComboFami, jComBoxDegree, jComBoxExperience;
 	private JRadioButton jRadioButton1, jRadioBHandic;
 	private ButtonGroup buttonGroup;
 	private JButton jButton1, jButton2;
@@ -72,7 +73,7 @@ public class Inscription extends JFrame implements ActionListener {
 			logger.info("--- jbInit: Out of EDT");
 		}
 		setTitle("Registration");
-		this.setSize(700, 500);
+		this.setSize(704, 550);
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 		this.getContentPane().setLayout(null);
@@ -94,9 +95,9 @@ public class Inscription extends JFrame implements ActionListener {
 		jLabAnsej2.setFont(new java.awt.Font(Font.DIALOG, 1, 16));
 		jLabAnsej2.setForeground(Color.blue);
 		jLabAnsej2.setOpaque(true);
-		jLabAnsej2.setBounds(new Rectangle(0, 0, 93, 27));
+		jLabAnsej2.setBounds(new Rectangle(0, 2, 93, 27));
 		JLabel jLabAnsej1 = new JLabel("ANSEJ", SwingConstants.CENTER);
-		jLabAnsej1.setBounds(new Rectangle(607, 0, 93, 27));
+		jLabAnsej1.setBounds(new Rectangle(611, 2, 93, 27));
 		jLabAnsej1.setOpaque(true);
 		jLabAnsej1.setForeground(Color.blue);
 		jLabAnsej1.setFont(new java.awt.Font("Dialog", 1, 16));
@@ -104,55 +105,127 @@ public class Inscription extends JFrame implements ActionListener {
 
 		JLabel jLabSpace = new JLabel("Accompanying counselor space", SwingConstants.CENTER);
 		jLabSpace.setBackground(Color.lightGray);
-		jLabSpace.setFont(new java.awt.Font(Font.DIALOG, 3, 18));
+		jLabSpace.setFont(new java.awt.Font(Font.DIALOG, 3, 17));
 		jLabSpace.setOpaque(true);
-		jLabSpace.setBounds(new Rectangle(93, 0, 514, 27));
+		jLabSpace.setBounds(new Rectangle(101, 5, 500, 21));
+		jLabSpace.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
 		JLabel jLabContext = new JLabel("Follow-up of promoters", SwingConstants.RIGHT);
 		jLabContext.setBackground(Color.orange);
 		jLabContext.setFont(new java.awt.Font(Font.SANS_SERIF, 3, 13));
 		jLabContext.setOpaque(true);
 		jLabContext.setRequestFocusEnabled(true);
 		jLabContext.setIconTextGap(4);
-		jLabContext.setBounds(new Rectangle(0, 32, 700, 22));
+		jLabContext.setBounds(new Rectangle(0, 32, 704, 22));
 		JLabel jLabStage = new JLabel("Promoter Registration");
 		jLabStage.setBackground(Color.white);
 		jLabStage.setFont(new java.awt.Font(Font.DIALOG, 1, 13));
 		jLabStage.setOpaque(true);
 		jLabStage.setRequestFocusEnabled(true);
 		jLabStage.setVerifyInputWhenFocusTarget(true);
-		jLabStage.setBounds(new Rectangle(0, 54, 700, 21));
+		jLabStage.setBounds(new Rectangle(2, 54, 700, 21));
+
+		JLabel jLabGender = new JLabel("Gender:");
+		jLabGender.setBounds(new Rectangle(10, 19, 51, 19));
+		jLabGender.setFont(new java.awt.Font(Font.DIALOG, 1, 11));
+		jLabGender.setForeground(Color.GRAY);
+		String[] optionsGender = {"Man", "Woman"};
+		jComboGender = new JComboBox<String>(optionsGender);
+		jComboGender.setBackground(SystemColor.controlLtHighlight);
+		jComboGender.setBounds(new Rectangle(62, 19, 100, 19));
 
 		jTFieldFirstName = new HintJTextField("First Name");
-		jTFieldFirstName.setBounds(new Rectangle(62, 23, 132, 19));
+		jTFieldFirstName.setBounds(new Rectangle(286, 19, 140, 19));
 		jTFieldFirstName.setToolTipText("First Name");
 
 		jTFieldLastName = new HintJTextField("Last Name");
-		jTFieldLastName.setBounds(new Rectangle(282, 22, 132, 19));
+		jTFieldLastName.setBounds(new Rectangle(550, 19, 140, 19));
 		jTFieldLastName.setToolTipText("Last Name");
 
 		jTFieldDBirth = new HintJTextField("Born on:dd/mm/yyyy");
-		jTFieldDBirth.setBounds(new Rectangle(555, 22, 132, 19));
+		jTFieldDBirth.setBounds(new Rectangle(62, 45, 132, 19));
 		jTFieldDBirth.setToolTipText("Birth Date");
+
+		jTFieldFather = new HintJTextField("Father");
+		jTFieldFather.setBounds(new Rectangle(286, 45, 140, 19));
+		jTFieldFather.setToolTipText("Father Name");
+
+		jTFieldMother = new HintJTextField("Mother");
+		jTFieldMother.setBounds(new Rectangle(550, 45, 140, 19));
+		jTFieldMother.setToolTipText("Mother Name");
+
+
+		jTFieldBirthCity = new HintJTextField("Birth City");
+		jTFieldBirthCity.setToolTipText("BirthCity");
+		jTFieldBirthCity.setBounds(new Rectangle(10, 23, 140, 19));
+
+		jTFieldBirthZipCode = new HintJTextField("Zip Code");
+		jTFieldBirthZipCode.setToolTipText("Birth City Zip Code");
+		jTFieldBirthZipCode.setBounds(new Rectangle(10, 47, 140, 19));
+		
+		jTFieldBirthCountry = new HintJTextField("Birth country");
+		jTFieldBirthCountry.setToolTipText("Birth country");
+		jTFieldBirthCountry.setBounds(new Rectangle(10, 71, 140, 19));
+
+		JPanel jPanCoordinateLeft = new JPanel();
+		jPanCoordinateLeft.setLayout(null);
+		jPanCoordinateLeft.setBorder(BorderFactory.createTitledBorder("Birth"));
+		jPanCoordinateLeft.setBackground(SystemColor.inactiveCaptionText);
+		jPanCoordinateLeft.setFont(new java.awt.Font(Font.DIALOG, 1, 14));
+		jPanCoordinateLeft.setBounds(new Rectangle(5, 12, 160, 105));
+		jPanCoordinateLeft.add(jTFieldBirthCity, null);
+		jPanCoordinateLeft.add(jTFieldBirthZipCode, null);
+		jPanCoordinateLeft.add(jTFieldBirthCountry, null);
 
 		jTFieldNumAddrss = new HintJTextField("N°");
 		jTFieldNumAddrss.setToolTipText("Address number");
-		jTFieldNumAddrss.setBounds(new Rectangle(100, 23, 132, 19));
+		jTFieldNumAddrss.setBounds(new Rectangle(10, 23, 140, 19));
+
+		String[] optionsTypeAddr = {"AVENUE", "STREET", "PATH", "ROAD", "PLACE"};
+		jComboTypeAddr = new JComboBox<String>(optionsTypeAddr);
+		jComboTypeAddr.setBackground(SystemColor.controlLtHighlight);
+		jComboTypeAddr.setBounds(new Rectangle(10, 47, 140, 19));
+
+		jTFieldStreetName = new HintJTextField("Street Name");
+		jTFieldStreetName.setBounds(new Rectangle(10, 71, 140, 19));
+		jTFieldStreetName.setToolTipText("Street Name");
 
 		jTFieldCity = new HintJTextField("City");
-		jTFieldCity.setBounds(new Rectangle(454, 23, 152, 19));
-		jTFieldCity.setToolTipText("City");
+		jTFieldCity.setBounds(new Rectangle(375, 23, 140, 19));
+		jTFieldCity.setToolTipText("Residence City");
+
+		jTFieldZipCode = new HintJTextField("Zip Code");
+		jTFieldZipCode.setToolTipText("Residence Zip Code");
+		jTFieldZipCode.setBounds(new Rectangle(375, 47, 140, 19));
+		
+		jTFieldCountry = new HintJTextField("Country");
+		jTFieldCountry.setToolTipText("Residence country");
+		jTFieldCountry.setBounds(new Rectangle(375, 71, 140, 19));
+
+		JPanel jPanCoordinateRight = new JPanel();
+		jPanCoordinateRight.setLayout(null);
+		jPanCoordinateRight.setBorder(BorderFactory.createTitledBorder("Residence"));
+		jPanCoordinateRight.setBackground(SystemColor.inactiveCaptionText);
+		jPanCoordinateRight.setFont(new java.awt.Font(Font.DIALOG, 1, 14));
+		jPanCoordinateRight.setBounds(new Rectangle(170, 12, 525, 105));
+		jPanCoordinateRight.add(jTFieldNumAddrss, null);
+		jPanCoordinateRight.add(jComboTypeAddr, null);
+		jPanCoordinateRight.add(jTFieldStreetName, null);
+		jPanCoordinateRight.add(jTFieldCity, null);
+		jPanCoordinateRight.add(jTFieldZipCode, null);
+		jPanCoordinateRight.add(jTFieldCountry, null);
 
 		jTFieldTel = new HintJTextField("Phone");
-		jTFieldTel.setBounds(new Rectangle(107, 89, 141, 19));
+		jTFieldTel.setBounds(new Rectangle(286, 127, 140, 19));
 		jTFieldTel.setToolTipText("Phone num");
 
 		jTFieldFax = new HintJTextField("Fax");
-		jTFieldFax.setBounds(new Rectangle(348, 87, 141, 19));
+		jTFieldFax.setBounds(new Rectangle(550, 127, 140, 19));
 		jTFieldFax.setToolTipText("Fax num");
 
-		jTFieldEmail = new HintJTextField("@Email");
-		jTFieldEmail.setBounds(new Rectangle(551, 86, 141, 19));
+		jTFieldEmail = new HintJTextField("@email");
+		jTFieldEmail.setBounds(new Rectangle(62, 127, 140, 19));
 		jTFieldEmail.setToolTipText("Email Address");
+
 
 		JLabel jLabFami = new JLabel("Family situation:", SwingConstants.LEFT);
 		jLabFami.setFont(new java.awt.Font(Font.DIALOG, 1, 11));
@@ -219,19 +292,24 @@ public class Inscription extends JFrame implements ActionListener {
 		jPanIdentiPromoter.setBorder(BorderFactory.createTitledBorder("Identification du promoteur"));
 		jPanIdentiPromoter.setFont(new java.awt.Font(Font.DIALOG, 1, 14));
 		jPanIdentiPromoter.setBackground(SystemColor.inactiveCaptionText);
-		jPanIdentiPromoter.setBounds(new Rectangle(0, 75, 700, 55));
+		jPanIdentiPromoter.setBounds(new Rectangle(2, 75, 700, 73));
 		jPanIdentiPromoter.setLayout(null);
 		jPanIdentiPromoter.add(jTFieldFirstName, null);
 		jPanIdentiPromoter.add(jTFieldLastName, null);
 		jPanIdentiPromoter.add(jTFieldDBirth, null);
+		jPanIdentiPromoter.add(jLabGender, null);
+		jPanIdentiPromoter.add(jComboGender, null);
+		jPanIdentiPromoter.add(jTFieldFather, null);
+		jPanIdentiPromoter.add(jTFieldMother, null);
 
 		JPanel jPanCoordinate = new JPanel();
 		jPanCoordinate.setBorder(BorderFactory.createTitledBorder("Promoter coordinate"));
+		jPanCoordinate.setFont(new java.awt.Font(Font.DIALOG, 1, 14));
 		jPanCoordinate.setBackground(SystemColor.inactiveCaptionText);
-		jPanCoordinate.setBounds(new Rectangle(0, 138, 700, 122));
+		jPanCoordinate.setBounds(new Rectangle(2, 153, 700, 160));
 		jPanCoordinate.setLayout(null);
-		jPanCoordinate.add(jTFieldNumAddrss, null);
-		jPanCoordinate.add(jTFieldCity, null);
+		jPanCoordinate.add(jPanCoordinateLeft, null);
+		jPanCoordinate.add(jPanCoordinateRight, null);
 		jPanCoordinate.add(jTFieldTel, null);
 		jPanCoordinate.add(jTFieldFax, null);
 		jPanCoordinate.add(jTFieldEmail, null);
@@ -239,7 +317,7 @@ public class Inscription extends JFrame implements ActionListener {
 		JPanel jPanPromoProfil = new JPanel();
 		jPanPromoProfil.setBorder(BorderFactory.createTitledBorder("Promoter profile"));
 		jPanPromoProfil.setBackground(SystemColor.inactiveCaptionText);
-		jPanPromoProfil.setBounds(new Rectangle(0, 260, 700, 220));
+		jPanPromoProfil.setBounds(new Rectangle(2, 320, 700, 190));
 		jPanPromoProfil.setLayout(null);
 		jPanPromoProfil.add(jLabFami, null);
 		jPanPromoProfil.add(jComboFami, null);
@@ -263,6 +341,7 @@ public class Inscription extends JFrame implements ActionListener {
 		this.getContentPane().add(jPanIdentiPromoter, null);
 		this.getContentPane().add(jPanCoordinate, null);
 		this.getContentPane().add(jPanPromoProfil, null);
+
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
