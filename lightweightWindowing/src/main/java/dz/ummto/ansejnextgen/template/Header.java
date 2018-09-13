@@ -1,3 +1,7 @@
+/*
+ * Copyright 2008, 2018 Lyes Kherbiche
+ * <kerbiche@gmail.com>
+ */
 package dz.ummto.ansejnextgen.template;
 
 import java.awt.Color;
@@ -14,6 +18,12 @@ import javax.swing.border.EtchedBorder;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+/**
+ * The <code>Header</code> class represents
+ * 
+ * @author L KHERBICHE
+ * @since 0.0.1-RELEASE
+ */
 public class Header {
 
 	private static final Log logger = LogFactory.getLog(Header.class);

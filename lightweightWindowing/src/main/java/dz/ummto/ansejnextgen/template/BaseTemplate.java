@@ -1,3 +1,7 @@
+/*
+ * Copyright 2008, 2018 Lyes Kherbiche
+ * <kerbiche@gmail.com>
+ */
 package dz.ummto.ansejnextgen.template;
 
 import java.awt.Rectangle;
@@ -8,6 +12,12 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
+/**
+ * The <code>BaseTemplate</code> class represents
+ * 
+ * @author L KHERBICHE
+ * @since 0.0.1-RELEASE
+ */
 public class BaseTemplate {
 
 	private JFrame base;
