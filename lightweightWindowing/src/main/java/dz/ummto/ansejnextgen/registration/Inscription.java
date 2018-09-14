@@ -12,7 +12,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
-import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -50,18 +49,14 @@ public class Inscription extends JFrame implements ActionListener {
 
 	private static final Log logger = LogFactory.getLog(Inscription.class);
 
-	private JFrame t;
-
 	private JMenuItem jMenuFileExit, jMenuHelpAbout;
 	private JTextField jTFieldFirstName, jTFieldLastName, jTFieldDBirth, jTFieldFather, jTFieldMother, jTFieldBirthCity, jTFieldBirthZipCode, jTFieldBirthCountry, jTFieldNumAddrss, jTFieldStreetName, jTFieldCity, jTFieldZipCode, jTFieldCountry, jTFieldTel, jTFieldFax,
-			jTFieldEmail, jTFieldSpecialty;
+			jTFieldEmail, jTFieldSpecialty, jTFieldAnemCard;
 	private JComboBox<String> jComboGender, jComboTypeAddr, jComboFami, jComBoxDegree, jComBoxExperience;
 	private JRadioButton jRadioButton1, jRadioBHandic;
-	private ButtonGroup buttonGroup;
 	private JButton jButton1, jButton2;
 
 	public Inscription(JFrame t) {
-		this.t = t;
 		jbInit();
 	}
 
@@ -125,32 +120,32 @@ public class Inscription extends JFrame implements ActionListener {
 		jLabStage.setBounds(new Rectangle(2, 54, 700, 21));
 
 		JLabel jLabGender = new JLabel("Gender:");
-		jLabGender.setBounds(new Rectangle(10, 19, 51, 19));
+		jLabGender.setBounds(new Rectangle(10, 23, 51, 19));
 		jLabGender.setFont(new java.awt.Font(Font.DIALOG, 1, 11));
 		jLabGender.setForeground(Color.GRAY);
 		String[] optionsGender = {"Man", "Woman"};
 		jComboGender = new JComboBox<String>(optionsGender);
 		jComboGender.setBackground(SystemColor.controlLtHighlight);
-		jComboGender.setBounds(new Rectangle(62, 19, 100, 19));
+		jComboGender.setBounds(new Rectangle(62, 23, 100, 19));
 
 		jTFieldFirstName = new HintJTextField("First Name");
-		jTFieldFirstName.setBounds(new Rectangle(286, 19, 140, 19));
+		jTFieldFirstName.setBounds(new Rectangle(286, 23, 140, 19));
 		jTFieldFirstName.setToolTipText("First Name");
 
 		jTFieldLastName = new HintJTextField("Last Name");
-		jTFieldLastName.setBounds(new Rectangle(550, 19, 140, 19));
+		jTFieldLastName.setBounds(new Rectangle(550, 23, 140, 19));
 		jTFieldLastName.setToolTipText("Last Name");
 
 		jTFieldDBirth = new HintJTextField("Born on:dd/mm/yyyy");
-		jTFieldDBirth.setBounds(new Rectangle(62, 45, 132, 19));
+		jTFieldDBirth.setBounds(new Rectangle(62, 47, 132, 19));
 		jTFieldDBirth.setToolTipText("Birth Date");
 
 		jTFieldFather = new HintJTextField("Father");
-		jTFieldFather.setBounds(new Rectangle(286, 45, 140, 19));
+		jTFieldFather.setBounds(new Rectangle(286, 47, 140, 19));
 		jTFieldFather.setToolTipText("Father Name");
 
 		jTFieldMother = new HintJTextField("Mother");
-		jTFieldMother.setBounds(new Rectangle(550, 45, 140, 19));
+		jTFieldMother.setBounds(new Rectangle(550, 47, 140, 19));
 		jTFieldMother.setToolTipText("Mother Name");
 
 
@@ -229,70 +224,71 @@ public class Inscription extends JFrame implements ActionListener {
 
 		JLabel jLabFami = new JLabel("Family situation:", SwingConstants.LEFT);
 		jLabFami.setFont(new java.awt.Font(Font.DIALOG, 1, 11));
-		jLabFami.setBounds(new Rectangle(9, 30, 124, 19));
+		jLabFami.setBounds(new Rectangle(10, 23, 110, 19));
 		jLabFami.setForeground(Color.GRAY);
 		String[] optionsFam = {"Single", "Married"};
 		jComboFami = new JComboBox<String>(optionsFam);
 		jComboFami.setBackground(SystemColor.controlLtHighlight);
-		jComboFami.setBounds(new Rectangle(138, 31, 130, 18));
-
-		JLabel jLabHandic = new JLabel("Handicapped:");
-		jLabHandic.setBounds(new Rectangle(291, 30, 95, 19));
-		jLabHandic.setBackground(SystemColor.inactiveCaption);
-		jLabHandic.setFont(new java.awt.Font(Font.DIALOG, 1, 11));
-		jLabHandic.setOpaque(false);
-		jLabHandic.setForeground(Color.GRAY);
-		jRadioButton1 = new JRadioButton("Yes");
-		jRadioButton1.setBackground(SystemColor.textInactiveText);
-		jRadioButton1.setBounds(new Rectangle(393, 32, 58, 15));
-		jRadioBHandic = new JRadioButton("No");
-		jRadioBHandic.setBounds(new Rectangle(480, 32, 59, 15));
-		jRadioBHandic.setBackground(SystemColor.textInactiveText);
+		jComboFami.setBounds(new Rectangle(125, 23, 140, 19));
 
 		JLabel jLabEducLevel = new JLabel("Education level:");
-		jLabEducLevel.setBounds(new Rectangle(25, 80, 114, 19));
+		jLabEducLevel.setBounds(new Rectangle(435, 23, 110, 19));
 		jLabEducLevel.setFont(new java.awt.Font(Font.DIALOG, 1, 11));
 		jLabEducLevel.setForeground(Color.GRAY);
 		String[] optionsDegree = {"Intermediary", "Secondary school", "Bac", "Bac+1", "Bac+2", "Bac+3", "Bac+4", "Bac+5(or more)"};
 		jComBoxDegree = new JComboBox<String>(optionsDegree);
 		jComBoxDegree.setBackground(SystemColor.controlLtHighlight);
-		jComBoxDegree.setBounds(new Rectangle(137, 82, 130, 18));
-
-		jTFieldSpecialty = new HintJTextField("Specialty");
-		jTFieldSpecialty.setBounds(new Rectangle(138, 126, 185, 19));
-		jTFieldSpecialty.setToolTipText("Specialty");
+		jComBoxDegree.setBounds(new Rectangle(550, 23, 140, 19));
 
 		JLabel jLabExperience = new JLabel("Professional experience:");
-		jLabExperience.setBounds(new Rectangle(279, 80, 173, 19));
+		jLabExperience.setBounds(new Rectangle(10, 47, 110, 19));
 		jLabExperience.setFont(new java.awt.Font(Font.DIALOG, 1, 11));
 		jLabExperience.setForeground(Color.GRAY);
 		String[] optionsExperience = {"Without", "Experience < 3 years", "Experience 3 years(or more)"};
 		jComBoxExperience = new JComboBox<String>(optionsExperience);
 		jComBoxExperience.setBackground(SystemColor.controlLtHighlight);
-		jComBoxExperience.setBounds(new Rectangle(478, 81, 163, 18));
+		jComBoxExperience.setBounds(new Rectangle(125, 47, 140, 19));
+
+		jTFieldSpecialty = new HintJTextField("Specialty or degree");
+		jTFieldSpecialty.setBounds(new Rectangle(550, 47, 140, 19));
+		jTFieldSpecialty.setToolTipText("Specialty or degree");
+
+		JLabel jLabHandic = new JLabel("Handicapped:");
+		jLabHandic.setBounds(new Rectangle(10, 71, 110, 19));
+		jLabHandic.setBackground(SystemColor.inactiveCaption);
+		jLabHandic.setFont(new java.awt.Font(Font.DIALOG, 1, 11));
+		jLabHandic.setForeground(Color.GRAY);
+		jRadioButton1 = new JRadioButton("Yes");
+		jRadioButton1.setBackground(SystemColor.textInactiveText);
+		jRadioButton1.setBounds(new Rectangle(125, 71, 60, 15));
+		jRadioBHandic = new JRadioButton("No");
+		jRadioBHandic.setBounds(new Rectangle(205, 71, 60, 15));
+		jRadioBHandic.setBackground(SystemColor.textInactiveText);
+
+		jTFieldAnemCard = new HintJTextField("ANEM card N°");
+		jTFieldAnemCard.setBounds(new Rectangle(550, 71, 140, 19));
+		jTFieldAnemCard.setToolTipText("Anem card number");
+
 
 		jButton1 = new JButton("Ok");
 		jButton1.setBackground(Color.green);
-		jButton1.setBounds(new Rectangle(389, 154, 144, 22));
+		jButton1.setBounds(new Rectangle(389, 454, 140, 22));
 		jButton1.setFont(new java.awt.Font(Font.DIALOG, 1, 13));
 		jButton1.setForeground(Color.yellow);
 		jButton1.addActionListener(this);
 		jButton2 = new JButton("Cancel");
 		jButton2.setBackground(Color.blue);
-		jButton2.setBounds(new Rectangle(180, 154, 144, 22));
+		jButton2.setBounds(new Rectangle(180, 454, 140, 22));
 		jButton2.setFont(new java.awt.Font("Dialog", 1, 13));
 		jButton2.setForeground(Color.white);
 		jButton2.addActionListener(this);
 
-		buttonGroup = new ButtonGroup();
-		buttonGroup.add(jRadioButton1);
-		buttonGroup.add(jRadioBHandic);
 
 		JPanel jPanIdentiPromoter = new JPanel();
 		jPanIdentiPromoter.setBorder(BorderFactory.createTitledBorder("Identification du promoteur"));
 		jPanIdentiPromoter.setFont(new java.awt.Font(Font.DIALOG, 1, 14));
 		jPanIdentiPromoter.setBackground(SystemColor.inactiveCaptionText);
-		jPanIdentiPromoter.setBounds(new Rectangle(2, 75, 700, 73));
+		jPanIdentiPromoter.setBounds(new Rectangle(2, 75, 700, 89));
 		jPanIdentiPromoter.setLayout(null);
 		jPanIdentiPromoter.add(jTFieldFirstName, null);
 		jPanIdentiPromoter.add(jTFieldLastName, null);
@@ -306,7 +302,7 @@ public class Inscription extends JFrame implements ActionListener {
 		jPanCoordinate.setBorder(BorderFactory.createTitledBorder("Promoter coordinate"));
 		jPanCoordinate.setFont(new java.awt.Font(Font.DIALOG, 1, 14));
 		jPanCoordinate.setBackground(SystemColor.inactiveCaptionText);
-		jPanCoordinate.setBounds(new Rectangle(2, 153, 700, 160));
+		jPanCoordinate.setBounds(new Rectangle(2, 169, 700, 160));
 		jPanCoordinate.setLayout(null);
 		jPanCoordinate.add(jPanCoordinateLeft, null);
 		jPanCoordinate.add(jPanCoordinateRight, null);
@@ -317,7 +313,7 @@ public class Inscription extends JFrame implements ActionListener {
 		JPanel jPanPromoProfil = new JPanel();
 		jPanPromoProfil.setBorder(BorderFactory.createTitledBorder("Promoter profile"));
 		jPanPromoProfil.setBackground(SystemColor.inactiveCaptionText);
-		jPanPromoProfil.setBounds(new Rectangle(2, 320, 700, 190));
+		jPanPromoProfil.setBounds(new Rectangle(2, 334, 700, 113));
 		jPanPromoProfil.setLayout(null);
 		jPanPromoProfil.add(jLabFami, null);
 		jPanPromoProfil.add(jComboFami, null);
@@ -328,9 +324,10 @@ public class Inscription extends JFrame implements ActionListener {
 		jPanPromoProfil.add(jComBoxDegree, null);
 		jPanPromoProfil.add(jLabExperience, null);
 		jPanPromoProfil.add(jComBoxExperience, null);
-		jPanPromoProfil.add(jButton1, null);
-		jPanPromoProfil.add(jButton2, null);
+		//jPanPromoProfil.add(jButton1, null);
+		//jPanPromoProfil.add(jButton2, null);
 		jPanPromoProfil.add(jTFieldSpecialty, null);
+		jPanPromoProfil.add(jTFieldAnemCard, null);
 
 		this.setJMenuBar(jMenuBar);
 		this.getContentPane().add(jLabAnsej2, null);
@@ -341,6 +338,8 @@ public class Inscription extends JFrame implements ActionListener {
 		this.getContentPane().add(jPanIdentiPromoter, null);
 		this.getContentPane().add(jPanCoordinate, null);
 		this.getContentPane().add(jPanPromoProfil, null);
+		this.getContentPane().add(jButton1, null);
+		this.getContentPane().add(jButton2, null);
 
 	}
 
@@ -360,7 +359,7 @@ public class Inscription extends JFrame implements ActionListener {
 					if (boutonCliqué == jButton1) {
 						// this.registre1.SaisirttInfo(liste, this);
 						dispose();
-						t.show();
+						//t.show();
 
 					}
 

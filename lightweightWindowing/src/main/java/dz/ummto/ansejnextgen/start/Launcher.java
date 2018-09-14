@@ -27,6 +27,10 @@ public class Launcher {
 			public void run() {
 				Inscription registration = new Inscription(null);
 				registration.setVisible(true);
+				//BaseTemplate bt = new BaseTemplate();
+				//Header header = new Header();
+				//bt.setHeader(header.getJPanel());
+				//bt.getJFrame().setVisible(true);;
 			}
 		};
 		if(SwingUtilities.isEventDispatchThread()) {
