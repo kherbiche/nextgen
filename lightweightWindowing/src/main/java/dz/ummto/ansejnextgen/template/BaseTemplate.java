@@ -51,6 +51,16 @@ public class BaseTemplate {
 		base.getContentPane().add(header, null);
 	}
 
+	public void setFooter(JPanel footer) {
+		footer.setBounds(new Rectangle(0, 513, 704, 16));
+		base.getContentPane().add(footer, null);
+	}
+
+	public void setMenu(JPanel menu) {
+		menu.setBounds(new Rectangle(0,73, 140, 615));
+		base.getContentPane().add(menu, null);
+	}
+
 	public JFrame getJFrame() {
 		return base;
 	}

@@ -7,7 +7,6 @@ package dz.ummto.ansejnextgen.template;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Rectangle;
-import java.awt.SystemColor;
 
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
@@ -72,7 +71,6 @@ public class Header {
 
 		headerJpanel = new JPanel();
 		headerJpanel.setLayout(null);
-		headerJpanel.setBackground(SystemColor.inactiveCaptionText);
 		headerJpanel.setFont(new java.awt.Font(Font.DIALOG, 1, 14));
 		headerJpanel.add(jLabAnsej2, null);
 		headerJpanel.add(jLabAnsej1, null);
