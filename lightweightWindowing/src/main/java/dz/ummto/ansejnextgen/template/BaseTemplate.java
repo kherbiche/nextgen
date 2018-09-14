@@ -29,7 +29,7 @@ public class BaseTemplate {
 	private void jbInit() {
 
 		base = new JFrame();
-		base.setSize(704, 550);
+		base.setSize(844, 550);
 		base.setResizable(false);
 		base.setLocationRelativeTo(null);
 		base.getContentPane().setLayout(null);
@@ -47,18 +47,23 @@ public class BaseTemplate {
 	}
 
 	public void setHeader(JPanel header) {
-		header.setBounds(new Rectangle(0, 2, 704, 70));
+		header.setBounds(new Rectangle(0, 1, 844, 70));
 		base.getContentPane().add(header, null);
 	}
 
 	public void setFooter(JPanel footer) {
-		footer.setBounds(new Rectangle(0, 513, 704, 16));
+		footer.setBounds(new Rectangle(0, 513, 844, 16));
 		base.getContentPane().add(footer, null);
 	}
 
 	public void setMenu(JPanel menu) {
-		menu.setBounds(new Rectangle(0,73, 140, 615));
+		menu.setBounds(new Rectangle(0,73, 135, 615));
 		base.getContentPane().add(menu, null);
+	}
+
+	public void setBody(JPanel body) {
+		body.setBounds(new Rectangle(140, 73, 704, 550));
+		base.getContentPane().add(body, null);
 	}
 
 	public JFrame getJFrame() {

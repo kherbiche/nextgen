@@ -42,7 +42,7 @@ public class Header {
 		jLabAnsej2.setOpaque(true);
 		jLabAnsej2.setBounds(new Rectangle(0, 2, 93, 27));
 		JLabel jLabAnsej1 = new JLabel("ANSEJ", SwingConstants.CENTER);
-		jLabAnsej1.setBounds(new Rectangle(611, 2, 93, 27));
+		jLabAnsej1.setBounds(new Rectangle(751, 2, 93, 27));
 		jLabAnsej1.setOpaque(true);
 		jLabAnsej1.setForeground(Color.blue);
 		jLabAnsej1.setFont(new java.awt.Font("Dialog", 1, 16));
@@ -52,7 +52,7 @@ public class Header {
 		jLabSpace.setBackground(Color.lightGray);
 		jLabSpace.setFont(new java.awt.Font(Font.DIALOG, 3, 17));
 		jLabSpace.setOpaque(true);
-		jLabSpace.setBounds(new Rectangle(101, 5, 500, 21));
+		jLabSpace.setBounds(new Rectangle(101, 5, 642, 21));
 		jLabSpace.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
 		JLabel jLabContext = new JLabel("Follow-up of promoters", SwingConstants.RIGHT);
 		jLabContext.setBackground(Color.orange);
@@ -60,14 +60,14 @@ public class Header {
 		jLabContext.setOpaque(true);
 		jLabContext.setRequestFocusEnabled(true);
 		jLabContext.setIconTextGap(4);
-		jLabContext.setBounds(new Rectangle(0, 32, 704, 22));
+		jLabContext.setBounds(new Rectangle(0, 32, 844, 22));
 		JLabel jLabStage = new JLabel("Promoter Registration");
-		jLabStage.setBackground(Color.white);
+		jLabStage.setBackground(Color.LIGHT_GRAY);
 		jLabStage.setFont(new java.awt.Font(Font.DIALOG, 1, 13));
 		jLabStage.setOpaque(true);
 		jLabStage.setRequestFocusEnabled(true);
 		jLabStage.setVerifyInputWhenFocusTarget(true);
-		jLabStage.setBounds(new Rectangle(2, 54, 700, 21));
+		jLabStage.setBounds(new Rectangle(2, 54, 840, 21));
 
 		headerJpanel = new JPanel();
 		headerJpanel.setLayout(null);

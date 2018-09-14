@@ -45,7 +45,7 @@ import dz.ummto.ansejnextgen.common_utils.HintJTextField;
  */
 
 @SuppressWarnings("serial")
-public class Inscription extends JFrame implements ActionListener {
+public class Inscription extends JPanel implements ActionListener {
 
 	private static final Log logger = LogFactory.getLog(Inscription.class);
 
@@ -67,12 +67,15 @@ public class Inscription extends JFrame implements ActionListener {
 		} else {
 			logger.info("--- jbInit: Out of EDT");
 		}
+		/*
 		setTitle("Registration");
 		this.setSize(704, 550);
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 		this.getContentPane().setLayout(null);
+		*/
 
+		/*
 		JMenuBar jMenuBar = new JMenuBar();
 		JMenu jMenuFile = new JMenu("File");
 		JMenu jMenuHelp = new JMenu("Help");
@@ -118,7 +121,10 @@ public class Inscription extends JFrame implements ActionListener {
 		jLabStage.setRequestFocusEnabled(true);
 		jLabStage.setVerifyInputWhenFocusTarget(true);
 		jLabStage.setBounds(new Rectangle(2, 54, 700, 21));
+		*/
 
+		this.setLayout(null);
+		
 		JLabel jLabGender = new JLabel("Gender:");
 		jLabGender.setBounds(new Rectangle(10, 23, 51, 19));
 		jLabGender.setFont(new java.awt.Font(Font.DIALOG, 1, 11));
@@ -272,13 +278,13 @@ public class Inscription extends JFrame implements ActionListener {
 
 		jButton1 = new JButton("Ok");
 		jButton1.setBackground(Color.green);
-		jButton1.setBounds(new Rectangle(389, 454, 140, 22));
+		jButton1.setBounds(new Rectangle(389, 379, 140, 22));
 		jButton1.setFont(new java.awt.Font(Font.DIALOG, 1, 13));
 		jButton1.setForeground(Color.yellow);
 		jButton1.addActionListener(this);
 		jButton2 = new JButton("Cancel");
 		jButton2.setBackground(Color.blue);
-		jButton2.setBounds(new Rectangle(180, 454, 140, 22));
+		jButton2.setBounds(new Rectangle(180, 379, 140, 22));
 		jButton2.setFont(new java.awt.Font("Dialog", 1, 13));
 		jButton2.setForeground(Color.white);
 		jButton2.addActionListener(this);
@@ -288,7 +294,7 @@ public class Inscription extends JFrame implements ActionListener {
 		jPanIdentiPromoter.setBorder(BorderFactory.createTitledBorder("Identification du promoteur"));
 		jPanIdentiPromoter.setFont(new java.awt.Font(Font.DIALOG, 1, 14));
 		jPanIdentiPromoter.setBackground(SystemColor.inactiveCaptionText);
-		jPanIdentiPromoter.setBounds(new Rectangle(2, 75, 700, 89));
+		jPanIdentiPromoter.setBounds(new Rectangle(2, 0, 700, 89));
 		jPanIdentiPromoter.setLayout(null);
 		jPanIdentiPromoter.add(jTFieldFirstName, null);
 		jPanIdentiPromoter.add(jTFieldLastName, null);
@@ -302,7 +308,7 @@ public class Inscription extends JFrame implements ActionListener {
 		jPanCoordinate.setBorder(BorderFactory.createTitledBorder("Promoter coordinate"));
 		jPanCoordinate.setFont(new java.awt.Font(Font.DIALOG, 1, 14));
 		jPanCoordinate.setBackground(SystemColor.inactiveCaptionText);
-		jPanCoordinate.setBounds(new Rectangle(2, 169, 700, 160));
+		jPanCoordinate.setBounds(new Rectangle(2, 94, 700, 160));
 		jPanCoordinate.setLayout(null);
 		jPanCoordinate.add(jPanCoordinateLeft, null);
 		jPanCoordinate.add(jPanCoordinateRight, null);
@@ -313,7 +319,7 @@ public class Inscription extends JFrame implements ActionListener {
 		JPanel jPanPromoProfil = new JPanel();
 		jPanPromoProfil.setBorder(BorderFactory.createTitledBorder("Promoter profile"));
 		jPanPromoProfil.setBackground(SystemColor.inactiveCaptionText);
-		jPanPromoProfil.setBounds(new Rectangle(2, 334, 700, 113));
+		jPanPromoProfil.setBounds(new Rectangle(2, 259, 700, 113));
 		jPanPromoProfil.setLayout(null);
 		jPanPromoProfil.add(jLabFami, null);
 		jPanPromoProfil.add(jComboFami, null);
@@ -324,22 +330,20 @@ public class Inscription extends JFrame implements ActionListener {
 		jPanPromoProfil.add(jComBoxDegree, null);
 		jPanPromoProfil.add(jLabExperience, null);
 		jPanPromoProfil.add(jComBoxExperience, null);
-		//jPanPromoProfil.add(jButton1, null);
-		//jPanPromoProfil.add(jButton2, null);
 		jPanPromoProfil.add(jTFieldSpecialty, null);
 		jPanPromoProfil.add(jTFieldAnemCard, null);
 
-		this.setJMenuBar(jMenuBar);
-		this.getContentPane().add(jLabAnsej2, null);
-		this.getContentPane().add(jLabAnsej1, null);
-		this.getContentPane().add(jLabSpace, null);
-		this.getContentPane().add(jLabContext, null);
-		this.getContentPane().add(jLabStage, null);
-		this.getContentPane().add(jPanIdentiPromoter, null);
-		this.getContentPane().add(jPanCoordinate, null);
-		this.getContentPane().add(jPanPromoProfil, null);
-		this.getContentPane().add(jButton1, null);
-		this.getContentPane().add(jButton2, null);
+		//this.setJMenuBar(jMenuBar);
+		//this.getContentPane().add(jLabAnsej2, null);
+		//this.getContentPane().add(jLabAnsej1, null);
+		//this.getContentPane().add(jLabSpace, null);
+		//this.getContentPane().add(jLabContext, null);
+		//this.getContentPane().add(jLabStage, null);
+		this/*.getContentPane()*/.add(jPanIdentiPromoter, null);
+		this/*.getContentPane()*/.add(jPanCoordinate, null);
+		this/*.getContentPane()*/.add(jPanPromoProfil, null);
+		this/*.getContentPane()*/.add(jButton1, null);
+		this/*.getContentPane()*/.add(jButton2, null);
 
 	}
 
@@ -354,11 +358,11 @@ public class Inscription extends JFrame implements ActionListener {
 			} else {
 				JButton boutonCliqué = (JButton) arg0.getSource();
 				if (boutonCliqué == jButton2) {
-					dispose();
+					//dispose();
 				} else {
 					if (boutonCliqué == jButton1) {
 						// this.registre1.SaisirttInfo(liste, this);
-						dispose();
+						//dispose();
 						//t.show();
 
 					}
@@ -366,63 +370,6 @@ public class Inscription extends JFrame implements ActionListener {
 				}
 			}
 		}
-	}
-
-	public Object getnom() {
-		return jTFieldFirstName.getText();
-	}
-
-	Object getprenom() {
-		return jTFieldLastName.getText();
-	}
-
-	public Object getdn() {
-		return jTFieldDBirth.getText();
-	}
-
-	public Object getadresse() {
-		return jTFieldNumAddrss.getText();
-	}
-
-	public Object getcommune() {
-		return jTFieldCity.getText();
-	}
-
-	public Object gettelephone() {
-		return jTFieldTel.getText();
-	}
-
-	public Object getfaxe() {
-		return jTFieldFax.getText();
-	}
-
-	public Object getemail() {
-		return jTFieldEmail.getText();
-	}
-
-	public Object gets_familiale() {
-		return jComboFami.getSelectedItem();
-	}
-
-	public Object gethandicape() {
-		return "Non";
-	}
-
-	public Object getn_etude() {
-		return jComBoxDegree.getSelectedItem();
-	}
-
-	public Object gete_professionel() {
-		return jComBoxExperience.getSelectedItem();
-	}
-
-	public Object getspecialite() {
-		return jTFieldSpecialty.getText();
-	}
-
-	public void update() {
-		dispose();
-		JOptionPane.showConfirmDialog(null, "Inscription reussie  ", "Juste un test", JOptionPane.PLAIN_MESSAGE);
 	}
 
 }

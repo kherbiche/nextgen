@@ -9,6 +9,7 @@ import javax.swing.SwingUtilities;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import dz.ummto.ansejnextgen.registration.Inscription;
 import dz.ummto.ansejnextgen.template.BaseTemplate;
 import dz.ummto.ansejnextgen.template.Footer;
 import dz.ummto.ansejnextgen.template.Header;
@@ -28,7 +29,7 @@ public class Launcher {
 	public static void main(String[] args) {
 		Runnable code = new Runnable() {
 			public void run() {
-				//Inscription registration = new Inscription(null);
+				Inscription registration = new Inscription(null);
 				//registration.setVisible(true);
 				BaseTemplate bt = new BaseTemplate();
 				Header header = new Header();
@@ -37,6 +38,7 @@ public class Launcher {
 				bt.setHeader(header.getJPanel());
 				bt.setFooter(footer.getJPanel());
 				bt.setMenu(menu.getJPanel());
+				bt.setBody(registration);
 				bt.getJFrame().setVisible(true);;
 			}
 		};

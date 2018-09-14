@@ -32,7 +32,7 @@ public class Menu {
 		JLabel jLabMenu = new JLabel("Menu", SwingConstants.CENTER);
 		jLabMenu.setBackground(Color.blue);
 		jLabMenu.setFont(new java.awt.Font(Font.DIALOG, 1, 13));
-		jLabMenu.setBounds(new Rectangle(0, 0, 140, 19));
+		jLabMenu.setBounds(new Rectangle(0, 0, 135, 19));
 		jLabMenu.setOpaque(true);
 		
 		menuJpanel = new JPanel();
