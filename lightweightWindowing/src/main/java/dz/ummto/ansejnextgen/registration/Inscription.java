@@ -12,12 +12,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -25,11 +24,11 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
-import javax.swing.border.EtchedBorder;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import dz.ummto.ansejnextgen.IconEnum;
 import dz.ummto.ansejnextgen.common_utils.HintJTextField;
 
 /**
@@ -49,9 +48,11 @@ public class Inscription extends JPanel implements ActionListener {
 
 	private static final Log logger = LogFactory.getLog(Inscription.class);
 
+	private static final String EXTENTION = ".png";
 	private JMenuItem jMenuFileExit, jMenuHelpAbout;
-	private JTextField jTFieldFirstName, jTFieldLastName, jTFieldDBirth, jTFieldFather, jTFieldMother, jTFieldBirthCity, jTFieldBirthZipCode, jTFieldBirthCountry, jTFieldNumAddrss, jTFieldStreetName, jTFieldCity, jTFieldZipCode, jTFieldCountry, jTFieldTel, jTFieldFax,
-			jTFieldEmail, jTFieldSpecialty, jTFieldAnemCard;
+	private JTextField jTFieldFirstName, jTFieldLastName, jTFieldDBirth, jTFieldFather, jTFieldMother, jTFieldBirthCity,
+			jTFieldBirthZipCode, jTFieldBirthCountry, jTFieldNumAddrss, jTFieldStreetName, jTFieldCity, jTFieldZipCode,
+			jTFieldCountry, jTFieldTel, jTFieldFax, jTFieldEmail, jTFieldSpecialty, jTFieldAnemCard;
 	private JComboBox<String> jComboGender, jComboTypeAddr, jComboFami, jComBoxDegree, jComBoxExperience;
 	private JRadioButton jRadioButton1, jRadioBHandic;
 	private JButton jButton1, jButton2;
@@ -62,74 +63,19 @@ public class Inscription extends JPanel implements ActionListener {
 
 	private void jbInit() {
 
-		if(SwingUtilities.isEventDispatchThread()) {
+		if (SwingUtilities.isEventDispatchThread()) {
 			logger.info("--- jbInit: In the EDT");
 		} else {
 			logger.info("--- jbInit: Out of EDT");
 		}
-		/*
-		setTitle("Registration");
-		this.setSize(704, 550);
-		this.setResizable(false);
-		this.setLocationRelativeTo(null);
-		this.getContentPane().setLayout(null);
-		*/
-
-		/*
-		JMenuBar jMenuBar = new JMenuBar();
-		JMenu jMenuFile = new JMenu("File");
-		JMenu jMenuHelp = new JMenu("Help");
-		jMenuFileExit = new JMenuItem("Exit");
-		jMenuFileExit.addActionListener(this);
-		jMenuHelpAbout = new JMenuItem("About");
-		jMenuHelpAbout.addActionListener(this);
-		jMenuFile.add(jMenuFileExit);
-		jMenuHelp.add(jMenuHelpAbout);
-		jMenuBar.add(jMenuFile);
-		jMenuBar.add(jMenuHelp);
-
-		JLabel jLabAnsej2 = new JLabel("ANSEJ", SwingConstants.CENTER);
-		jLabAnsej2.setBackground(Color.orange);
-		jLabAnsej2.setFont(new java.awt.Font(Font.DIALOG, 1, 16));
-		jLabAnsej2.setForeground(Color.blue);
-		jLabAnsej2.setOpaque(true);
-		jLabAnsej2.setBounds(new Rectangle(0, 2, 93, 27));
-		JLabel jLabAnsej1 = new JLabel("ANSEJ", SwingConstants.CENTER);
-		jLabAnsej1.setBounds(new Rectangle(611, 2, 93, 27));
-		jLabAnsej1.setOpaque(true);
-		jLabAnsej1.setForeground(Color.blue);
-		jLabAnsej1.setFont(new java.awt.Font("Dialog", 1, 16));
-		jLabAnsej1.setBackground(Color.orange);
-
-		JLabel jLabSpace = new JLabel("Accompanying counselor space", SwingConstants.CENTER);
-		jLabSpace.setBackground(Color.lightGray);
-		jLabSpace.setFont(new java.awt.Font(Font.DIALOG, 3, 17));
-		jLabSpace.setOpaque(true);
-		jLabSpace.setBounds(new Rectangle(101, 5, 500, 21));
-		jLabSpace.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
-		JLabel jLabContext = new JLabel("Follow-up of promoters", SwingConstants.RIGHT);
-		jLabContext.setBackground(Color.orange);
-		jLabContext.setFont(new java.awt.Font(Font.SANS_SERIF, 3, 13));
-		jLabContext.setOpaque(true);
-		jLabContext.setRequestFocusEnabled(true);
-		jLabContext.setIconTextGap(4);
-		jLabContext.setBounds(new Rectangle(0, 32, 704, 22));
-		JLabel jLabStage = new JLabel("Promoter Registration");
-		jLabStage.setBackground(Color.white);
-		jLabStage.setFont(new java.awt.Font(Font.DIALOG, 1, 13));
-		jLabStage.setOpaque(true);
-		jLabStage.setRequestFocusEnabled(true);
-		jLabStage.setVerifyInputWhenFocusTarget(true);
-		jLabStage.setBounds(new Rectangle(2, 54, 700, 21));
-		*/
 
 		this.setLayout(null);
-		
+
 		JLabel jLabGender = new JLabel("Gender:");
 		jLabGender.setBounds(new Rectangle(10, 23, 51, 19));
 		jLabGender.setFont(new java.awt.Font(Font.DIALOG, 1, 11));
 		jLabGender.setForeground(Color.GRAY);
-		String[] optionsGender = {"Man", "Woman"};
+		String[] optionsGender = { "Man", "Woman" };
 		jComboGender = new JComboBox<String>(optionsGender);
 		jComboGender.setBackground(SystemColor.controlLtHighlight);
 		jComboGender.setBounds(new Rectangle(62, 23, 100, 19));
@@ -154,7 +100,6 @@ public class Inscription extends JPanel implements ActionListener {
 		jTFieldMother.setBounds(new Rectangle(550, 47, 140, 19));
 		jTFieldMother.setToolTipText("Mother Name");
 
-
 		jTFieldBirthCity = new HintJTextField("Birth City");
 		jTFieldBirthCity.setToolTipText("BirthCity");
 		jTFieldBirthCity.setBounds(new Rectangle(10, 23, 140, 19));
@@ -162,7 +107,7 @@ public class Inscription extends JPanel implements ActionListener {
 		jTFieldBirthZipCode = new HintJTextField("Zip Code");
 		jTFieldBirthZipCode.setToolTipText("Birth City Zip Code");
 		jTFieldBirthZipCode.setBounds(new Rectangle(10, 47, 140, 19));
-		
+
 		jTFieldBirthCountry = new HintJTextField("Birth country");
 		jTFieldBirthCountry.setToolTipText("Birth country");
 		jTFieldBirthCountry.setBounds(new Rectangle(10, 71, 140, 19));
@@ -181,7 +126,7 @@ public class Inscription extends JPanel implements ActionListener {
 		jTFieldNumAddrss.setToolTipText("Address number");
 		jTFieldNumAddrss.setBounds(new Rectangle(10, 23, 140, 19));
 
-		String[] optionsTypeAddr = {"AVENUE", "STREET", "PATH", "ROAD", "PLACE"};
+		String[] optionsTypeAddr = { "AVENUE", "STREET", "PATH", "ROAD", "PLACE" };
 		jComboTypeAddr = new JComboBox<String>(optionsTypeAddr);
 		jComboTypeAddr.setBackground(SystemColor.controlLtHighlight);
 		jComboTypeAddr.setBounds(new Rectangle(10, 47, 140, 19));
@@ -197,7 +142,7 @@ public class Inscription extends JPanel implements ActionListener {
 		jTFieldZipCode = new HintJTextField("Zip Code");
 		jTFieldZipCode.setToolTipText("Residence Zip Code");
 		jTFieldZipCode.setBounds(new Rectangle(375, 47, 140, 19));
-		
+
 		jTFieldCountry = new HintJTextField("Country");
 		jTFieldCountry.setToolTipText("Residence country");
 		jTFieldCountry.setBounds(new Rectangle(375, 71, 140, 19));
@@ -227,12 +172,11 @@ public class Inscription extends JPanel implements ActionListener {
 		jTFieldEmail.setBounds(new Rectangle(62, 127, 140, 19));
 		jTFieldEmail.setToolTipText("Email Address");
 
-
 		JLabel jLabFami = new JLabel("Family situation:", SwingConstants.LEFT);
 		jLabFami.setFont(new java.awt.Font(Font.DIALOG, 1, 11));
 		jLabFami.setBounds(new Rectangle(10, 23, 110, 19));
 		jLabFami.setForeground(Color.GRAY);
-		String[] optionsFam = {"Single", "Married"};
+		String[] optionsFam = { "Single", "Married" };
 		jComboFami = new JComboBox<String>(optionsFam);
 		jComboFami.setBackground(SystemColor.controlLtHighlight);
 		jComboFami.setBounds(new Rectangle(125, 23, 140, 19));
@@ -241,7 +185,8 @@ public class Inscription extends JPanel implements ActionListener {
 		jLabEducLevel.setBounds(new Rectangle(435, 23, 110, 19));
 		jLabEducLevel.setFont(new java.awt.Font(Font.DIALOG, 1, 11));
 		jLabEducLevel.setForeground(Color.GRAY);
-		String[] optionsDegree = {"Intermediary", "Secondary school", "Bac", "Bac+1", "Bac+2", "Bac+3", "Bac+4", "Bac+5(or more)"};
+		String[] optionsDegree = { "Intermediary", "Secondary school", "Bac", "Bac+1", "Bac+2", "Bac+3", "Bac+4",
+				"Bac+5(or more)" };
 		jComBoxDegree = new JComboBox<String>(optionsDegree);
 		jComBoxDegree.setBackground(SystemColor.controlLtHighlight);
 		jComBoxDegree.setBounds(new Rectangle(550, 23, 140, 19));
@@ -250,7 +195,7 @@ public class Inscription extends JPanel implements ActionListener {
 		jLabExperience.setBounds(new Rectangle(10, 47, 110, 19));
 		jLabExperience.setFont(new java.awt.Font(Font.DIALOG, 1, 11));
 		jLabExperience.setForeground(Color.GRAY);
-		String[] optionsExperience = {"Without", "Experience < 3 years", "Experience 3 years(or more)"};
+		String[] optionsExperience = { "Without", "Experience < 3 years", "Experience 3 years(or more)" };
 		jComBoxExperience = new JComboBox<String>(optionsExperience);
 		jComBoxExperience.setBackground(SystemColor.controlLtHighlight);
 		jComBoxExperience.setBounds(new Rectangle(125, 47, 140, 19));
@@ -275,20 +220,22 @@ public class Inscription extends JPanel implements ActionListener {
 		jTFieldAnemCard.setBounds(new Rectangle(550, 71, 140, 19));
 		jTFieldAnemCard.setToolTipText("Anem card number");
 
-
-		jButton1 = new JButton("Ok");
-		jButton1.setBackground(Color.green);
-		jButton1.setBounds(new Rectangle(389, 379, 140, 22));
+		jButton1 = new JButton("Ok",
+				new ImageIcon(new ImageIcon(getClass().getResource("/" + IconEnum.CREATE_PROMOT + EXTENTION)).getImage()
+						.getScaledInstance(30, 20, java.awt.Image.SCALE_SMOOTH)));
+		jButton1.setBackground(Color.ORANGE);
+		jButton1.setBounds(new Rectangle(389, 379, 100, 22));
 		jButton1.setFont(new java.awt.Font(Font.DIALOG, 1, 13));
 		jButton1.setForeground(Color.yellow);
 		jButton1.addActionListener(this);
-		jButton2 = new JButton("Cancel");
-		jButton2.setBackground(Color.blue);
-		jButton2.setBounds(new Rectangle(180, 379, 140, 22));
-		jButton2.setFont(new java.awt.Font("Dialog", 1, 13));
+		jButton2 = new JButton("Cancel",
+				new ImageIcon(new ImageIcon(getClass().getResource("/" + IconEnum.CANCEL + EXTENTION)).getImage()
+						.getScaledInstance(20, 15, java.awt.Image.SCALE_SMOOTH)));
+		jButton2.setBackground(Color.GRAY);
+		jButton2.setBounds(new Rectangle(180, 379, 100, 22));
+		jButton2.setFont(new java.awt.Font(Font.DIALOG, 1, 10));
 		jButton2.setForeground(Color.white);
 		jButton2.addActionListener(this);
-
 
 		JPanel jPanIdentiPromoter = new JPanel();
 		jPanIdentiPromoter.setBorder(BorderFactory.createTitledBorder("Identification du promoteur"));
@@ -333,17 +280,11 @@ public class Inscription extends JPanel implements ActionListener {
 		jPanPromoProfil.add(jTFieldSpecialty, null);
 		jPanPromoProfil.add(jTFieldAnemCard, null);
 
-		//this.setJMenuBar(jMenuBar);
-		//this.getContentPane().add(jLabAnsej2, null);
-		//this.getContentPane().add(jLabAnsej1, null);
-		//this.getContentPane().add(jLabSpace, null);
-		//this.getContentPane().add(jLabContext, null);
-		//this.getContentPane().add(jLabStage, null);
-		this/*.getContentPane()*/.add(jPanIdentiPromoter, null);
-		this/*.getContentPane()*/.add(jPanCoordinate, null);
-		this/*.getContentPane()*/.add(jPanPromoProfil, null);
-		this/*.getContentPane()*/.add(jButton1, null);
-		this/*.getContentPane()*/.add(jButton2, null);
+		this.add(jPanIdentiPromoter, null);
+		this.add(jPanCoordinate, null);
+		this.add(jPanPromoProfil, null);
+		this.add(jButton1, null);
+		this.add(jButton2, null);
 
 	}
 
@@ -358,12 +299,12 @@ public class Inscription extends JPanel implements ActionListener {
 			} else {
 				JButton boutonCliqué = (JButton) arg0.getSource();
 				if (boutonCliqué == jButton2) {
-					//dispose();
+					// dispose();
 				} else {
 					if (boutonCliqué == jButton1) {
 						// this.registre1.SaisirttInfo(liste, this);
-						//dispose();
-						//t.show();
+						// dispose();
+						// t.show();
 
 					}
 

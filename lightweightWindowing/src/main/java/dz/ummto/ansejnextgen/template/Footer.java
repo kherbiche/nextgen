@@ -6,12 +6,16 @@ package dz.ummto.ansejnextgen.template;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.SystemColor;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+
+import dz.ummto.ansejnextgen.IconEnum;
 
 /**
  * The <code>Footer</code> class represents
@@ -29,12 +33,15 @@ public class Footer {
 
 	private void jbInit() {
 
-		JLabel jLabFooter = new JLabel("\u00a9 Ansej 2008-2018", SwingConstants.RIGHT);
+		JLabel jLabFooter = new JLabel("\u00a9 Ansej 2008-2018",
+				new ImageIcon(new ImageIcon(getClass().getResource("/" + IconEnum.FRAME + ".png")).getImage()
+						.getScaledInstance(30, 20, Image.SCALE_SMOOTH)),
+				SwingConstants.RIGHT);
 		jLabFooter.setBackground(Color.orange);
 		jLabFooter.setFont(new java.awt.Font(Font.DIALOG, 1, 10));
-		jLabFooter.setBounds(new Rectangle(0, 0, 704, 14));
+		jLabFooter.setBounds(new Rectangle(0, 0, 840, 20));
 		jLabFooter.setOpaque(true);
-		
+
 		footerJpanel = new JPanel();
 		footerJpanel.setLayout(null);
 		footerJpanel.setFont(new java.awt.Font(Font.DIALOG, 1, 10));

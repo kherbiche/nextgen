@@ -19,14 +19,14 @@ public enum EducLevel {
 
 	UNIV("UNIVERSITY"), VOCATRAIN("VOCATIONAL TRAINING"), OTH("OTHER");
 
-	private String educLevel;
+	private String educ;
 
 	public String educLevel() {
-		return educLevel;
+		return educ;
 	}
 
 	EducLevel(String educLevel) {
-		this.educLevel = educLevel;
+		this.educ = educLevel;
 	}
 
 }

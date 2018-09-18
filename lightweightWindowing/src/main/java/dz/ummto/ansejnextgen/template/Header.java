@@ -6,9 +6,11 @@ package dz.ummto.ansejnextgen.template;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.Rectangle;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -16,6 +18,8 @@ import javax.swing.border.EtchedBorder;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import dz.ummto.ansejnextgen.IconEnum;
 
 /**
  * The <code>Header</code> class represents
@@ -35,13 +39,19 @@ public class Header {
 	private void jbInit() {
 
 		logger.info("--- Header jbInit");
-		JLabel jLabAnsej2 = new JLabel("ANSEJ", SwingConstants.CENTER);
+		JLabel jLabAnsej2 = new JLabel("ANSEJ",
+				new ImageIcon(new ImageIcon(getClass().getResource("/" + IconEnum.RLABEL + ".png")).getImage()
+						.getScaledInstance(30, 25, Image.SCALE_SMOOTH)),
+				SwingConstants.CENTER);
 		jLabAnsej2.setBackground(Color.orange);
 		jLabAnsej2.setFont(new java.awt.Font(Font.DIALOG, 1, 16));
 		jLabAnsej2.setForeground(Color.blue);
 		jLabAnsej2.setOpaque(true);
 		jLabAnsej2.setBounds(new Rectangle(0, 2, 93, 27));
-		JLabel jLabAnsej1 = new JLabel("ANSEJ", SwingConstants.CENTER);
+		JLabel jLabAnsej1 = new JLabel("ANSEJ",
+				new ImageIcon(new ImageIcon(getClass().getResource("/" + IconEnum.RLABEL + ".png")).getImage()
+						.getScaledInstance(30, 25, Image.SCALE_SMOOTH)),
+				SwingConstants.CENTER);
 		jLabAnsej1.setBounds(new Rectangle(751, 2, 93, 27));
 		jLabAnsej1.setOpaque(true);
 		jLabAnsej1.setForeground(Color.blue);

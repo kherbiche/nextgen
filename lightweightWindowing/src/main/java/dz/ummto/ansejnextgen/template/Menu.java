@@ -6,12 +6,16 @@ package dz.ummto.ansejnextgen.template;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.SystemColor;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+
+import dz.ummto.ansejnextgen.IconEnum;
 
 /**
  * The <code>Menu</code> class represents
@@ -29,12 +33,15 @@ public class Menu {
 
 	private void jbInit() {
 
-		JLabel jLabMenu = new JLabel("Menu", SwingConstants.CENTER);
+		JLabel jLabMenu = new JLabel("Menu",
+				new ImageIcon(new ImageIcon(getClass().getResource("/" + IconEnum.MENU + ".png")).getImage()
+						.getScaledInstance(50, 45, Image.SCALE_SMOOTH)),
+				SwingConstants.CENTER);
 		jLabMenu.setBackground(Color.blue);
 		jLabMenu.setFont(new java.awt.Font(Font.DIALOG, 1, 13));
 		jLabMenu.setBounds(new Rectangle(0, 0, 135, 19));
 		jLabMenu.setOpaque(true);
-		
+
 		menuJpanel = new JPanel();
 		menuJpanel.setLayout(null);
 		menuJpanel.setFont(new java.awt.Font(Font.DIALOG, 1, 10));
