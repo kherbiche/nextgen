@@ -5,12 +5,15 @@
 package dz.ummto.ansejnextgen.template;
 
 import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import dz.ummto.ansejnextgen.IconEnum;
@@ -24,6 +27,8 @@ import dz.ummto.ansejnextgen.IconEnum;
 public class BaseTemplate {
 
 	private JFrame base;
+	private JMenuItem jMenuFileExit;
+	private JMenuItem jMenuHelpAbout;
 
 	public BaseTemplate() {
 		jbInit();
@@ -40,8 +45,21 @@ public class BaseTemplate {
 		JMenuBar jMenuBar = new JMenuBar();
 		JMenu jMenuFile = new JMenu("File");
 		JMenu jMenuHelp = new JMenu("Help");
-		JMenuItem jMenuFileExit = new JMenuItem("Exit");
-		JMenuItem jMenuHelpAbout = new JMenuItem("About");
+		jMenuFileExit = new JMenuItem("Exit");
+		jMenuHelpAbout = new JMenuItem("About");
+		jMenuFileExit.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		jMenuHelpAbout.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showConfirmDialog(null, "Page Description ", "Just Test",
+						JOptionPane.PLAIN_MESSAGE);
+			}
+		});
 		jMenuFile.add(jMenuFileExit);
 		jMenuHelp.add(jMenuHelpAbout);
 		jMenuBar.add(jMenuFile);
@@ -73,5 +91,4 @@ public class BaseTemplate {
 	public JFrame getJFrame() {
 		return base;
 	}
-
 }

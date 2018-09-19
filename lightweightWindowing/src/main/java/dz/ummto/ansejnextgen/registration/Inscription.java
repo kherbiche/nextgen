@@ -17,13 +17,12 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.SwingWorker;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -49,10 +48,11 @@ public class Inscription extends JPanel implements ActionListener {
 	private static final Log logger = LogFactory.getLog(Inscription.class);
 
 	private static final String EXTENTION = ".png";
-	private JMenuItem jMenuFileExit, jMenuHelpAbout;
-	private JTextField jTFieldFirstName, jTFieldLastName, jTFieldDBirth, jTFieldBCNum, jTFieldFather, jTFieldMother, jTFieldBirthCity,
-			jTFieldBirthZipCode, jTFieldBirthCountry, jTFieldNumAddrss, jTFieldStreetName, jTFieldCity, jTFieldZipCode,
-			jTFieldCountry, jTFieldTel, jTFieldFax, jTFieldEmail, jTFieldSpecialty, jTFieldAnemCard;
+
+	private JTextField jTFieldFirstName, jTFieldLastName, jTFieldDBirth, jTFieldBCNum, jTFieldFather, jTFieldMother,
+			jTFieldBirthCity, jTFieldBirthZipCode, jTFieldBirthCountry, jTFieldNumAddrss, jTFieldStreetName,
+			jTFieldCity, jTFieldZipCode, jTFieldCountry, jTFieldTel, jTFieldFax, jTFieldEmail, jTFieldSpecialty,
+			jTFieldAnemCard;
 	private JComboBox<String> jComboGender, jComboTypeAddr, jComboFami, jComBoxDegree, jComBoxExperience;
 	private JRadioButton jRadioButton1, jRadioBHandic;
 	private JButton jButton1, jButton2;
@@ -103,7 +103,6 @@ public class Inscription extends JPanel implements ActionListener {
 		jTFieldBCNum = new HintJTextField("Birth certificate N°");
 		jTFieldBCNum.setBounds(62, 71, 140, 19);
 		jTFieldBCNum.setToolTipText("Birth certificate number");
-
 
 		jTFieldBirthCity = new HintJTextField("Birth City");
 		jTFieldBirthCity.setToolTipText("BirthCity");
@@ -295,26 +294,23 @@ public class Inscription extends JPanel implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
-		Object ob = arg0.getSource();
-		if (ob.equals(jMenuFileExit)) {
-			System.exit(0);
+		JButton clicked = (JButton) arg0.getSource();
+		if (clicked == jButton2) {
+			System.out.println("Button 2");
 		} else {
-			if (ob.equals(jMenuHelpAbout)) {
-				JOptionPane.showConfirmDialog(null, "Déscription de la page  ", "Juste un test",
-						JOptionPane.PLAIN_MESSAGE);
-			} else {
-				JButton boutonCliqué = (JButton) arg0.getSource();
-				if (boutonCliqué == jButton2) {
-					// dispose();
-				} else {
-					if (boutonCliqué == jButton1) {
-						// this.registre1.SaisirttInfo(liste, this);
-						// dispose();
-						// t.show();
+			if (clicked == jButton1) {
+				System.out.println("Button 1 clicked");
+				new SwingWorker<Void, Void>() {
+					@Override
+					protected Void doInBackground() throws Exception {
+						for (int i = 0; i <= 10; i++) {
+							Thread.sleep(1000);
+							System.out.println("Running " + i);
+						}
 
+						return null;
 					}
-
-				}
+				}.execute();
 			}
 		}
 	}
