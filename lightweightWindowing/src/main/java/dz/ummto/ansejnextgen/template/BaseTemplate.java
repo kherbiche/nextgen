@@ -66,7 +66,7 @@ public class BaseTemplate {
 	}
 
 	public void setBody(JPanel body) {
-		body.setBounds(new Rectangle(140, 90, 704, 405));
+		body.setBounds(new Rectangle(140, 73, 704, 438));
 		base.getContentPane().add(body, null);
 	}
 

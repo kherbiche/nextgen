@@ -50,7 +50,7 @@ public class Inscription extends JPanel implements ActionListener {
 
 	private static final String EXTENTION = ".png";
 	private JMenuItem jMenuFileExit, jMenuHelpAbout;
-	private JTextField jTFieldFirstName, jTFieldLastName, jTFieldDBirth, jTFieldFather, jTFieldMother, jTFieldBirthCity,
+	private JTextField jTFieldFirstName, jTFieldLastName, jTFieldDBirth, jTFieldBCNum, jTFieldFather, jTFieldMother, jTFieldBirthCity,
 			jTFieldBirthZipCode, jTFieldBirthCountry, jTFieldNumAddrss, jTFieldStreetName, jTFieldCity, jTFieldZipCode,
 			jTFieldCountry, jTFieldTel, jTFieldFax, jTFieldEmail, jTFieldSpecialty, jTFieldAnemCard;
 	private JComboBox<String> jComboGender, jComboTypeAddr, jComboFami, jComBoxDegree, jComBoxExperience;
@@ -99,6 +99,11 @@ public class Inscription extends JPanel implements ActionListener {
 		jTFieldMother = new HintJTextField("Mother");
 		jTFieldMother.setBounds(new Rectangle(550, 47, 140, 19));
 		jTFieldMother.setToolTipText("Mother Name");
+
+		jTFieldBCNum = new HintJTextField("Birth certificate N°");
+		jTFieldBCNum.setBounds(62, 71, 140, 19);
+		jTFieldBCNum.setToolTipText("Birth certificate number");
+
 
 		jTFieldBirthCity = new HintJTextField("Birth City");
 		jTFieldBirthCity.setToolTipText("BirthCity");
@@ -224,7 +229,7 @@ public class Inscription extends JPanel implements ActionListener {
 				new ImageIcon(new ImageIcon(getClass().getResource("/" + IconEnum.CREATE_PROMOT + EXTENTION)).getImage()
 						.getScaledInstance(30, 20, java.awt.Image.SCALE_SMOOTH)));
 		jButton1.setBackground(Color.ORANGE);
-		jButton1.setBounds(new Rectangle(389, 379, 100, 22));
+		jButton1.setBounds(new Rectangle(389, 416, 100, 22));
 		jButton1.setFont(new java.awt.Font(Font.DIALOG, 1, 13));
 		jButton1.setForeground(Color.yellow);
 		jButton1.addActionListener(this);
@@ -232,7 +237,7 @@ public class Inscription extends JPanel implements ActionListener {
 				new ImageIcon(new ImageIcon(getClass().getResource("/" + IconEnum.CANCEL + EXTENTION)).getImage()
 						.getScaledInstance(20, 15, java.awt.Image.SCALE_SMOOTH)));
 		jButton2.setBackground(Color.GRAY);
-		jButton2.setBounds(new Rectangle(180, 379, 100, 22));
+		jButton2.setBounds(new Rectangle(180, 416, 100, 22));
 		jButton2.setFont(new java.awt.Font(Font.DIALOG, 1, 10));
 		jButton2.setForeground(Color.white);
 		jButton2.addActionListener(this);
@@ -241,7 +246,7 @@ public class Inscription extends JPanel implements ActionListener {
 		jPanIdentiPromoter.setBorder(BorderFactory.createTitledBorder("Identification du promoteur"));
 		jPanIdentiPromoter.setFont(new java.awt.Font(Font.DIALOG, 1, 14));
 		jPanIdentiPromoter.setBackground(SystemColor.inactiveCaptionText);
-		jPanIdentiPromoter.setBounds(new Rectangle(2, 0, 700, 89));
+		jPanIdentiPromoter.setBounds(new Rectangle(2, 0, 700, 113));
 		jPanIdentiPromoter.setLayout(null);
 		jPanIdentiPromoter.add(jTFieldFirstName, null);
 		jPanIdentiPromoter.add(jTFieldLastName, null);
@@ -250,12 +255,13 @@ public class Inscription extends JPanel implements ActionListener {
 		jPanIdentiPromoter.add(jComboGender, null);
 		jPanIdentiPromoter.add(jTFieldFather, null);
 		jPanIdentiPromoter.add(jTFieldMother, null);
+		jPanIdentiPromoter.add(jTFieldBCNum, null);
 
 		JPanel jPanCoordinate = new JPanel();
 		jPanCoordinate.setBorder(BorderFactory.createTitledBorder("Promoter coordinate"));
 		jPanCoordinate.setFont(new java.awt.Font(Font.DIALOG, 1, 14));
 		jPanCoordinate.setBackground(SystemColor.inactiveCaptionText);
-		jPanCoordinate.setBounds(new Rectangle(2, 94, 700, 160));
+		jPanCoordinate.setBounds(new Rectangle(2, 118, 700, 160));
 		jPanCoordinate.setLayout(null);
 		jPanCoordinate.add(jPanCoordinateLeft, null);
 		jPanCoordinate.add(jPanCoordinateRight, null);
@@ -266,7 +272,7 @@ public class Inscription extends JPanel implements ActionListener {
 		JPanel jPanPromoProfil = new JPanel();
 		jPanPromoProfil.setBorder(BorderFactory.createTitledBorder("Promoter profile"));
 		jPanPromoProfil.setBackground(SystemColor.inactiveCaptionText);
-		jPanPromoProfil.setBounds(new Rectangle(2, 259, 700, 113));
+		jPanPromoProfil.setBounds(new Rectangle(2, 283, 700, 113));
 		jPanPromoProfil.setLayout(null);
 		jPanPromoProfil.add(jLabFami, null);
 		jPanPromoProfil.add(jComboFami, null);
