@@ -10,6 +10,7 @@ import java.awt.Rectangle;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -29,6 +30,8 @@ import org.apache.commons.logging.LogFactory;
 
 import dz.ummto.ansejnextgen.IconEnum;
 import dz.ummto.ansejnextgen.common_utils.HintJTextField;
+import dz.ummto.ansejnextgen.registers.Client;
+import dz.ummto.ansejnextgen.registers.RegisterDelegate;
 
 /**
  * The <code>Inscription</code> class represents registration promoters swing
@@ -303,9 +306,13 @@ public class Inscription extends JPanel implements ActionListener {
 				new SwingWorker<Void, Void>() {
 					@Override
 					protected Void doInBackground() throws Exception {
+						RegisterDelegate rd = new RegisterDelegate();
+						rd.setRegisterType("One");
+						Client client = new Client(rd);
+						client.doTask(Arrays.asList(jTFieldFirstName.getText(), jTFieldLastName.getText(),
+								jTFieldDBirth.getText()));
 						for (int i = 0; i <= 10; i++) {
 							Thread.sleep(1000);
-							System.out.println("Running " + i);
 						}
 
 						return null;

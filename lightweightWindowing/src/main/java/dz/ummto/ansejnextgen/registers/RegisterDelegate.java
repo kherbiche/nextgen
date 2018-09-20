@@ -17,13 +17,13 @@ package dz.ummto.ansejnextgen.registers;
  * @author L KHERBICHE
  * @since 0.0.1-RELEASE
  */
-class RegisterDelegate {
+public class RegisterDelegate {
 
 	private RegisterLookUp lookUp = new RegisterLookUp();
 	private IDelegate delegate;
 	private String registerType;
 
-	protected void setRegisterType(String registerType) {
+	public void setRegisterType(String registerType) {
 		this.registerType = registerType;
 	}
 
