@@ -8,7 +8,6 @@ import java.awt.Color;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Arrays;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -23,8 +22,6 @@ import javax.swing.SwingUtilities;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
-import dz.ummto.ansejnextgen.registers.RegisterOne;
 
 /**
  * The <code>Registration</code> class represents registration promoters swing
@@ -253,8 +250,8 @@ public class Registration extends JFrame implements ActionListener {
 				if (boutonCliqué == jButton1) {
 					logger.info("--- <"+getFName()+">---<"+getSName()+">---<"+getDateBir()+">");
 					
-					RegisterOne rOne = new RegisterOne();
-					rOne.register(Arrays.asList(getFName(),getSName(),getDateBir()));
+					//RegisterOne rOne = new RegisterOne();
+					//rOne.register(Arrays.asList(getFName(),getSName(),getDateBir()));
 				} else if (boutonCliqué == jButton2) {
 					dispose();
 					g.setVisible(true);
