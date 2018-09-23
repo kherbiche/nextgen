@@ -44,7 +44,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>dz.ummto.ansejNextGen.start.Launcher</mainClass>
+							<mainClass>dz.ummto.ansejnextgen.start.Launcher</mainClass>
 						</manifest>
 					</archive>
 					<descriptorRefs>

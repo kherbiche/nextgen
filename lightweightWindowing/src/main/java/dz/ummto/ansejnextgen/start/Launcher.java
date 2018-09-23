@@ -5,6 +5,8 @@
 package dz.ummto.ansejnextgen.start;
 
 import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -16,21 +18,31 @@ import dz.ummto.ansejnextgen.template.Header;
 import dz.ummto.ansejnextgen.template.Menu;
 
 /**
- * The <code>Launcher</code> class represents the entry of
- * lightweight client.
+ * The <code>Launcher</code> class represents the entry of lightweight client.
  * 
  * @author L KHERBICHE
  * @since 0.0.1-RELEASE
  */
 public class Launcher {
-	
+
 	private static final Log logger = LogFactory.getLog(Launcher.class);
-	
+
 	public static void main(String[] args) {
 		Runnable code = new Runnable() {
 			public void run() {
+				try {
+					for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+						logger.info("--- Installed Look&Feel:-> "+info.getName());
+						if ("Nimbus".equals(info.getName())) {
+							logger.info("--- Nimbus founded");
+							UIManager.setLookAndFeel(info.getClassName());
+							break;
+						}
+					}
+				} catch (Exception e) {
+				}
 				Inscription registration = new Inscription(null);
-				//registration.setVisible(true);
+				// registration.setVisible(true);
 				BaseTemplate bt = new BaseTemplate();
 				Header header = new Header();
 				Footer footer = new Footer();
@@ -39,10 +51,10 @@ public class Launcher {
 				bt.setFooter(footer.getJPanel());
 				bt.setMenu(menu.getJPanel());
 				bt.setBody(registration);
-				bt.getJFrame().setVisible(true);;
+				bt.getJFrame().setVisible(true);
 			}
 		};
-		if(SwingUtilities.isEventDispatchThread()) {
+		if (SwingUtilities.isEventDispatchThread()) {
 			logger.info("--- main: In the EDT");
 			code.run();
 		} else {
