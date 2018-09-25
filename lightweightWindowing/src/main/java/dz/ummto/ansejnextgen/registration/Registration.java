@@ -39,7 +39,7 @@ import org.apache.commons.logging.LogFactory;
 @SuppressWarnings("serial")
 public class Registration extends JFrame implements ActionListener {
 
-	private static final Log logger = LogFactory.getLog(Registration.class);
+	private static final Log loggerrr = LogFactory.getLog(Registration.class);
 	private JFrame g;
 	private JMenuBar jMenuBar1;
 	private JMenu jMenuFile, jMenuHelp;
@@ -56,9 +56,9 @@ public class Registration extends JFrame implements ActionListener {
 	 */
 	private void jbInit() /* throws Exception */ {
 		if(SwingUtilities.isEventDispatchThread()) {
-			logger.info("--- jbInit: In the EDT");
+			loggerrr.info("--- jbInit: In the EDT");
 		} else {
-			logger.info("--- jbInit: Out of EDT");
+			loggerrr.info("--- jbInit: Out of EDT");
 		}
 		jMenuFileExit = new JMenuItem();
 		jMenuHelpAbout = new JMenuItem();
@@ -216,7 +216,7 @@ public class Registration extends JFrame implements ActionListener {
 		String st2 = String.valueOf(jComboBox2.getSelectedItem());
 		String st3 = String.valueOf(jComboBox3.getSelectedItem());
 		String st4 = st1 + "/" + st2 + "/" + st3;
-		logger.info("--- st4: "+st4);
+		loggerrr.info("--- st4: "+st4);
 		return st4;
 	}
 
@@ -230,9 +230,9 @@ public class Registration extends JFrame implements ActionListener {
 	 */
 	public void actionPerformed(ActionEvent arg) {
 		if(SwingUtilities.isEventDispatchThread()) {
-			logger.info("--- actionPerformed: In the EDT");
+			loggerrr.info("--- actionPerformed: In the EDT");
 		} else {
-			logger.fatal("--- actionPerformed: Out of EDT");
+			loggerrr.fatal("--- actionPerformed: Out of EDT");
 		}
 		// this.registre1=A.getRegistre1();
 		Object ob = arg.getSource();
@@ -248,7 +248,7 @@ public class Registration extends JFrame implements ActionListener {
 			else {
 				JButton boutonCliqué = (JButton) arg.getSource();
 				if (boutonCliqué == jButton1) {
-					logger.info("--- <"+getFName()+">---<"+getSName()+">---<"+getDateBir()+">");
+					loggerrr.info("--- <"+getFName()+">---<"+getSName()+">---<"+getDateBir()+">");
 					
 					//RegisterOne rOne = new RegisterOne();
 					//rOne.register(Arrays.asList(getFName(),getSName(),getDateBir()));

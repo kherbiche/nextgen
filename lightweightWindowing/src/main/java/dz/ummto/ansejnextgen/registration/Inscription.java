@@ -48,7 +48,7 @@ import dz.ummto.ansejnextgen.registers.RegisterDelegate;
 @SuppressWarnings("serial")
 public class Inscription extends JPanel implements ActionListener {
 
-	private static final Log logger = LogFactory.getLog(Inscription.class);
+	private static final Log loggerrr = LogFactory.getLog(Inscription.class);
 
 	private static final String EXTENTION = ".png";
 
@@ -67,9 +67,9 @@ public class Inscription extends JPanel implements ActionListener {
 	private void jbInit() {
 
 		if (SwingUtilities.isEventDispatchThread()) {
-			logger.info("--- jbInit: In the EDT");
+			loggerrr.info("--- jbInit: In the EDT");
 		} else {
-			logger.info("--- jbInit: Out of EDT");
+			loggerrr.info("--- jbInit: Out of EDT");
 		}
 
 		this.setLayout(null);

@@ -16,9 +16,6 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EtchedBorder;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 import dz.ummto.ansejnextgen.IconEnum;
 
 /**
@@ -29,7 +26,6 @@ import dz.ummto.ansejnextgen.IconEnum;
  */
 public class Header {
 
-	private static final Log logger = LogFactory.getLog(Header.class);
 	private JPanel headerJpanel;
 
 	public Header() {
@@ -38,7 +34,6 @@ public class Header {
 
 	private void jbInit() {
 
-		logger.info("--- Header jbInit");
 		JLabel jLabAnsej2 = new JLabel("ANSEJ",
 				new ImageIcon(new ImageIcon(getClass().getResource("/" + IconEnum.RLABEL + ".png")).getImage()
 						.getScaledInstance(30, 25, Image.SCALE_SMOOTH)),

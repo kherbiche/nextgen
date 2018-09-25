@@ -8,7 +8,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Rectangle;
-import java.awt.SystemColor;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -37,7 +36,7 @@ public class Menu {
 				new ImageIcon(new ImageIcon(getClass().getResource("/" + IconEnum.MENU + ".png")).getImage()
 						.getScaledInstance(50, 45, Image.SCALE_SMOOTH)),
 				SwingConstants.CENTER);
-		jLabMenu.setBackground(Color.blue);
+		jLabMenu.setBackground(new Color(214, 42, 252));
 		jLabMenu.setFont(new java.awt.Font(Font.DIALOG, 1, 13));
 		jLabMenu.setBounds(new Rectangle(0, 0, 135, 19));
 		jLabMenu.setOpaque(true);
@@ -45,7 +44,7 @@ public class Menu {
 		menuJpanel = new JPanel();
 		menuJpanel.setLayout(null);
 		menuJpanel.setFont(new java.awt.Font(Font.DIALOG, 1, 10));
-		menuJpanel.setBackground(SystemColor.inactiveCaptionText);
+		menuJpanel.setBackground(new Color(224, 217, 168));
 		menuJpanel.add(jLabMenu, null);
 	}
 

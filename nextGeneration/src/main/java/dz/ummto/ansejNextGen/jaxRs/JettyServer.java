@@ -4,6 +4,8 @@
  */
 package dz.ummto.ansejNextGen.jaxRs;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
@@ -16,7 +18,8 @@ import org.glassfish.jersey.servlet.ServletContainer;
  * @since 0.0.1-RELEASE
  */
 public class JettyServer {
-	
+
+	private static final Log loggerr = LogFactory.getLog(JettyServer.class);
 	private static final int DEFAULT_PORT = 8089;
 	private int serverPort;
 	
@@ -50,7 +53,7 @@ public class JettyServer {
 			try {
 				serverPort = Integer.parseInt(args[0]);
 			} catch (NumberFormatException e) {
-				e.printStackTrace();
+				loggerr.fatal(e.getMessage());
 			}
 		}
 		new JettyServer(serverPort);	

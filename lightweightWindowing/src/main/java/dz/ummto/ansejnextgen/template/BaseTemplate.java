@@ -4,6 +4,8 @@
  */
 package dz.ummto.ansejnextgen.template;
 
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -37,9 +39,11 @@ public class BaseTemplate {
 	private void jbInit() {
 
 		base = new JFrame();
-		base.setSize(844, 556);
+		//base.setSize(844, 556);
+		base.setMinimumSize(new Dimension(844, 556));
 		base.setResizable(false);
 		base.setLocationRelativeTo(null);
+		base.setBackground(new Color(219, 219, 219));
 		base.getContentPane().setLayout(null);
 
 		JMenuBar jMenuBar = new JMenuBar();

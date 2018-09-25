@@ -25,16 +25,17 @@ import dz.ummto.ansejnextgen.template.Menu;
  */
 public class Launcher {
 
-	private static final Log logger = LogFactory.getLog(Launcher.class);
+	private static final Log loggerrr = LogFactory.getLog(Launcher.class);
 
 	public static void main(String[] args) {
 		Runnable code = new Runnable() {
 			public void run() {
 				try {
 					for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-						logger.info("--- Installed Look&Feel:-> "+info.getName());
-						if ("Nimbus".equals(info.getName())) {
-							logger.info("--- Nimbus founded");
+						loggerrr.info("--- Installed Look&Feel:-> "+info.getName());
+						/* -- Nimbus&Metal -- */
+						if ("Metal".equals(info.getName())) {
+							loggerrr.info("--- Metal founded");
 							UIManager.setLookAndFeel(info.getClassName());
 							break;
 						}
@@ -42,7 +43,6 @@ public class Launcher {
 				} catch (Exception e) {
 				}
 				Inscription registration = new Inscription(null);
-				// registration.setVisible(true);
 				BaseTemplate bt = new BaseTemplate();
 				Header header = new Header();
 				Footer footer = new Footer();
@@ -55,10 +55,10 @@ public class Launcher {
 			}
 		};
 		if (SwingUtilities.isEventDispatchThread()) {
-			logger.info("--- main: In the EDT");
+			loggerrr.info("--- main: In the EDT");
 			code.run();
 		} else {
-			logger.info("--- main:Out of EDT");
+			loggerrr.info("--- main:Out of EDT");
 			SwingUtilities.invokeLater(code);
 		}
 	}

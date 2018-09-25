@@ -29,20 +29,20 @@ import org.apache.commons.logging.LogFactory;
  */
 class RegisterOne implements IDelegate {
 
-	private static final Log logger = LogFactory.getLog(RegisterOne.class);
+	private static final Log loggerrr = LogFactory.getLog(RegisterOne.class);
 
 	@Override
 	public void register(Object... args) {
-		logger.info("--- RegisterOne.register(Object... args)");
+		loggerrr.info("--- RegisterOne.register(Object... args)");
 		@SuppressWarnings("unchecked")
 		List<String> list = (List<String>) args[0];
 		final WebTarget target = JaxRsClient.getClient().target(IDelegate.getBaseURI());
 		Response message = target.path("/rest").path("/test").request(MediaType.APPLICATION_JSON)
 				.post(Entity.entity(list, MediaType.APPLICATION_JSON));
 
-		logger.info("--- message.getStatus(): " + message.getStatus());
-		logger.info("--- message.getEntity(): " + message.getEntity());
-		logger.info("--- message.toString(): " + message.toString());
+		loggerrr.info("--- message.getStatus(): " + message.getStatus());
+		loggerrr.info("--- message.getEntity(): " + message.getEntity());
+		loggerrr.info("--- message.toString(): " + message.toString());
 	}
 
 }
