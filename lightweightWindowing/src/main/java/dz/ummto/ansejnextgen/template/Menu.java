@@ -12,7 +12,10 @@ import java.awt.Rectangle;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTree;
 import javax.swing.SwingConstants;
+import javax.swing.tree.DefaultMutableTreeNode;
 
 import dz.ummto.ansejnextgen.IconEnum;
 
@@ -41,11 +44,31 @@ public class Menu {
 		jLabMenu.setBounds(new Rectangle(0, 0, 135, 19));
 		jLabMenu.setOpaque(true);
 
+		DefaultMutableTreeNode root = new DefaultMutableTreeNode("Action");
+		DefaultMutableTreeNode promoterAction = new DefaultMutableTreeNode("Promoter");
+		promoterAction.add(new DefaultMutableTreeNode("New"));
+		promoterAction.add(new DefaultMutableTreeNode("UpDate"));
+		DefaultMutableTreeNode eligibilityAction = new DefaultMutableTreeNode("Eligibility");
+		eligibilityAction.add(new DefaultMutableTreeNode("Assign"));
+		root.add(promoterAction);
+		root.add(eligibilityAction);
+		JTree tree = new JTree(root);
+		//tree.setBackground(Color.BLACK);
+		//tree.setForeground(Color.BLUE);
+		tree.setFont(new java.awt.Font(Font.DIALOG, 1, 13));
+		//tree.setBounds(new Rectangle(1, 30, 125, 300));
+		tree.setShowsRootHandles(true);
+		tree.setRootVisible(true);
+
+		JScrollPane sp = new JScrollPane(tree);
+		sp.setBounds(2, 25, 130, 150);
+
 		menuJpanel = new JPanel();
 		menuJpanel.setLayout(null);
 		menuJpanel.setFont(new java.awt.Font(Font.DIALOG, 1, 10));
 		menuJpanel.setBackground(new Color(224, 217, 168));
 		menuJpanel.add(jLabMenu, null);
+		menuJpanel.add(sp, null);
 	}
 
 	public JPanel getJPanel() {

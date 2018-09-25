@@ -5,6 +5,7 @@
 package dz.ummto.ansejnextgen.registration;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -80,7 +81,7 @@ public class Registration extends JFrame implements ActionListener {
 
 		jLabel1 = new JLabel();
 		jLabel1.setBackground(Color.orange);
-		jLabel1.setFont(new java.awt.Font("Dialog", 1, 16));
+		jLabel1.setFont(new java.awt.Font(Font.DIALOG, 1, 16));
 		jLabel1.setForeground(Color.blue);
 		jLabel1.setOpaque(true);
 		jLabel1.setText("     ANSEJ");
@@ -90,11 +91,11 @@ public class Registration extends JFrame implements ActionListener {
 		jLabel2.setText("     ANSEJ");
 		jLabel2.setOpaque(true);
 		jLabel2.setForeground(Color.blue);
-		jLabel2.setFont(new java.awt.Font("Dialog", 1, 16));
+		jLabel2.setFont(new java.awt.Font(Font.DIALOG, 1, 16));
 		jLabel2.setBackground(Color.orange);
 		jLabel3 = new JLabel();
 		jLabel3.setBackground(Color.lightGray);
-		jLabel3.setFont(new java.awt.Font("Dialog", 3, 18));
+		jLabel3.setFont(new java.awt.Font(Font.DIALOG, 3, 18));
 		jLabel3.setOpaque(true);
 		jLabel3.setText("                 Espace  Conseiller accompagnateur");
 		jLabel3.setBounds(new Rectangle(92, 0, 514, 27));
@@ -108,7 +109,7 @@ public class Registration extends JFrame implements ActionListener {
 		jLabel5.setBounds(new Rectangle(-5, 42, 703, 22));
 		jLabel4 = new JLabel();
 		jLabel4.setBackground(Color.white);
-		jLabel4.setFont(new java.awt.Font("Dialog", 1, 13));
+		jLabel4.setFont(new java.awt.Font(Font.DIALOG, 1, 13));
 		jLabel4.setOpaque(true);
 		jLabel4.setRequestFocusEnabled(true);
 		jLabel4.setVerifyInputWhenFocusTarget(true);
@@ -116,18 +117,18 @@ public class Registration extends JFrame implements ActionListener {
 		jLabel4.setBounds(new Rectangle(0, 64, 700, 21));
 		jLabel6 = new JLabel();
 		jLabel6.setBackground(Color.white);
-		jLabel6.setFont(new java.awt.Font("Dialog", 1, 11));
+		jLabel6.setFont(new java.awt.Font(Font.DIALOG, 1, 11));
 		jLabel6.setText("     Nom du Promoteur");
 		jLabel6.setBounds(new Rectangle(87, 127, 124, 26));
 		jLabel7 = new JLabel();
 		jLabel7.setBounds(new Rectangle(81, 178, 141, 23));
 		jLabel7.setText("              Prenom");
-		jLabel7.setFont(new java.awt.Font("Dialog", 1, 11));
+		jLabel7.setFont(new java.awt.Font(Font.DIALOG, 1, 11));
 		jLabel7.setToolTipText("");
 		jLabel8 = new JLabel();
 		jLabel8.setBounds(new Rectangle(35, 229, 161, 26));
 		jLabel8.setText("       Date de Naissance : ");
-		jLabel8.setFont(new java.awt.Font("Dialog", 1, 11));
+		jLabel8.setFont(new java.awt.Font(Font.DIALOG, 1, 11));
 		jLabel9 = new JLabel();
 		jLabel9.setText("Jour:");
 		jLabel9.setBounds(new Rectangle(191, 234, 41, 21));
@@ -148,12 +149,12 @@ public class Registration extends JFrame implements ActionListener {
 		jButton1 = new JButton();
 		jButton1.setBackground(Color.orange);
 		jButton1.setBounds(new Rectangle(389, 321, 97, 26));
-		jButton1.setFont(new java.awt.Font("Dialog", 1, 12));
+		jButton1.setFont(new java.awt.Font(Font.DIALOG, 1, 12));
 		jButton1.setText("  Suivant");
 		jButton1.addActionListener(this);
 		jButton2 = new JButton();
 		jButton2.setText(" Annuler");
-		jButton2.setFont(new java.awt.Font("Dialog", 1, 12));
+		jButton2.setFont(new java.awt.Font(Font.DIALOG, 1, 12));
 		jButton2.setBounds(new Rectangle(190, 322, 91, 26));
 		jButton2.setBackground(Color.orange);
 		jButton2.addActionListener(this);
