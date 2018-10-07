@@ -16,6 +16,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTree;
 import javax.swing.SwingConstants;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeCellRenderer;
 
 import dz.ummto.ansejnextgen.IconEnum;
 
@@ -53,12 +54,17 @@ public class Menu {
 		root.add(promoterAction);
 		root.add(eligibilityAction);
 		JTree tree = new JTree(root);
-		//tree.setBackground(Color.BLACK);
-		//tree.setForeground(Color.BLUE);
 		tree.setFont(new java.awt.Font(Font.DIALOG, 1, 13));
-		//tree.setBounds(new Rectangle(1, 30, 125, 300));
 		tree.setShowsRootHandles(true);
 		tree.setRootVisible(true);
+		DefaultTreeCellRenderer renderer = new DefaultTreeCellRenderer();
+		renderer.setOpenIcon(new ImageIcon(new ImageIcon(getClass().getResource("/" + IconEnum.OPEN_FOLD + ".png")).getImage()
+				.getScaledInstance(20, 15, Image.SCALE_SMOOTH)));
+		renderer.setClosedIcon(new ImageIcon(new ImageIcon(getClass().getResource("/" + IconEnum.CLOSE_FOLD + ".png")).getImage()
+				.getScaledInstance(20, 15, Image.SCALE_SMOOTH)));
+		renderer.setLeafIcon(new ImageIcon(new ImageIcon(getClass().getResource("/" + IconEnum.LEAF + ".png")).getImage()
+				.getScaledInstance(15, 15, Image.SCALE_SMOOTH)));
+		tree.setCellRenderer(renderer);
 
 		JScrollPane sp = new JScrollPane(tree);
 		sp.setBounds(2, 25, 130, 150);

@@ -16,6 +16,6 @@ package dz.ummto.ansejnextgen;
 
 public enum IconEnum {
 
-	FRAME, CREATE_PROMOT, CANCEL, RLABEL, LLABEL, MENU;
+	FRAME, CREATE_PROMOT, CANCEL, RLABEL, LLABEL, MENU, OPEN_FOLD, CLOSE_FOLD, LEAF;
 
 }
