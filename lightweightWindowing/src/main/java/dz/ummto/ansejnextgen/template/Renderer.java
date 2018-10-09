@@ -6,7 +6,7 @@ package dz.ummto.ansejnextgen.template;
 
 import javax.swing.JFrame;
 
-import dz.ummto.ansejnextgen.registration.Inscription;
+import dz.ummto.ansejnextgen.gui.registration.Inscription;
 
 /**
  * The <code>Renderer</code> class renders views for users.

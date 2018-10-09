@@ -2,7 +2,7 @@
  * Copyright 2008, 2018 Lyes Kherbiche
  * <kerbiche@gmail.com>
  */
-package dz.ummto.ansejnextgen.registration;
+package dz.ummto.ansejnextgen.gui.registration;
 
 import java.awt.Color;
 import java.awt.Font;
