@@ -6,6 +6,7 @@ package dz.ummto.ansejnextgen.template;
 
 import javax.swing.JFrame;
 
+import dz.ummto.ansejnextgen.gui.login.Login;
 import dz.ummto.ansejnextgen.gui.registration.Inscription;
 
 /**
@@ -25,11 +26,13 @@ public class Renderer {
 
 	public static JFrame render(String view) {
 		switch (view) {
+		case "login":
+			baseTemplate.setBody(new Login());
+			break;
 		case "inscription":
 			baseTemplate.setBody(new Inscription(null));
 			break;
 		case "":
-			;
 			break;
 		}
 		return baseTemplate.getJFrame();
