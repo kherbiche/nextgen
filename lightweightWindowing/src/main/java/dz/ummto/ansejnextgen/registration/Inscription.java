@@ -61,15 +61,24 @@ public class Inscription extends JPanel implements ActionListener {
 	private JButton jButton1, jButton2;
 
 	public Inscription(JFrame t) {
-		jbInit();
+		Runnable code = new Runnable() {
+			public void run() {
+				jbInit();
+			}
+		};
+		if (SwingUtilities.isEventDispatchThread()) {
+			code.run();
+		} else {
+			SwingUtilities.invokeLater(code);
+		}
 	}
 
 	private void jbInit() {
 
 		if (SwingUtilities.isEventDispatchThread()) {
-			loggerrr.info("--- jbInit: In the EDT");
+			loggerrr.info("--- Inscription.jbInit: In the EDT");
 		} else {
-			loggerrr.info("--- jbInit: Out of EDT");
+			loggerrr.info("--- Inscription.jbInit: Out of EDT");
 		}
 
 		this.setLayout(null);

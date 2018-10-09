@@ -9,6 +9,9 @@ import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -17,6 +20,10 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import dz.ummto.ansejnextgen.IconEnum;
 
@@ -28,19 +35,40 @@ import dz.ummto.ansejnextgen.IconEnum;
  */
 public class BaseTemplate {
 
+	private static final Log loggerrr = LogFactory.getLog(BaseTemplate.class);
+	private static final Map<String, int[]> DIMENSION;
 	private JFrame base;
 	private JMenuItem jMenuFileExit;
 	private JMenuItem jMenuHelpAbout;
-
-	public BaseTemplate() {
-		jbInit();
+	static {
+		Map<String, int[]> aMap = new HashMap<String, int[]>();
+		aMap.put("small", new int[] { 1, 2 });
+		aMap.put("medium", new int[] { 844, 556 });
+		aMap.put("large", new int[] { 1, 2 });
+		DIMENSION = Collections.unmodifiableMap(aMap);
 	}
 
-	private void jbInit() {
+	public BaseTemplate(String dim) {
+		Runnable code = new Runnable() {
+			public void run() {
+				jbInit(DIMENSION.containsKey(dim)? DIMENSION.get(dim) : new int[] { 844, 556 });
+			}
+		};
+		if (SwingUtilities.isEventDispatchThread()) {
+			loggerrr.info("--- BaseTemplate.jbInit: In the EDT");
+			code.run();
+		} else {
+			loggerrr.info("--- BaseTemplate.jbInit: Out of EDT");
+			SwingUtilities.invokeLater(code);
+		}
+	}
+
+	private void jbInit(int[] dim) {
 
 		base = new JFrame();
 		//base.setSize(844, 556);
-		base.setMinimumSize(new Dimension(844, 556));
+		//base.setMinimumSize(new Dimension(844, 556));
+		base.setMinimumSize(new Dimension(dim[0], dim[1]));
 		base.setResizable(false);
 		base.setLocationRelativeTo(null);
 		base.setBackground(new Color(219, 219, 219));

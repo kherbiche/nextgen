@@ -15,8 +15,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import dz.ummto.ansejnextgen.IconEnum;
 
@@ -28,10 +32,22 @@ import dz.ummto.ansejnextgen.IconEnum;
  */
 public class Menu {
 
+	private static final Log loggerrr = LogFactory.getLog(Menu.class);
 	private JPanel menuJpanel;
 
 	public Menu() {
-		jbInit();
+		Runnable code = new Runnable() {
+			public void run() {
+				jbInit();
+			}
+		};
+		if (SwingUtilities.isEventDispatchThread()) {
+			loggerrr.info("--- Menu.jbInit: In the EDT");
+			code.run();
+		} else {
+			loggerrr.info("--- Menu.jbInit: Out of EDT");
+			SwingUtilities.invokeLater(code);
+		}
 	}
 
 	private void jbInit() {
@@ -58,12 +74,12 @@ public class Menu {
 		tree.setShowsRootHandles(true);
 		tree.setRootVisible(true);
 		DefaultTreeCellRenderer renderer = new DefaultTreeCellRenderer();
-		renderer.setOpenIcon(new ImageIcon(new ImageIcon(getClass().getResource("/" + IconEnum.OPEN_FOLD + ".png")).getImage()
-				.getScaledInstance(20, 15, Image.SCALE_SMOOTH)));
-		renderer.setClosedIcon(new ImageIcon(new ImageIcon(getClass().getResource("/" + IconEnum.CLOSE_FOLD + ".png")).getImage()
-				.getScaledInstance(20, 15, Image.SCALE_SMOOTH)));
-		renderer.setLeafIcon(new ImageIcon(new ImageIcon(getClass().getResource("/" + IconEnum.LEAF + ".png")).getImage()
-				.getScaledInstance(15, 15, Image.SCALE_SMOOTH)));
+		renderer.setOpenIcon(new ImageIcon(new ImageIcon(getClass().getResource("/" + IconEnum.OPEN_FOLD + ".png"))
+				.getImage().getScaledInstance(20, 15, Image.SCALE_SMOOTH)));
+		renderer.setClosedIcon(new ImageIcon(new ImageIcon(getClass().getResource("/" + IconEnum.CLOSE_FOLD + ".png"))
+				.getImage().getScaledInstance(20, 15, Image.SCALE_SMOOTH)));
+		renderer.setLeafIcon(new ImageIcon(new ImageIcon(getClass().getResource("/" + IconEnum.LEAF + ".png"))
+				.getImage().getScaledInstance(15, 15, Image.SCALE_SMOOTH)));
 		tree.setCellRenderer(renderer);
 
 		JScrollPane sp = new JScrollPane(tree);

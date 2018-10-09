@@ -11,11 +11,7 @@ import javax.swing.UIManager.LookAndFeelInfo;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import dz.ummto.ansejnextgen.registration.Inscription;
-import dz.ummto.ansejnextgen.template.BaseTemplate;
-import dz.ummto.ansejnextgen.template.Footer;
-import dz.ummto.ansejnextgen.template.Header;
-import dz.ummto.ansejnextgen.template.Menu;
+import dz.ummto.ansejnextgen.template.Renderer;
 
 /**
  * The <code>Launcher</code> class represents the entry of lightweight client.
@@ -41,17 +37,9 @@ public class Launcher {
 						}
 					}
 				} catch (Exception e) {
+					loggerrr.info(e.getMessage());
 				}
-				Inscription registration = new Inscription(null);
-				BaseTemplate bt = new BaseTemplate();
-				Header header = new Header();
-				Footer footer = new Footer();
-				Menu menu = new Menu();
-				bt.setHeader(header.getJPanel());
-				bt.setFooter(footer.getJPanel());
-				bt.setMenu(menu.getJPanel());
-				bt.setBody(registration);
-				bt.getJFrame().setVisible(true);
+				Renderer.render("inscription").setVisible(true);;
 			}
 		};
 		if (SwingUtilities.isEventDispatchThread()) {

@@ -14,7 +14,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.border.EtchedBorder;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import dz.ummto.ansejnextgen.IconEnum;
 
@@ -26,10 +30,22 @@ import dz.ummto.ansejnextgen.IconEnum;
  */
 public class Header {
 
+	private static final Log loggerrr = LogFactory.getLog(Header.class);
 	private JPanel headerJpanel;
 
 	public Header() {
-		jbInit();
+		Runnable code = new Runnable() {
+			public void run() {
+				jbInit();
+			}
+		};
+		if (SwingUtilities.isEventDispatchThread()) {
+			loggerrr.info("--- Header.jbInit: In the EDT");
+			code.run();
+		} else {
+			loggerrr.info("--- Header.jbInit: Out of EDT");
+			SwingUtilities.invokeLater(code);
+		}
 	}
 
 	private void jbInit() {
