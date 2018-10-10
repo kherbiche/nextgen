@@ -131,7 +131,7 @@ public class Inscription extends JPanel implements ActionListener {
 		JPanel jPanCoordinateLeft = new JPanel();
 		jPanCoordinateLeft.setLayout(null);
 		jPanCoordinateLeft.setBorder(BorderFactory.createTitledBorder("Birth"));
-		jPanCoordinateLeft.setBackground(SystemColor.inactiveCaptionText);
+		jPanCoordinateLeft.setBackground(new Color(0, 0, 0, 240));
 		jPanCoordinateLeft.setFont(new java.awt.Font(Font.DIALOG, 1, 14));
 		jPanCoordinateLeft.setBounds(new Rectangle(5, 12, 160, 105));
 		jPanCoordinateLeft.add(jTFieldBirthCity, null);
@@ -166,7 +166,7 @@ public class Inscription extends JPanel implements ActionListener {
 		JPanel jPanCoordinateRight = new JPanel();
 		jPanCoordinateRight.setLayout(null);
 		jPanCoordinateRight.setBorder(BorderFactory.createTitledBorder("Residence"));
-		jPanCoordinateRight.setBackground(SystemColor.inactiveCaptionText);
+		jPanCoordinateRight.setBackground(new Color(0, 0, 0, 240));
 		jPanCoordinateRight.setFont(new java.awt.Font(Font.DIALOG, 1, 14));
 		jPanCoordinateRight.setBounds(new Rectangle(170, 12, 525, 105));
 		jPanCoordinateRight.add(jTFieldNumAddrss, null);
@@ -256,7 +256,7 @@ public class Inscription extends JPanel implements ActionListener {
 		JPanel jPanIdentiPromoter = new JPanel();
 		jPanIdentiPromoter.setBorder(BorderFactory.createTitledBorder("Identification du promoteur"));
 		jPanIdentiPromoter.setFont(new java.awt.Font(Font.DIALOG, 1, 14));
-		jPanIdentiPromoter.setBackground(SystemColor.inactiveCaptionText);
+		jPanIdentiPromoter.setBackground(new Color(0, 0, 0, 230));
 		jPanIdentiPromoter.setBounds(new Rectangle(2, 0, 700, 113));
 		jPanIdentiPromoter.setLayout(null);
 		jPanIdentiPromoter.add(jTFieldFirstName, null);
@@ -271,7 +271,7 @@ public class Inscription extends JPanel implements ActionListener {
 		JPanel jPanCoordinate = new JPanel();
 		jPanCoordinate.setBorder(BorderFactory.createTitledBorder("Promoter coordinate"));
 		jPanCoordinate.setFont(new java.awt.Font(Font.DIALOG, 1, 14));
-		jPanCoordinate.setBackground(SystemColor.inactiveCaptionText);
+		jPanCoordinate.setBackground(new Color(0, 0, 0, 230));
 		jPanCoordinate.setBounds(new Rectangle(2, 118, 700, 160));
 		jPanCoordinate.setLayout(null);
 		jPanCoordinate.add(jPanCoordinateLeft, null);
@@ -282,7 +282,7 @@ public class Inscription extends JPanel implements ActionListener {
 
 		JPanel jPanPromoProfil = new JPanel();
 		jPanPromoProfil.setBorder(BorderFactory.createTitledBorder("Promoter profile"));
-		jPanPromoProfil.setBackground(SystemColor.inactiveCaptionText);
+		jPanPromoProfil.setBackground(new Color(0, 0, 0, 230));
 		jPanPromoProfil.setBounds(new Rectangle(2, 283, 700, 113));
 		jPanPromoProfil.setLayout(null);
 		jPanPromoProfil.add(jLabFami, null);

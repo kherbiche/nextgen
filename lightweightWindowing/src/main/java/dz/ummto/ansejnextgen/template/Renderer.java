@@ -41,7 +41,13 @@ public class Renderer {
 			});
 			break;
 		case "inscription":
-			baseTemplate.setBody(new Inscription(null));
+			baseTemplate.setBody(new Inscription(null) {
+				protected void paintComponent(Graphics g) {
+					super.paintComponent(g);
+					g.drawImage(new ImageIcon(getClass().getResource("/" + IconEnum.DZAIR + ".png")).getImage(), 0, 0,
+							704, 438, this);
+				}
+			});
 			break;
 		case "":
 			break;

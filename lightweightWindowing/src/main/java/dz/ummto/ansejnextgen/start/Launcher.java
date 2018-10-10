@@ -39,7 +39,7 @@ public class Launcher {
 				} catch (Exception e) {
 					loggerrr.info(e.getMessage());
 				}
-				Renderer.render("login").setVisible(true);;
+				Renderer.render("inscription").setVisible(true);;
 			}
 		};
 		if (SwingUtilities.isEventDispatchThread()) {
