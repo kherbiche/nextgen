@@ -10,6 +10,7 @@ import java.awt.Rectangle;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -17,10 +18,15 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+import javax.swing.SwingWorker;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import dz.ummto.ansejnextgen.IconEnum;
 import dz.ummto.ansejnextgen.common_utils.HintJTextField;
 import dz.ummto.ansejnextgen.common_utils.HintPwdField;
+import dz.ummto.ansejnextgen.registers.Client;
+import dz.ummto.ansejnextgen.registers.RegisterDelegate;
 
 /**
  * The <code>Login</code> class represents users login page swing window.
@@ -81,16 +87,79 @@ public class Login extends JPanel implements ActionListener {
 		jPanLogin.setBackground(SystemColor.inactiveCaptionText);
 		jPanLogin.setBounds(new Rectangle(90, 144, 500, 150));
 		jPanLogin.setLayout(null);
+		jPanLogin.setOpaque(false);
 		jPanLogin.add(jTFieldLogin, null);
 		jPanLogin.add(jTFieldPwd, null);
 		jPanLogin.add(btn1, null);
 		jPanLogin.add(btn2, null);
+
+		/** Check for Empty field to disable/enable button */
+		jTFieldPwd.getDocument().addDocumentListener(new DocumentListener() {
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				changed();
+			}
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				changed();
+			}
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				changed();
+			}
+			public void changed() {
+				if (((HintPwdField) jTFieldPwd).getPassword().length == 0) {
+					btn1.setEnabled(false);
+				} else {
+					btn1.setEnabled(true);
+				}
+			}
+		});
+		jTFieldLogin.getDocument().addDocumentListener(new DocumentListener() {
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				changed();
+			}
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				changed();
+			}
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				changed();
+			}
+			public void changed() {
+				if (jTFieldLogin.getText().length() == 0) {
+					btn1.setEnabled(false);
+				} else {
+					btn1.setEnabled(true);
+				}
+			}
+		});
+		/** End Checking */
 
 		this.add(jPanLogin, null);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+		JButton clicked = (JButton) arg0.getSource();
+		if (clicked == btn1) {
+			new SwingWorker<Void, Void>() {
+				@Override
+				protected Void doInBackground() throws Exception {
+					RegisterDelegate rd = new RegisterDelegate();
+					rd.setRegisterType("One");
+					Client client = new Client(rd);
+					client.doTask(Arrays.asList(jTFieldLogin.getText(), jTFieldPwd.getText()));
+					for (int i = 0; i <= 10; i++) {
+						Thread.sleep(1000);
+					}
+
+					return null;
+				}
+			}.execute();
+		}
 	}
 
 }

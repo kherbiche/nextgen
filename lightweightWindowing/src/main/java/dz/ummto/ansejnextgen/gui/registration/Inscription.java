@@ -308,10 +308,8 @@ public class Inscription extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		JButton clicked = (JButton) arg0.getSource();
 		if (clicked == jButton2) {
-			System.out.println("Button 2");
 		} else {
 			if (clicked == jButton1) {
-				System.out.println("Button 1 clicked");
 				new SwingWorker<Void, Void>() {
 					@Override
 					protected Void doInBackground() throws Exception {

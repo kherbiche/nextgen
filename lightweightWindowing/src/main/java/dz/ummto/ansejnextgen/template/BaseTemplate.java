@@ -51,7 +51,7 @@ public class BaseTemplate {
 	public BaseTemplate(String dim) {
 		Runnable code = new Runnable() {
 			public void run() {
-				jbInit(DIMENSION.containsKey(dim)? DIMENSION.get(dim) : new int[] { 844, 556 });
+				jbInit(DIMENSION.containsKey(dim) ? DIMENSION.get(dim) : new int[] { 844, 556 });
 			}
 		};
 		if (SwingUtilities.isEventDispatchThread()) {
@@ -66,8 +66,8 @@ public class BaseTemplate {
 	private void jbInit(int[] dim) {
 
 		base = new JFrame();
-		//base.setSize(844, 556);
-		//base.setMinimumSize(new Dimension(844, 556));
+		// base.setSize(844, 556);
+		// base.setMinimumSize(new Dimension(844, 556));
 		base.setMinimumSize(new Dimension(dim[0], dim[1]));
 		base.setResizable(false);
 		base.setLocationRelativeTo(null);
@@ -88,8 +88,7 @@ public class BaseTemplate {
 		jMenuHelpAbout.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showConfirmDialog(null, "Page Description ", "Just Test",
-						JOptionPane.PLAIN_MESSAGE);
+				JOptionPane.showConfirmDialog(null, "Page Description ", "Just Test", JOptionPane.PLAIN_MESSAGE);
 			}
 		});
 		jMenuFile.add(jMenuFileExit);
