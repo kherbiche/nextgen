@@ -21,7 +21,7 @@ public enum EducLevel {
 
 	private String educ;
 
-	public String educLevel() {
+	public String educ() {
 		return educ;
 	}
 

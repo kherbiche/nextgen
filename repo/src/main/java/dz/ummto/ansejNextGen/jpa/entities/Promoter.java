@@ -80,9 +80,15 @@ public class Promoter {
 	@Column(name = "DEGREE", nullable = false, length = 50)
 	private String degree;
 
+	/**
+	 * Mandatory Empty @constructor for JPA
+	 */
 	public Promoter() {
 	}
 
+	/**
+	 * Optional @constructor with fields
+	 */
 	public Promoter(PromoterId promoterId, Gender gender, String father, String mother, String birthCertNum,
 			EmbeddedAddress birthPlace, Address residence, String email, int phone, int anemCard, EducLevel educLevel,
 			String degree) {
