@@ -240,7 +240,7 @@ public class Inscription extends JPanel implements ActionListener {
 				new ImageIcon(new ImageIcon(getClass().getResource("/" + IconEnum.CREATE_PROMOT + EXTENTION)).getImage()
 						.getScaledInstance(30, 20, java.awt.Image.SCALE_SMOOTH)));
 		jButton1.setBackground(Color.ORANGE);
-		jButton1.setBounds(new Rectangle(389, 416, 100, 22));
+		jButton1.setBounds(new Rectangle(389, 400, 100, 22));
 		jButton1.setFont(new java.awt.Font(Font.DIALOG, 1, 13));
 		jButton1.setForeground(Color.yellow);
 		jButton1.addActionListener(this);
@@ -248,7 +248,7 @@ public class Inscription extends JPanel implements ActionListener {
 				new ImageIcon(new ImageIcon(getClass().getResource("/" + IconEnum.CANCEL + EXTENTION)).getImage()
 						.getScaledInstance(20, 15, java.awt.Image.SCALE_SMOOTH)));
 		jButton2.setBackground(Color.GRAY);
-		jButton2.setBounds(new Rectangle(180, 416, 100, 22));
+		jButton2.setBounds(new Rectangle(180, 400, 100, 22));
 		jButton2.setFont(new java.awt.Font(Font.DIALOG, 1, 10));
 		jButton2.setForeground(Color.white);
 		jButton2.addActionListener(this);
