@@ -16,7 +16,7 @@ import dz.ummto.ansejNextGen.jpa.entities.Address;
  * @author L KHERBICHE
  * @since 0.0.1-RELEASE
  */
-public class AddressDao extends AbstractJpaDao<Integer, Address> {
+public class AddressDao extends AbstractJpaDao<Long, Address> {
 	
 	@Override
 	public Address update(Address entity) {
