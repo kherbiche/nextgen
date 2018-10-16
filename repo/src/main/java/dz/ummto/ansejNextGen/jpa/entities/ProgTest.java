@@ -44,7 +44,7 @@ public class ProgTest {
 		promo2.setPromoterId(proId2);
 
 		IDao<PromoterId, Promoter> pDao = DaoFactory.getPromoterDao();
-		IDao<Integer, Address> addrDao = DaoFactory.getAddressDao();
+		IDao<Long, Address> addrDao = DaoFactory.getAddressDao();
 
 		pDao.save(promo);
 		Promoter found = pDao.findById(proId2);
