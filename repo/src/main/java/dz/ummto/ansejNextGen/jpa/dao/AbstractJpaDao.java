@@ -71,12 +71,14 @@ public abstract class AbstractJpaDao<K, E> implements IDao<K, E> {
 
 	@Override
 	public E findById(final K id) {
+		logger.info("-- AbstractJpaDao findById() methode");
 		return entityManager.find(entityClass, id);
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<E> findAll() {
+		logger.info("-- AbstractJpaDao findAll() methode");
 		return entityManager.createNamedQuery(FIND_ALL).getResultList();
 	}
 }
