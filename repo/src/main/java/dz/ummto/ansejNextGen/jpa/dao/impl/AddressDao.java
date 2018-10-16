@@ -17,22 +17,5 @@ import dz.ummto.ansejNextGen.jpa.entities.Address;
  * @since 0.0.1-RELEASE
  */
 public class AddressDao extends AbstractJpaDao<Long, Address> {
-	
-	@Override
-	public Address update(Address entity) {
-		logger.info("-- upDate on AddressDao methode");
-		entityManager.getTransaction().begin();
-		entity = entityManager.merge(entity);
-		entityManager.getTransaction().commit();
-		return entity;
-	}
-
-	@Override
-	public void remove(final Address entity) {
-		logger.info("-- remove on AddressDao methode");
-		entityManager.getTransaction().begin();
-		entityManager.remove(entityManager.contains(entity) ? entity : entityManager.merge(entity));
-		entityManager.getTransaction().commit();
-	}
 
 }

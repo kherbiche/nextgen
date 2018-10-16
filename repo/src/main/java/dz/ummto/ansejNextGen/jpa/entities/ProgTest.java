@@ -5,6 +5,7 @@ import org.apache.commons.logging.LogFactory;
 
 import dz.ummto.ansejNextGen.jpa.EducLevel;
 import dz.ummto.ansejNextGen.jpa.Gender;
+import dz.ummto.ansejNextGen.jpa.Role;
 import dz.ummto.ansejNextGen.jpa.TypeAddress;
 import dz.ummto.ansejNextGen.jpa.dao.DaoFactory;
 import dz.ummto.ansejNextGen.jpa.dao.IDao;
@@ -57,6 +58,26 @@ public class ProgTest {
 
 		pDao.remove(promo);
 		addrDao.remove(add);
+
+
+		User user = new User();
+		user.setUserName("lyes");
+		user.setPassWord("pass1$word?");
+		user.setEnabled(true);
+		UserRole ur1 = new UserRole();
+		ur1.setRole(Role.ROLE_COUNSELOR);
+		ur1.setUser(user);
+		UserRole ur2 = new UserRole();
+		ur2.setRole(Role.ROLE_ADMIN);
+		ur2.setUser(user);
+		user.addUserRole(ur1);
+		user.addUserRole(ur2);
+
+		IDao<String, User> uDao = DaoFactory.getUserDao();
+		IDao<Long, UserRole> urDao = DaoFactory.getUserRoleDao();
+		uDao.save(user);
+		//urDao.save(ur1);
+		//urDao.save(ur2);
 	}
 
 }

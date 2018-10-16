@@ -45,18 +45,28 @@ public abstract class AbstractJpaDao<K, E> implements IDao<K, E> {
 
 	@Override
 	public E save(final E entity) {
+		logger.info("-- AbstractJpaDao save() methode");
+		entityManager.getTransaction().begin();
 		entityManager.persist(entity);
+		entityManager.getTransaction().commit();
 		return entity;
 	}
 
 	@Override
 	public E update(final E entity) {
-		return entityManager.merge(entity);
+		logger.info("-- AbstractJpaDao upDate() methode");
+		entityManager.getTransaction().begin();
+		entityManager.merge(entity);
+		entityManager.getTransaction().commit();
+		return entity;
 	}
 
 	@Override
 	public void remove(final E entity) {
+		logger.info("-- AbstractJpaDao remove() methode");
+		entityManager.getTransaction().begin();
 		entityManager.remove(entityManager.contains(entity) ? entity : entityManager.merge(entity));
+		entityManager.getTransaction().commit();
 	}
 
 	@Override

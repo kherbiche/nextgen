@@ -23,21 +23,4 @@ import dz.ummto.ansejNextGen.jpa.entities.PromoterId;
 @NamedQueries({ @NamedQuery(name = AbstractJpaDao.FIND_ALL, query = "select p from Promoter p") })
 public class PromoterDao extends AbstractJpaDao<PromoterId, Promoter> {
 
-	@Override
-	public Promoter update(Promoter entity) {
-		logger.info("-- upDate on PromoterDao methode");
-		entityManager.getTransaction().begin();
-		entity = entityManager.merge(entity);
-		entityManager.getTransaction().commit();
-		return entity;
-	}
-
-	@Override
-	public void remove(final Promoter promo) {
-		logger.info("-- remove on PromoterDao methode");
-		entityManager.getTransaction().begin();
-		entityManager.remove(entityManager.contains(promo) ? promo : entityManager.merge(promo));
-		entityManager.getTransaction().commit();
-	}
-
 }
