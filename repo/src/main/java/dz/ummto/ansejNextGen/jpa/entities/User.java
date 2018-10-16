@@ -15,8 +15,15 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
- * The <code>Promoter</code> class represents the User Entity
+ * The <code>User</code> class represents the User Entity
  * 
+ * @see <a href=
+ *      "https://vladmihalcea.com/the-best-way-to-map-a-onetomany-association-with-jpa-and-hibernate/">Best
+ *      Way to map OneToMany</a>
+ * @see <a href=
+ *      "https://www.thoughts-on-java.org/best-practices-many-one-one-many-associations-mappings/">Best
+ *      Practices for Many-To-One and One-To-Many Association Mappings</a>
+ *
  * @author L KHERBICHE
  * @since 0.0.1-RELEASE
  */
@@ -33,7 +40,7 @@ public class User {
 	@Column(name = "ENABLED", nullable = false)
 	private boolean enabled;
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-	private Set<UserRole> userRole = new HashSet<UserRole>(0);
+	private Set<UserRole> userRoles = new HashSet<UserRole>(0);
 
 	/**
 	 * @constructor must be empty for JPA use
@@ -65,12 +72,40 @@ public class User {
 		this.enabled = enabled;
 	}
 
-	public Set<UserRole> getUserRole() {
-		return userRole;
+	public Set<UserRole> getUserRoles() {
+		return userRoles;
 	}
 
-	public void setUserRole(Set<UserRole> userRole) {
-		this.userRole = userRole;
+	public void setUserRoles(Set<UserRole> userRoles) {
+		this.userRoles = userRoles;
 	}
 
+	/**
+	 * 
+	 * @param userRole
+	 *            <p>
+	 *            This parent entity, User, features two utility methods (e.g.
+	 *            addUserRole and removeUserRole) which are used to synchronize both
+	 *            sides of the bidirectional association. You should always provide
+	 *            these methods whenever you are working with a bidirectional
+	 *            association as, otherwise, you risk <a href=
+	 *            "https://vladmihalcea.com/a-beginners-guide-to-jpa-and-hibernate-cascade-types/">very
+	 *            subtle state propagation issues</a>
+	 * 
+	 */
+	public void addUserRole(UserRole userRole) {
+		userRoles.add(userRole);
+		userRole.setUser(this);
+	}
+
+	/**
+	 * 
+	 * @param userRole
+	 *            <p>
+	 *            Another helper method
+	 */
+	public void removeUserRole(UserRole userRole) {
+		userRoles.remove(userRole);
+		userRole.setUser(null);
+	}
 }

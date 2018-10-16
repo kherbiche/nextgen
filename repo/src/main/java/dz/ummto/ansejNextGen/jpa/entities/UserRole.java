@@ -21,8 +21,15 @@ import org.hibernate.annotations.GenericGenerator;
 import dz.ummto.ansejNextGen.jpa.Role;
 
 /**
- * The <code>Promoter</code> class represents the Roles of User Entity
+ * The <code>UserRole</code> class represents the Roles of User Entity
  * 
+ * @see <a href=
+ *      "https://vladmihalcea.com/the-best-way-to-map-a-onetomany-association-with-jpa-and-hibernate/">Best
+ *      Way to map OneToMany</a>
+ * @see <a href=
+ *      "https://www.thoughts-on-java.org/best-practices-many-one-one-many-associations-mappings/">Best
+ *      Practices for Many-To-One and One-To-Many Association Mappings</a>
+ *
  * @author L KHERBICHE
  * @since 0.0.1-RELEASE
  */
@@ -33,7 +40,7 @@ public class UserRole {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
 	@GenericGenerator(name = "native", strategy = "native")
-	private int id;
+	private Long id;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "USER_ID")
 	private User user;
@@ -47,11 +54,11 @@ public class UserRole {
 	public UserRole() {
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -71,4 +78,17 @@ public class UserRole {
 		this.role = role;
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (!(o instanceof UserRole))
+			return false;
+		return id != null && id.equals(((UserRole) o).id);
+	}
+
+	@Override
+	public int hashCode() {
+		return 31;
+	}
 }

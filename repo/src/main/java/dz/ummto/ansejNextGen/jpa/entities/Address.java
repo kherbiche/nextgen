@@ -39,7 +39,7 @@ public class Address {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
 	@GenericGenerator(name = "native", strategy = "native")
-	private int id;
+	private Long id;
 
 	@Column(name = "NUM_ADDRESS", nullable = false, length = 4)
 	private int numAddress;
@@ -60,11 +60,11 @@ public class Address {
 	public Address() {
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
