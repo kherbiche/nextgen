@@ -7,8 +7,6 @@ package dz.ummto.ansejNextGen.jpa.dao;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -32,7 +30,6 @@ public abstract class AbstractJpaDao<K, E> implements IDao<K, E> {
 	protected static final Log logger = LogFactory.getLog(AbstractJpaDao.class);
 	public static final String FIND_ALL = "Entity.findAll";
 	protected Class<E> entityClass;
-	protected EntityManager entityManager;
 
 	@SuppressWarnings("unchecked")
 	// @PostConstruct
@@ -40,45 +37,45 @@ public abstract class AbstractJpaDao<K, E> implements IDao<K, E> {
 		logger.info("-- AbstractJpaDao Constructor");
 		ParameterizedType genericSuperclass = (ParameterizedType) getClass().getGenericSuperclass();
 		this.entityClass = (Class<E>) genericSuperclass.getActualTypeArguments()[1];
-		entityManager = EMProvider.getEntityManager();
 	}
 
 	@Override
 	public E save(final E entity) {
 		logger.info("-- AbstractJpaDao save() methode");
-		entityManager.getTransaction().begin();
-		entityManager.persist(entity);
-		entityManager.getTransaction().commit();
+		EMProvider.beginTransaction();
+		EMProvider.getEntityManager().persist(entity);
+		EMProvider.commit();
 		return entity;
 	}
 
 	@Override
 	public E update(final E entity) {
 		logger.info("-- AbstractJpaDao upDate() methode");
-		entityManager.getTransaction().begin();
-		entityManager.merge(entity);
-		entityManager.getTransaction().commit();
+		EMProvider.beginTransaction();
+		EMProvider.getEntityManager().merge(entity);
+		EMProvider.commit();
 		return entity;
 	}
 
 	@Override
 	public void remove(final E entity) {
 		logger.info("-- AbstractJpaDao remove() methode");
-		entityManager.getTransaction().begin();
-		entityManager.remove(entityManager.contains(entity) ? entity : entityManager.merge(entity));
-		entityManager.getTransaction().commit();
+		EMProvider.beginTransaction();
+		EMProvider.getEntityManager().remove(
+				EMProvider.getEntityManager().contains(entity) ? entity : EMProvider.getEntityManager().merge(entity));
+		EMProvider.commit();
 	}
 
 	@Override
 	public E findById(final K id) {
 		logger.info("-- AbstractJpaDao findById() methode");
-		return entityManager.find(entityClass, id);
+		return EMProvider.getEntityManager().find(entityClass, id);
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<E> findAll() {
 		logger.info("-- AbstractJpaDao findAll() methode");
-		return entityManager.createNamedQuery(FIND_ALL).getResultList();
+		return EMProvider.getEntityManager().createNamedQuery(FIND_ALL).getResultList();
 	}
 }
