@@ -7,6 +7,7 @@ package dz.ummto.ansejNextGen.jpa.util;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -127,5 +128,13 @@ public class EMProvider {
 	 */
 	public static void commit() {
 		getEntityManager().getTransaction().commit();
+	}
+
+	/**
+	 * <p>
+	 * Create a query for the EntityManager on this thread.
+	 */
+	public static Query createQuery(String query) {
+		return getEntityManager().createQuery(query);
 	}
 }
