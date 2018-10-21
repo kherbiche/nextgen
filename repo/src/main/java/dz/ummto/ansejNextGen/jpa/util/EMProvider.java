@@ -86,6 +86,7 @@ public class EMProvider {
 	 * Close the EntityManager and set the thread's instance to null.
 	 */
 	public static void closeEntityManager() {
+		logger.info("-- closeEntityManager()");
 		EntityManager em = threadLocalEnityManager.get();
 		if (em != null) {
 			em.close();
@@ -98,6 +99,7 @@ public class EMProvider {
 	 * Close the EntityManagerFactory.
 	 */
 	public static void closeEntityManagerFactory() {
+		logger.info("-- closeEntityManagerFactory()");
 		emf.close();
 	}
 
@@ -109,6 +111,7 @@ public class EMProvider {
 	 * called.
 	 */
 	public static void beginTransaction() {
+		logger.info("-- beginTransaction()");
 		getEntityManager().getTransaction().begin();
 	}
 
@@ -117,6 +120,7 @@ public class EMProvider {
 	 * Undo an uncommitted transaction, in the event of an error or other problem.
 	 */
 	public static void rollback() {
+		logger.info("-- rollback(");
 		getEntityManager().getTransaction().rollback();
 	}
 
@@ -127,6 +131,7 @@ public class EMProvider {
 	 * Until commit is called, rollback can be used to undo the transaction.
 	 */
 	public static void commit() {
+		logger.info("-- commit()");
 		getEntityManager().getTransaction().commit();
 	}
 
@@ -135,6 +140,7 @@ public class EMProvider {
 	 * Create a query for the EntityManager on this thread.
 	 */
 	public static Query createQuery(String query) {
+		logger.info("-- createQuery("+query+")");
 		return getEntityManager().createQuery(query);
 	}
 }
