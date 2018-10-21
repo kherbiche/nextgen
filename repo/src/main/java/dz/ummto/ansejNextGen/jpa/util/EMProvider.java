@@ -26,15 +26,32 @@ import org.apache.commons.logging.LogFactory;
  * @see <a href=
  *      "https://stackoverflow.com/questions/9370819/hibernate-entitymanager-is-it-supposed-to-be-used-as-a-singleton">stacklink</a>
  * 
+ * <p>
+ * A generic facade that provides easy access to a JPA persistence unit using
+ * static methods.
+ * </p>
+ * <p>
+ * This static class is designed so that it can be used with any JPA
+ * application.
+ * </p>
+ * 
  * @author L KHERBICHE
  * @since 0.0.1-RELEASE
  */
 public class EMProvider {
 
-	private static final Log logger = LogFactory.getLog(EMProvider.class);
+	/**
+	 * <p>
+	 * Declare the persistence unit for this EMProvider ("ansePersiUnit").
+	 * <p>
+	 * This is the only setting that might need to be changed between applications.
+	 * Otherwise, this class can be dropped into any JPA application.
+	 */
 	private static final String persitenceUnitName = "ansePersiUnit";
+
 	private static final EntityManagerFactory emf;
 	private static final ThreadLocal<EntityManager> threadLocalEnityManager;
+	private static final Log logger = LogFactory.getLog(EMProvider.class);
 
 	static {
 		logger.info("-- EMF instanciation");
@@ -42,16 +59,31 @@ public class EMProvider {
 		threadLocalEnityManager = new ThreadLocal<EntityManager>();
 	}
 
+	/**
+	 * <p>
+	 * Provide a per-thread EntityManager "singleton" instance.
+	 * <p>
+	 * This method can be called as many times as needed per thread, and it will
+	 * return the same EntityManager instance, until the manager is closed.
+	 * 
+	 * @return EntityManager singleton for this current thread
+	 */
 	public static EntityManager getEntityManager() {
-		logger.info("-- Entity manager from Thread Local");
+		logger.info("-- getEntityManager()");
 		EntityManager em = threadLocalEnityManager.get();
 		if (em == null) {
+			logger.info("-- em == null");
 			em = emf.createEntityManager();
 			threadLocalEnityManager.set(em);
-		}
+		} else
+			logger.info("-- em != null");
 		return em;
 	}
 
+	/**
+	 * <p>
+	 * Close the EntityManager and set the thread's instance to null.
+	 */
 	public static void closeEntityManager() {
 		EntityManager em = threadLocalEnityManager.get();
 		if (em != null) {
@@ -60,18 +92,39 @@ public class EMProvider {
 		}
 	}
 
+	/**
+	 * <p>
+	 * Close the EntityManagerFactory.
+	 */
 	public static void closeEntityManagerFactory() {
 		emf.close();
 	}
 
+	/**
+	 * <p>
+	 * Initiate a transaction for the EntityManager on this thread.
+	 * <p>
+	 * The Transaction will remain open until commit or closeEntityManager is
+	 * called.
+	 */
 	public static void beginTransaction() {
 		getEntityManager().getTransaction().begin();
 	}
 
+	/**
+	 * <p>
+	 * Undo an uncommitted transaction, in the event of an error or other problem.
+	 */
 	public static void rollback() {
 		getEntityManager().getTransaction().rollback();
 	}
 
+	/**
+	 * <p>
+	 * Submit the changes to the persistence layer.
+	 * <p>
+	 * Until commit is called, rollback can be used to undo the transaction.
+	 */
 	public static void commit() {
 		getEntityManager().getTransaction().commit();
 	}
