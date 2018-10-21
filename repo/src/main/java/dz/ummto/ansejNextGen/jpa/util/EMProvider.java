@@ -33,16 +33,46 @@ public class EMProvider {
 
 	private static final Log logger = LogFactory.getLog(EMProvider.class);
 	private static final String persitenceUnitName = "ansePersiUnit";
-	private static EntityManagerFactory emf;
+	private static final EntityManagerFactory emf;
+	private static final ThreadLocal<EntityManager> threadLocalEnityManager;
 
 	static {
 		logger.info("-- EMF instanciation");
 		emf = Persistence.createEntityManagerFactory(persitenceUnitName);
-		// entityManager = emf.createEntityManager();
+		threadLocalEnityManager = new ThreadLocal<EntityManager>();
 	}
 
 	public static EntityManager getEntityManager() {
-		logger.info("-- Entity manager instanciation");
-		return emf.createEntityManager();
+		logger.info("-- Entity manager from Thread Local");
+		EntityManager em = threadLocalEnityManager.get();
+		if (em == null) {
+			em = emf.createEntityManager();
+			threadLocalEnityManager.set(em);
+		}
+		return em;
+	}
+
+	public static void closeEntityManager() {
+		EntityManager em = threadLocalEnityManager.get();
+		if (em != null) {
+			em.close();
+			threadLocalEnityManager.set(null);
+		}
+	}
+
+	public static void closeEntityManagerFactory() {
+		emf.close();
+	}
+
+	public static void beginTransaction() {
+		getEntityManager().getTransaction().begin();
+	}
+
+	public static void rollback() {
+		getEntityManager().getTransaction().rollback();
+	}
+
+	public static void commit() {
+		getEntityManager().getTransaction().commit();
 	}
 }
