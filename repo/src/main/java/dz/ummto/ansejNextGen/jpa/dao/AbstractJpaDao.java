@@ -42,6 +42,7 @@ public abstract class AbstractJpaDao<K, E> implements IDao<K, E> {
 	@Override
 	public E save(final E entity) {
 		logger.info("-- AbstractJpaDao save() methode");
+		logger.info("-- AbstractJpaDao threadName: "+Thread.currentThread().getName()+" threadId: "+Thread.currentThread().getId());
 		EMProvider.beginTransaction();
 		EMProvider.getEntityManager().persist(entity);
 		EMProvider.commit();
@@ -51,6 +52,7 @@ public abstract class AbstractJpaDao<K, E> implements IDao<K, E> {
 	@Override
 	public E update(final E entity) {
 		logger.info("-- AbstractJpaDao upDate() methode");
+		logger.info("-- AbstractJpaDao threadName: "+Thread.currentThread().getName()+" threadId: "+Thread.currentThread().getId());
 		EMProvider.beginTransaction();
 		EMProvider.getEntityManager().merge(entity);
 		EMProvider.commit();
@@ -60,6 +62,7 @@ public abstract class AbstractJpaDao<K, E> implements IDao<K, E> {
 	@Override
 	public void remove(final E entity) {
 		logger.info("-- AbstractJpaDao remove() methode");
+		logger.info("-- AbstractJpaDao threadName: "+Thread.currentThread().getName()+" threadId: "+Thread.currentThread().getId());
 		EMProvider.beginTransaction();
 		EMProvider.getEntityManager().remove(
 				EMProvider.getEntityManager().contains(entity) ? entity : EMProvider.getEntityManager().merge(entity));
@@ -69,6 +72,7 @@ public abstract class AbstractJpaDao<K, E> implements IDao<K, E> {
 	@Override
 	public E findById(final K id) {
 		logger.info("-- AbstractJpaDao findById() methode");
+		logger.info("-- AbstractJpaDao threadName: "+Thread.currentThread().getName()+" threadId: "+Thread.currentThread().getId());
 		return EMProvider.getEntityManager().find(entityClass, id);
 	}
 
@@ -76,6 +80,7 @@ public abstract class AbstractJpaDao<K, E> implements IDao<K, E> {
 	@Override
 	public List<E> findAll() {
 		logger.info("-- AbstractJpaDao findAll() methode");
+		logger.info("-- AbstractJpaDao threadName: "+Thread.currentThread().getName()+" threadId: "+Thread.currentThread().getId());
 		return EMProvider.getEntityManager().createNamedQuery(FIND_ALL).getResultList();
 	}
 }

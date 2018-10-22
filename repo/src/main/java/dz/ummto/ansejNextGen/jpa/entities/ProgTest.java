@@ -16,6 +16,8 @@ public class ProgTest {
 
 	public static void main(String[] args) {
 
+		logger.info("-- Main threadName: "+Thread.currentThread().getName()+" threadId: "+Thread.currentThread().getId());
+
 		EmbeddedAddress embAdd = new EmbeddedAddress("Nanterre", 92000, "Fr");
 		Address add = new Address();
 		add.setNumAddress(1);
@@ -78,6 +80,7 @@ public class ProgTest {
 		uDao.save(user);
 		//urDao.save(ur1);
 		//urDao.save(ur2);
+		logger.info("-- Main thread name: "+Thread.currentThread().getName()+" threadId: "+Thread.currentThread().getId());
 	}
 
 }

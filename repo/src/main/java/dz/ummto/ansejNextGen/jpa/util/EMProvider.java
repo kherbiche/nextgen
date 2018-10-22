@@ -71,6 +71,7 @@ public class EMProvider {
 	 */
 	public static EntityManager getEntityManager() {
 		logger.info("-- getEntityManager()");
+		logger.info("-- EMProvider threadName: "+Thread.currentThread().getName()+" threadId: "+Thread.currentThread().getId());
 		EntityManager em = threadLocalEnityManager.get();
 		if (em == null) {
 			logger.info("-- em == null");
