@@ -32,7 +32,7 @@ public abstract class AbstractJpaDao<K, E> implements IDao<K, E> {
 	protected Class<E> entityClass;
 
 	@SuppressWarnings("unchecked")
-	// @PostConstruct
+	/* @PostConstruct */
 	public AbstractJpaDao() {
 		logger.info("-- AbstractJpaDao Constructor");
 		ParameterizedType genericSuperclass = (ParameterizedType) getClass().getGenericSuperclass();
