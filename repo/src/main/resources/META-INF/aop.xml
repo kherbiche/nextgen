@@ -5,11 +5,12 @@
 	<weaver options="-verbose -showWeaveInfo">
 		<!-- only weave classes in our application-specific packages -->
 		<include within="javax.persistence.*" />
+		<include within="dz.ummto.ansejNextGen.jpa.dao.*" />
 	</weaver>
 
 	<aspects>
 		<!-- weave in just this aspect -->
-		<aspect name="fr.bzh.rzh.service.aspect.AspectRule" />
+		<aspect name="dz.ummto.ansejNextGen.jpa.aspect.JpaAspect" />
 	</aspects>
 
 </aspectj>
