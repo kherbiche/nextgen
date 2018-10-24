@@ -43,9 +43,16 @@ public abstract class AbstractJpaDao<K, E> implements IDao<K, E> {
 	public E save(final E entity) {
 		logger.info("-- AbstractJpaDao save() methode");
 		logger.info("-- AbstractJpaDao threadName: "+Thread.currentThread().getName()+" threadId: "+Thread.currentThread().getId());
-		EMProvider.beginTransaction();
+		/**
+		 * The Transactions are manager by AOP AspectJ
+		 * {@link dz.ummto.ansejNextGen.jpa.aspect.JpaAspect#transactional()}
+		 * EMProvider.beginTransaction();
+		 */
 		EMProvider.getEntityManager().persist(entity);
-		EMProvider.commit();
+		/**
+		 * EMProvider.commit();
+		 * The commit() also is managed by AOP
+		 */
 		return entity;
 	}
 
@@ -53,9 +60,15 @@ public abstract class AbstractJpaDao<K, E> implements IDao<K, E> {
 	public E update(final E entity) {
 		logger.info("-- AbstractJpaDao upDate() methode");
 		logger.info("-- AbstractJpaDao threadName: "+Thread.currentThread().getName()+" threadId: "+Thread.currentThread().getId());
-		EMProvider.beginTransaction();
+		/**
+		 * The Transactions are manager by AOP AspectJ
+		 * {@link dz.ummto.ansejNextGen.jpa.aspect.JpaAspect#transactional()}
+		 * EMProvider.beginTransaction();
+		 */
 		EMProvider.getEntityManager().merge(entity);
-		EMProvider.commit();
+		/**
+		 * EMProvider.commit();
+		 */
 		return entity;
 	}
 
@@ -63,10 +76,16 @@ public abstract class AbstractJpaDao<K, E> implements IDao<K, E> {
 	public void remove(final E entity) {
 		logger.info("-- AbstractJpaDao remove() methode");
 		logger.info("-- AbstractJpaDao threadName: "+Thread.currentThread().getName()+" threadId: "+Thread.currentThread().getId());
-		EMProvider.beginTransaction();
+		/**
+		 * The Transactions are manager by AOP AspectJ
+		 * {@link dz.ummto.ansejNextGen.jpa.aspect.JpaAspect#transactional()}
+		 * EMProvider.beginTransaction();
+		 */
 		EMProvider.getEntityManager().remove(
 				EMProvider.getEntityManager().contains(entity) ? entity : EMProvider.getEntityManager().merge(entity));
-		EMProvider.commit();
+		/**
+		 * EMProvider.commit();
+		 */
 	}
 
 	@Override

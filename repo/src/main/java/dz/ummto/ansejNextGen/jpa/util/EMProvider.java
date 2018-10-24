@@ -1,5 +1,5 @@
 /*
- * Copyright 2008, 2018 Lyes Kherbiche
+ * Copyright (C) 2008, 2018 Lyes Kherbiche
  * <kerbiche@gmail.com>
  */
 package dz.ummto.ansejNextGen.jpa.util;
