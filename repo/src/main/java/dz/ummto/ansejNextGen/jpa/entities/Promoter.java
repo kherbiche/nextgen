@@ -70,12 +70,21 @@ public class Promoter {
 	@Column(name = "PHONE", nullable = false, length = 13)
 	private int phone;
 
+	@Column(name = "FAX", nullable = true, length = 13)
+	private int fax;
+
+	@Column(name = "FAMILYSITUATION", nullable = false, length = 6)
+	private String famiSitu;
+
 	@Column(name = "ANEM_CARD", nullable = false, length = 15)
 	private int anemCard;
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "EDUC_LEVEL", nullable = false, length = 19)
 	private EducLevel educLevel;
+
+	@Column(name = "EXPERIENCE", nullable = false, length = 30)
+	private String experience;
 
 	@Column(name = "DEGREE", nullable = false, length = 50)
 	private String degree;
@@ -179,6 +188,22 @@ public class Promoter {
 		this.phone = phone;
 	}
 
+	public int getFax() {
+		return fax;
+	}
+
+	public void setFax(int fax) {
+		this.fax = fax;
+	}
+
+	public String getFamiSitu() {
+		return famiSitu;
+	}
+
+	public void setFamiSitu(String famiSitu) {
+		this.famiSitu = famiSitu;
+	}
+
 	public int getAnemCard() {
 		return anemCard;
 	}
@@ -193,6 +218,14 @@ public class Promoter {
 
 	public void setEducLevel(EducLevel educLevel) {
 		this.educLevel = educLevel;
+	}
+
+	public String getExperience() {
+		return experience;
+	}
+
+	public void setExperience(String experience) {
+		this.experience = experience;
 	}
 
 	public String getDegree() {
