@@ -316,8 +316,18 @@ public class Inscription extends JPanel implements ActionListener {
 						RegisterDelegate rd = new RegisterDelegate();
 						rd.setRegisterType("One");
 						Client client = new Client(rd);
-						client.doTask(Arrays.asList(jTFieldFirstName.getText(), jTFieldLastName.getText(),
-								jTFieldDBirth.getText()));
+						client.doTask(
+								Arrays.asList(jTFieldFirstName.getText(), jTFieldLastName.getText(),
+										jTFieldDBirth.getText()),
+								jComboGender.getSelectedItem().toString(), jTFieldFather.getText(),
+								jTFieldMother.getText(), jTFieldBCNum.getText(), jTFieldBirthCity.getText(),
+								jTFieldBirthZipCode.getText(), jTFieldBirthCountry.getText(),
+								jTFieldNumAddrss.getText(), jComboTypeAddr.getSelectedItem().toString(),
+								jTFieldStreetName.getText(), jTFieldCity.getText(), jTFieldZipCode.getText(),
+								jTFieldCountry.getText(), jTFieldEmail.getText(), jTFieldTel.getText(),
+								jTFieldFax.getText(), jComboFami.getSelectedItem().toString(),
+								jTFieldAnemCard.getText(), jComBoxDegree.getSelectedItem().toString(),
+								jComBoxExperience.getSelectedItem().toString(), jTFieldSpecialty.getText());
 						for (int i = 0; i <= 10; i++) {
 							Thread.sleep(1000);
 						}
