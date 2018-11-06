@@ -17,6 +17,11 @@
 			<type>jar</type>
 		</dependency>
 		<dependency>
+			<groupId>dz.ummto.ansejNextGen</groupId>
+			<artifactId>repo</artifactId>
+			<version>${parent.version}</version>
+		</dependency>
+		<dependency>
 			<artifactId>jersey-container-servlet</artifactId>
 			<groupId>org.glassfish.jersey.containers</groupId>
 			<version>2.26</version>
