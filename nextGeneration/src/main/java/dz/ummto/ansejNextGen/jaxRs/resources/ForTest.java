@@ -38,52 +38,59 @@ public class ForTest {
 		loggerr.info("--- POST Content 0: " + obj.get(0));
 		loggerr.info("--- POST Content 1: " + obj.get(1));
 		loggerr.info("--- POST Content 2: " + obj.get(2));
+		loggerr.info("-- ForTest threadName: " + Thread.currentThread().getName() + " threadId: "
+				+ Thread.currentThread().getId());
 		new Thread(new Runnable() {
 			public void run() {
-				loggerr.info("--- Processing");
-
-				Promoter promo = new Promoter();
-				PromoterId proId = new PromoterId();
-				EmbeddedAddress birthAddress = new EmbeddedAddress();
-				Address residence = new Address();
-				EmbeddedAddress embeddedAddress = new EmbeddedAddress();
-
-				proId.setFirstName(obj.get(0));
-				proId.setLastName(obj.get(1));
-				proId.setBirthDate(obj.get(2));
-				promo.setPromoterId(proId);
-
-				promo.setGender(obj.get(3).equals("Man")? Gender.M : Gender.F);
-				promo.setFather(obj.get(4));
-				promo.setMother(obj.get(5));
-				promo.setBirthCertNum(obj.get(6));
-
-				birthAddress.setCity(obj.get(7));
-				birthAddress.setZipCode(Integer.parseInt(obj.get(8)));
-				birthAddress.setCountry(obj.get(9));
-				promo.setBirthPlace(birthAddress);
-
-				residence.setNumAddress(Integer.parseInt(obj.get(10)));
-				residence.setTypeAddress(TypeAddress.valueOf(obj.get(11)));
-				residence.setStreetName(obj.get(12));
-				embeddedAddress.setCity(obj.get(13));
-				embeddedAddress.setZipCode(Integer.parseInt(obj.get(14)));
-				embeddedAddress.setCountry(obj.get(15));
-				residence.setEmbeddedAddress(embeddedAddress);
-				promo.setResidence(residence);
-
-				promo.setEmail(obj.get(16));
-				promo.setPhone(Integer.parseInt(obj.get(17)));
-				promo.setFax(Integer.parseInt(obj.get(18)));
-				promo.setFamiSitu(obj.get(19));
-				promo.setAnemCard(Integer.parseInt(obj.get(20)));
-				promo.setEducLevel(EducLevel.OTH); /* impl TODO */
-				promo.setExperience(obj.get(22));
-				promo.setDegree(obj.get(23));
-
 				IDao<PromoterId, Promoter> pDao = DaoFactory.getPromoterDao();
-				pDao.save(promo);
-				asyncResponse.resume("TODO");
+				try {
+					loggerr.info("--- Processing");
+					loggerr.info("-- ForTest->Runnable threadName: " + Thread.currentThread().getName() + " threadId: "
+							+ Thread.currentThread().getId());
+					Promoter promo = new Promoter();
+					PromoterId proId = new PromoterId();
+					EmbeddedAddress birthAddress = new EmbeddedAddress();
+					Address residence = new Address();
+					EmbeddedAddress embeddedAddress = new EmbeddedAddress();
+
+					proId.setFirstName(obj.get(0));
+					proId.setLastName(obj.get(1));
+					proId.setBirthDate(obj.get(2));
+					promo.setPromoterId(proId);
+
+					promo.setGender(obj.get(3).equals("Man") ? Gender.M : Gender.F);
+					promo.setFather(obj.get(4));
+					promo.setMother(obj.get(5));
+					promo.setBirthCertNum(obj.get(6));
+
+					birthAddress.setCity(obj.get(7));
+					birthAddress.setZipCode(Integer.parseInt(obj.get(8)));
+					birthAddress.setCountry(obj.get(9));
+					promo.setBirthPlace(birthAddress);
+
+					residence.setNumAddress(Integer.parseInt(obj.get(10)));
+					residence.setTypeAddress(TypeAddress.valueOf(obj.get(11)));
+					residence.setStreetName(obj.get(12));
+					embeddedAddress.setCity(obj.get(13));
+					embeddedAddress.setZipCode(Integer.parseInt(obj.get(14)));
+					embeddedAddress.setCountry(obj.get(15));
+					residence.setEmbeddedAddress(embeddedAddress);
+					promo.setResidence(residence);
+
+					promo.setEmail(obj.get(16));
+					promo.setPhone(Integer.parseInt(obj.get(17)));
+					promo.setFax(Integer.parseInt(obj.get(18)));
+					promo.setFamiSitu(obj.get(19));
+					promo.setAnemCard(Integer.parseInt(obj.get(20)));
+					promo.setEducLevel(EducLevel.OTH); /* impl TODO */
+					promo.setExperience(obj.get(22));
+					promo.setDegree(obj.get(23));
+
+					pDao.save(promo);
+					asyncResponse.resume("TODO");
+				} finally {
+					pDao.closeResource();
+				}
 			}
 		}).start();
 	}

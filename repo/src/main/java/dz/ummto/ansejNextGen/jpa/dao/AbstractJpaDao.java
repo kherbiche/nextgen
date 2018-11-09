@@ -102,4 +102,9 @@ public abstract class AbstractJpaDao<K, E> implements IDao<K, E> {
 		logger.info("-- AbstractJpaDao threadName: "+Thread.currentThread().getName()+" threadId: "+Thread.currentThread().getId());
 		return EMProvider.getEntityManager().createNamedQuery(FIND_ALL).getResultList();
 	}
+
+	@Override
+	public void closeResource() {
+		EMProvider.closeEntityManager();
+	}
 }
