@@ -37,7 +37,7 @@ class RegisterOne implements IDelegate {
 		@SuppressWarnings("unchecked")
 		List<String> list = (List<String>) args[0];
 		final WebTarget target = JaxRsClient.getClient().target(IDelegate.getBaseURI());
-		Response message = target.path("/rest").path("/test").request(MediaType.APPLICATION_JSON)
+		Response message = target.path("/rest").path("/savepromoter").request(MediaType.APPLICATION_JSON)
 				.post(Entity.entity(list, MediaType.APPLICATION_JSON));
 
 		loggerrr.info("--- message.getStatus(): " + message.getStatus());

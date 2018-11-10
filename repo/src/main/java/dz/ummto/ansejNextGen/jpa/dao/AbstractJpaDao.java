@@ -105,6 +105,8 @@ public abstract class AbstractJpaDao<K, E> implements IDao<K, E> {
 
 	@Override
 	public void closeResource() {
+		logger.info("-- AbstractJpaDao closeResource() methode");
+		logger.info("-- AbstractJpaDao threadName: "+Thread.currentThread().getName()+" threadId: "+Thread.currentThread().getId());
 		EMProvider.closeEntityManager();
 	}
 }

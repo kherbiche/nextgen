@@ -10,7 +10,7 @@ import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.wadl.internal.WadlResource;
 
-import dz.ummto.ansejNextGen.jaxRs.resources.ForTest;
+import dz.ummto.ansejNextGen.jaxRs.resources.RegistrationRs;
 import io.swagger.jaxrs.config.BeanConfig;
 import io.swagger.jaxrs.listing.ApiListingResource;
 
@@ -30,7 +30,7 @@ public class JaxRsApp extends ResourceConfig {
 	private void registerEndPoints() {
 		register(WadlResource.class);
 		register(JacksonFeature.class);
-		register(ForTest.class);
+		register(RegistrationRs.class);
 	}
 	
 	private void configSwagger() {

@@ -1,3 +1,8 @@
+/*
+ * Copyright (C) 2008, 2018 Lyes Kherbiche
+ * <kerbiche@gmail.com>
+ */
+
 package dz.ummto.ansejNextGen.jaxRs.resources;
 
 import java.io.IOException;
@@ -24,29 +29,44 @@ import dz.ummto.ansejNextGen.jpa.entities.EmbeddedAddress;
 import dz.ummto.ansejNextGen.jpa.entities.Promoter;
 import dz.ummto.ansejNextGen.jpa.entities.PromoterId;
 
+/**
+ * The <code>RegistrationRs</code> class represents the JaxRs Resource that does
+ * <strong>The promoter registration process</strong>.
+ * <p>
+ * <strong>The promoter registration process</strong> include multiple task:
+ * save the promoter and his address.
+ * 
+ * @author L KHERBICHE
+ * @since 0.0.1-RELEASE
+ */
 @Path("/rest")
-public class ForTest {
+public class RegistrationRs {
 
-	private static final Log loggerr = LogFactory.getLog(ForTest.class);
+	private static final Log loggerr = LogFactory.getLog(RegistrationRs.class);
 
-	@Path("/test")
+	@Path("/savepromoter")
 	@POST
 	@Produces("application/json")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void newMail(@Suspended final AsyncResponse asyncResponse, List<String> obj) throws IOException {
+	/**
+	 * MultiThreaded method @see qtp Queuded Thread Pool of jetty
+	 * @param asyncResponse
+	 * @param obj Promoter's attribute values List
+	 * @throws IOException
+	 */
+	public void ProcessPromoter(@Suspended final AsyncResponse asyncResponse, List<String> obj) throws IOException {
 		loggerr.info("--- URI: /rest/test");
 		loggerr.info("--- POST Content 0: " + obj.get(0));
 		loggerr.info("--- POST Content 1: " + obj.get(1));
 		loggerr.info("--- POST Content 2: " + obj.get(2));
-		loggerr.info("-- ForTest threadName: " + Thread.currentThread().getName() + " threadId: "
+		loggerr.info("-- ProcessPromoter threadName: " + Thread.currentThread().getName() + " threadId: "
 				+ Thread.currentThread().getId());
 		new Thread(new Runnable() {
 			public void run() {
 				IDao<PromoterId, Promoter> pDao = DaoFactory.getPromoterDao();
 				try {
-					loggerr.info("--- Processing");
-					loggerr.info("-- ForTest->Runnable threadName: " + Thread.currentThread().getName() + " threadId: "
-							+ Thread.currentThread().getId());
+					loggerr.info("-- ProcessPromoter->Runnable threadName: " + Thread.currentThread().getName()
+							+ " threadId: " + Thread.currentThread().getId());
 					Promoter promo = new Promoter();
 					PromoterId proId = new PromoterId();
 					EmbeddedAddress birthAddress = new EmbeddedAddress();
