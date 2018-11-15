@@ -4,8 +4,6 @@
  */
 package dz.ummto.ansejnextgen.registers;
 
-import java.util.List;
-
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
@@ -15,8 +13,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- * The <code>RegisterOne</code> class represents JaxRs Client that saves a
- * promoter.
+ * The <code>RegisterOne</code> class represents
  * 
  * <p>
  * Related class for delegate pattern {@link RegisterLookUp}, {@link Client},
@@ -28,18 +25,16 @@ import org.apache.commons.logging.LogFactory;
  * @author L KHERBICHE
  * @since 0.0.1-RELEASE
  */
-class RegisterOne implements IDelegate {
+public class RegisterAuth implements IDelegate {
 
-	private static final Log logger = LogFactory.getLog(RegisterOne.class);
+	private static final Log logger = LogFactory.getLog(RegisterAuth.class);
 
 	@Override
 	public void register(Object... args) {
-		logger.info("--- RegisterOne.register(Object... args)");
-		@SuppressWarnings("unchecked")
-		List<String> list = (List<String>) args[0];
+		logger.info("--- RegisterAuth.register(Object... args)");
 		final WebTarget target = JaxRsClient.getClient().target(IDelegate.getBaseURI());
-		Response message = target.path("/rest").path("/savepromoter").request(MediaType.APPLICATION_JSON)
-				.post(Entity.entity(list, MediaType.APPLICATION_JSON));
+		Response message = target.path("/rest").path("/auth").request(MediaType.APPLICATION_JSON)
+				.post(Entity.entity(null, MediaType.APPLICATION_JSON));
 
 		logger.info("--- message.getStatus(): " + message.getStatus());
 		logger.info("--- message.getEntity(): " + message.getEntity());
