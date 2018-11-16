@@ -54,7 +54,7 @@ public class RegistrationRs {
 	 * @param obj Promoter's attribute values List
 	 * @throws IOException
 	 */
-	public void ProcessPromoter(@Suspended final AsyncResponse asyncResponse, List<String> obj) throws IOException {
+	public void processPromoter(@Suspended final AsyncResponse asyncResponse, List<String> obj) throws IOException {
 		loggerr.info("--- URI: /rest/test");
 		loggerr.info("--- POST Content 0: " + obj.get(0));
 		loggerr.info("--- POST Content 1: " + obj.get(1));
