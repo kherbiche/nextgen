@@ -2,7 +2,7 @@
  * Copyright 2008, 2018 Lyes Kherbiche
  * <kerbiche@gmail.com>
  */
-package dz.ummto.ansejNextGen.jaxRs.resources;
+package dz.ummto.ansejnextgen.jaxrs.api.resources;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;

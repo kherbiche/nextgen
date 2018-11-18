@@ -2,7 +2,7 @@
  * Copyright 2008, 2018 Lyes Kherbiche
  * <kerbiche@gmail.com>
  */
-package dz.ummto.ansejNextGen.jaxRs;
+package dz.ummto.ansejnextgen.jaxrs;
 
 import javax.ws.rs.ApplicationPath;
 
@@ -10,7 +10,7 @@ import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.wadl.internal.WadlResource;
 
-import dz.ummto.ansejNextGen.jaxRs.resources.RegistrationRs;
+import dz.ummto.ansejnextgen.jaxrs.api.resources.RegistrationRs;
 import io.swagger.jaxrs.config.BeanConfig;
 import io.swagger.jaxrs.listing.ApiListingResource;
 

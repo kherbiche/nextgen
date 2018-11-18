@@ -2,7 +2,7 @@
  * Copyright 2008, 2018 Lyes Kherbiche
  * <kerbiche@gmail.com>
  */
-package dz.ummto.ansejNextGen.jaxRs;
+package dz.ummto.ansejnextgen.jaxrs;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

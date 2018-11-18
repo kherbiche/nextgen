@@ -3,7 +3,7 @@
  * <kerbiche@gmail.com>
  */
 
-package dz.ummto.ansejNextGen.jaxRs.resources;
+package dz.ummto.ansejnextgen.jaxrs.api.resources;
 
 import java.io.IOException;
 import java.util.List;
