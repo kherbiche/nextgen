@@ -70,4 +70,14 @@ public class AuthenticationRS {
 		 */
 		return "";
 	}
+
+	@POST
+	@Path("authrefresh")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response refresh() {
+		/*
+		 * TODO
+		 */
+		return Response.ok("").build();
+	}
 }
