@@ -14,7 +14,9 @@ import javax.ws.rs.core.Response;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import dz.ummto.ansejNextGen.jpa.entities.User;
 import dz.ummto.ansejnextgen.jaxrs.api.model.UserCredentials;
+import dz.ummto.ansejnextgen.jaxrs.service.CredentialValidator;
 
 /**
  * The <code>AuthenticationRS</code> class represents the JaxRs Resource that does
@@ -30,6 +32,7 @@ import dz.ummto.ansejnextgen.jaxrs.api.model.UserCredentials;
 public class AuthenticationRS {
 
 	private static final Log logger = LogFactory.getLog(AuthenticationRS.class);
+	private CredentialValidator credentialValidator;
 
 	@Path("/auth")
 	@POST
@@ -37,6 +40,9 @@ public class AuthenticationRS {
 	@Produces(MediaType.APPLICATION_JSON)
 	/* @Consumes(MediaType.APPLICATION_FORM_URLENCODED) */
 	public Response processAuthenticateUser(UserCredentials credentials) {
+
+		User user = credentialValidator.validate(credentials.getUsername(), credentials.getPassword());
+		
 		return Response.ok("").build();
 	}
 
