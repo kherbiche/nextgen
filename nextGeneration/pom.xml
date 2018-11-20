@@ -13,13 +13,13 @@
 		<dependency>
 			<groupId>dz.ummto.ansejNextGen</groupId>
 			<artifactId>logg</artifactId>
-			<version>${parent.version}</version>
+			<version>${project.parent.version}</version>
 			<type>jar</type>
 		</dependency>
 		<dependency>
 			<groupId>dz.ummto.ansejNextGen</groupId>
 			<artifactId>repo</artifactId>
-			<version>${parent.version}</version>
+			<version>${project.parent.version}</version>
 		</dependency>
 		<dependency>
 			<artifactId>jersey-container-servlet</artifactId>
@@ -62,7 +62,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>dz.ummto.ansejNextGen.jaxRs.JettyServer</mainClass>
+							<mainClass>dz.ummto.ansejnextgen.jaxRs.JettyServer</mainClass>
 						</manifest>
 					</archive>
 					<descriptorRefs>
