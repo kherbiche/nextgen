@@ -24,4 +24,10 @@ public class AuthenticationTokenService {
 	@Configurable("authentication.jwt.refreshLimit")
 	private Integer refreshLimit;
 
+	@Inject
+	private AuthenticationTokenIssuer tokenIssuer;
+
+	@Inject
+	private AuthenticationTokenParser tokenParser;
+
 }
