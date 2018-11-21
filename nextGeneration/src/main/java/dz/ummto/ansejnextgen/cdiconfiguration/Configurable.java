@@ -17,8 +17,8 @@ import static java.lang.annotation.ElementType.PARAMETER;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
- * The <code>Configurable</code> represents CDI qualifier for injecting
- * configurable values.
+ * The <code>Configurable</code> represents annotation CDI qualifier for
+ * injecting configurable values.
  * 
  * @author L KHERBICHE
  * @since 0.0.1-RELEASE
