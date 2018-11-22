@@ -13,8 +13,10 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.SecurityContext;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -23,13 +25,15 @@ import dz.ummto.ansejNextGen.jpa.entities.User;
 import dz.ummto.ansejNextGen.jpa.entities.UserRole;
 import dz.ummto.ansejnextgen.jaxrs.Authority;
 import dz.ummto.ansejnextgen.jaxrs.api.AuthenticationToken;
+import dz.ummto.ansejnextgen.jaxrs.api.AuthenticationTokenDetails;
+import dz.ummto.ansejnextgen.jaxrs.api.TokenBasedSecurityContext;
 import dz.ummto.ansejnextgen.jaxrs.api.model.UserCredentials;
 import dz.ummto.ansejnextgen.jaxrs.service.AuthenticationTokenService;
 import dz.ummto.ansejnextgen.jaxrs.service.CredentialValidator;
 
 /**
- * The <code>AuthenticationRS</code> class represents the JaxRs Resource that does
- * <strong>The User authentication process</strong>.
+ * The <code>AuthenticationRS</code> class represents the JaxRs Resource that
+ * does <strong>The User authentication process</strong>.
  * <p>
  * <strong>The User authentication process</strong> include multiple task:
  * authenticate the user and roles.
@@ -45,6 +49,8 @@ public class AuthenticationRS {
 	private CredentialValidator credentialValidator;
 	@Inject
 	private AuthenticationTokenService authenticationTokenService;
+	@Context
+	private SecurityContext securityContext;
 
 	@Path("/auth")
 	@POST
@@ -57,7 +63,7 @@ public class AuthenticationRS {
 		User user = credentialValidator.validate(credentials.getUsername(), credentials.getPassword());
 
 		Set<Authority> setAuth = new HashSet<Authority>();
-		for(UserRole ur: user.getUserRoles()) {
+		for (UserRole ur : user.getUserRoles()) {
 			setAuth.add(Authority.valueOf(ur.getRole().name()));
 		}
 		String token = authenticationTokenService.issueToken(user.getUserName(), setAuth);
@@ -72,8 +78,8 @@ public class AuthenticationRS {
 	@Deprecated
 	private void authenticate(String username, String password) throws Exception {
 		/*
-		 * Authenticate against a database, LDAP, file or whatever
-		 * Throw an Exception if the credentials are invalid
+		 * Authenticate against a database, LDAP, file or whatever Throw an Exception if
+		 * the credentials are invalid
 		 */
 		logger.info("-- authenticate()");
 	}
@@ -83,19 +89,26 @@ public class AuthenticationRS {
 	private String issueToken(String username) {
 		/*
 		 * Issue a token (can be a random String persisted to a database or a JWT token)
-		 * The issued token must be associated to a user
-		 * Return the issued token
+		 * The issued token must be associated to a user Return the issued token
 		 */
 		return "";
 	}
 
+	/**
+	 * Refresh the authentication token for the current user.
+	 * 
+	 * @return
+	 */
 	@POST
 	@Path("authrefresh")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response refresh() {
-		/*
-		 * TODO
-		 */
-		return Response.ok("").build();
+		AuthenticationTokenDetails authenticationTokenDetails = ((TokenBasedSecurityContext) securityContext)
+				.getAuthenticationTokenDetails();
+		String token = authenticationTokenService.refreshToken(authenticationTokenDetails);
+
+		AuthenticationToken authenticationToken = new AuthenticationToken();
+		authenticationToken.setToken(token);
+		return Response.ok(authenticationToken).build();
 	}
 }

@@ -51,4 +51,7 @@ public class TokenBasedSecurityContext implements SecurityContext {
 		return authenticationTokenDetails.getAuthorities().contains(Authority.valueOf(role));
 	}
 
+	public AuthenticationTokenDetails getAuthenticationTokenDetails() {
+		return authenticationTokenDetails;
+	}
 }
