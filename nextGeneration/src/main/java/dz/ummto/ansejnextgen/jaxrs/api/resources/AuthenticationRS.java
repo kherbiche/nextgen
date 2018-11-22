@@ -4,6 +4,11 @@
  */
 package dz.ummto.ansejnextgen.jaxrs.api.resources;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.annotation.security.PermitAll;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -15,7 +20,11 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import dz.ummto.ansejNextGen.jpa.entities.User;
+import dz.ummto.ansejNextGen.jpa.entities.UserRole;
+import dz.ummto.ansejnextgen.jaxrs.Authority;
+import dz.ummto.ansejnextgen.jaxrs.api.AuthenticationToken;
 import dz.ummto.ansejnextgen.jaxrs.api.model.UserCredentials;
+import dz.ummto.ansejnextgen.jaxrs.service.AuthenticationTokenService;
 import dz.ummto.ansejnextgen.jaxrs.service.CredentialValidator;
 
 /**
@@ -32,18 +41,31 @@ import dz.ummto.ansejnextgen.jaxrs.service.CredentialValidator;
 public class AuthenticationRS {
 
 	private static final Log logger = LogFactory.getLog(AuthenticationRS.class);
+	@Inject
 	private CredentialValidator credentialValidator;
+	@Inject
+	private AuthenticationTokenService authenticationTokenService;
 
 	@Path("/auth")
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
+	@PermitAll
 	/* @Consumes(MediaType.APPLICATION_FORM_URLENCODED) */
 	public Response processAuthenticateUser(UserCredentials credentials) {
 
 		User user = credentialValidator.validate(credentials.getUsername(), credentials.getPassword());
-		
-		return Response.ok("").build();
+
+		Set<Authority> setAuth = new HashSet<Authority>();
+		for(UserRole ur: user.getUserRoles()) {
+			setAuth.add(Authority.valueOf(ur.getRole().name()));
+		}
+		String token = authenticationTokenService.issueToken(user.getUserName(), setAuth);
+
+		AuthenticationToken authenticationToken = new AuthenticationToken();
+		authenticationToken.setToken(token);
+
+		return Response.ok(authenticationToken).build();
 	}
 
 	@SuppressWarnings("unused")

@@ -13,5 +13,5 @@ package dz.ummto.ansejnextgen.jaxrs;
  */
 public enum Authority {
 
-	ADMIN, CONSELOR
+	ROLE_ADMIN, ROLE_COUNSELOR;
 }
