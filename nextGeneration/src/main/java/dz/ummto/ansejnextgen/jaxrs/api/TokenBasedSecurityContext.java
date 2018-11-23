@@ -31,9 +31,13 @@ public class TokenBasedSecurityContext implements SecurityContext {
 		this.secure = secure;
 	}
 
+	/**
+	 * @see see  {@link dz.ummto.ansejnextgen.jaxrs.api.filter.AuthenticationFilter#SCHEME}.
+	 * @see & <a href="https://fr.wikipedia.org/wiki/Jugurtha">Yugarten</a>
+	 */
 	@Override
 	public String getAuthenticationScheme() {
-		return "Yugerten";
+		return "Yugarten";
 	}
 
 	@Override
