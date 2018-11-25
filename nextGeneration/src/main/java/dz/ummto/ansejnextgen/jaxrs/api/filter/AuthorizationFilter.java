@@ -6,7 +6,6 @@ package dz.ummto.ansejnextgen.jaxrs.api.filter;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.nio.file.AccessDeniedException;
 
 import javax.annotation.Priority;
 import javax.annotation.security.DenyAll;
@@ -19,6 +18,8 @@ import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.container.ResourceInfo;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.ext.Provider;
+
+import dz.ummto.ansejnextgen.jaxrs.exception.AccessDeniedException;
 
 /**
  * The <code>AuthorizationFilter</code> represents Role authorization filter.
@@ -71,8 +72,7 @@ public class AuthorizationFilter implements ContainerRequestFilter {
 		}
 	}
 
-	private void performAuthorization(String[] value, ContainerRequestContext requestContext)
-			throws AccessDeniedException {
+	private void performAuthorization(String[] value, ContainerRequestContext requestContext) {
 
 		if (value.length > 0 && !isAuthenticated(requestContext)) {
 			throw new AccessDeniedException("Authentication is required to perform this action.");
