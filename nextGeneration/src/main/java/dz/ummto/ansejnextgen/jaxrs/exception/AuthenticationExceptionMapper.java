@@ -10,6 +10,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.ext.ExceptionMapper;
+import javax.ws.rs.ext.Provider;
 
 import dz.ummto.ansejnextgen.jaxrs.api.model.ApiErrorDetails;
 
@@ -20,7 +21,7 @@ import dz.ummto.ansejnextgen.jaxrs.api.model.ApiErrorDetails;
  * @author L KHERBICHE
  * @since 0.0.1-RELEASE
  */
-
+@Provider
 public class AuthenticationExceptionMapper implements ExceptionMapper<AuthenticationException> {
 
 	@Context
