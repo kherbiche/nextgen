@@ -21,7 +21,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.ext.Provider;
 
 /**
- * The <code>AuthorizationFilter</code>
+ * The <code>AuthorizationFilter</code> represents Role authorization filter.
  * 
  * @author L KHERBICHE
  * @since 0.0.1-RELEASE
@@ -59,19 +59,21 @@ public class AuthorizationFilter implements ContainerRequestFilter {
 			performAuthorization(rolesAllowed.value(), requestContext);
 		}
 
-		// @PermitAll on the class
+		/* @PermitAll on the class. */
 		if (resourceInfo.getResourceClass().isAnnotationPresent(PermitAll.class)) {
-			// Do nothing
+			/* Do nothing. */
 			return;
 		}
 
-		// Authentication is required for non-annotated methods
+		/* Authentication is required for non-annotated methods. */
 		if (!isAuthenticated(requestContext)) {
 			throw new AccessDeniedException("Authentication is required to perform this action.");
 		}
 	}
 
-	private void performAuthorization(String[] value, ContainerRequestContext requestContext) {
+	private void performAuthorization(String[] value, ContainerRequestContext requestContext)
+			throws AccessDeniedException {
+
 		if (value.length > 0 && !isAuthenticated(requestContext)) {
 			throw new AccessDeniedException("Authentication is required to perform this action.");
 		}
