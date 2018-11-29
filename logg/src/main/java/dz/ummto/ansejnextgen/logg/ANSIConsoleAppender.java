@@ -2,7 +2,7 @@
  * Copyright 2008, 2018 Lyes Kherbiche
  * <kerbiche@gmail.com>
  */
-package dz.ummto.ansejNextGen.logg;
+package dz.ummto.ansejnextgen.logg;
 
 import org.apache.log4j.ConsoleAppender;
 import org.apache.log4j.Level;
