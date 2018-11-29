@@ -19,6 +19,9 @@ import javax.ws.rs.container.ResourceInfo;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.ext.Provider;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import dz.ummto.ansejnextgen.jaxrs.exception.AccessDeniedException;
 
 /**
@@ -33,6 +36,7 @@ import dz.ummto.ansejnextgen.jaxrs.exception.AccessDeniedException;
 @Priority(Priorities.AUTHORIZATION)
 public class AuthorizationFilter implements ContainerRequestFilter {
 
+	private static final Log logger = LogFactory.getLog(AuthorizationFilter.class);
 	@Context
 	private ResourceInfo resourceInfo;
 
@@ -42,6 +46,7 @@ public class AuthorizationFilter implements ContainerRequestFilter {
 		Method method = resourceInfo.getResourceMethod();
 
 		if (method.isAnnotationPresent(DenyAll.class)) {
+			logger.info("-- DenyAll");
 			throw new AccessDeniedException("You do not have permission to access this resource or perfom this action");
 		}
 

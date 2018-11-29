@@ -18,6 +18,9 @@ import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.ext.Provider;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import dz.ummto.ansejNextGen.jpa.entities.User;
 import dz.ummto.ansejNextGen.jpa.entities.UserRole;
 import dz.ummto.ansejnextgen.jaxrs.Authority;
@@ -39,6 +42,7 @@ import dz.ummto.ansejnextgen.jaxrs.service.UserService;
 @Priority(Priorities.AUTHENTICATION)
 public class AuthenticationFilter implements ContainerRequestFilter {
 
+	private static final Log logger = LogFactory.getLog(AuthenticationFilter.class);
 	/**
 	 * @see {@link dz.ummto.ansejnextgen.jaxrs.api.TokenBasedSecurityContext#getAuthenticationScheme()}.
 	 */
@@ -53,6 +57,7 @@ public class AuthenticationFilter implements ContainerRequestFilter {
 	public void filter(ContainerRequestContext requestContext) throws IOException {
 
 		String header = requestContext.getHeaderString(HttpHeaders.AUTHORIZATION);
+		logger.info("-- filter() header="+header);
 		if (header != null && header.startsWith(SCHEME + " ")) {
 			String authenticationToken = header.substring(9);
 			handleTokenBasedAuthentication(authenticationToken, requestContext);

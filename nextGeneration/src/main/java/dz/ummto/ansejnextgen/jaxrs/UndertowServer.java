@@ -4,6 +4,8 @@
  */
 package dz.ummto.ansejnextgen.jaxrs;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.glassfish.jersey.servlet.ServletContainer;
 import org.jboss.weld.environment.servlet.Listener;
 
@@ -28,11 +30,15 @@ import javax.servlet.ServletException;
 
 public class UndertowServer {
 
+	private static final Log logger = LogFactory.getLog(UndertowServer.class);
+
 	private static Undertow server;
 	private static DeploymentManager deploymentManager;
 	private static final int DEFAULT_PORT = 8089;
 
 	public static void startServer(int port) {
+
+		logger.info("-- Starting Undertow ...");
 
 		PathHandler path = Handlers.path();
 		server = Undertow.builder().addHttpListener(port, "localhost").setHandler(path).build();
@@ -51,6 +57,7 @@ public class UndertowServer {
 		try {
 			path.addPrefixPath("/", deploymentManager.start());
 		} catch (ServletException e) {
+			logger.info("-- Undertow DeploymentManager ServletException");
 			throw new RuntimeException(e);
 		}
 
