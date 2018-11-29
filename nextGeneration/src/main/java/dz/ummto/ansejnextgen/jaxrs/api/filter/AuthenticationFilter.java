@@ -14,10 +14,9 @@ import javax.inject.Inject;
 import javax.ws.rs.Priorities;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
+import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.ext.Provider;
-
-import com.google.common.net.HttpHeaders;
 
 import dz.ummto.ansejNextGen.jpa.entities.User;
 import dz.ummto.ansejNextGen.jpa.entities.UserRole;

@@ -8,6 +8,7 @@ package dz.ummto.ansejnextgen.jaxrs.api.resources;
 import java.io.IOException;
 import java.util.List;
 
+import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -39,6 +40,8 @@ import dz.ummto.ansejNextGen.jpa.entities.PromoterId;
  * @author L KHERBICHE
  * @since 0.0.1-RELEASE
  */
+
+@RequestScoped
 @Path("/rest")
 public class RegistrationRs {
 

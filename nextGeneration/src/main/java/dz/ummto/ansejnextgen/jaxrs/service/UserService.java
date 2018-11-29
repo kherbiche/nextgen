@@ -4,6 +4,8 @@
  */
 package dz.ummto.ansejnextgen.jaxrs.service;
 
+import javax.enterprise.context.ApplicationScoped;
+
 import dz.ummto.ansejNextGen.jpa.dao.DaoFactory;
 import dz.ummto.ansejNextGen.jpa.dao.IDao;
 import dz.ummto.ansejNextGen.jpa.entities.User;
@@ -14,6 +16,7 @@ import dz.ummto.ansejNextGen.jpa.entities.User;
  * @author L KHERBICHE
  * @since 0.0.1-RELEASE
  */
+@ApplicationScoped
 public class UserService {
 
 	public User findById(String id) {

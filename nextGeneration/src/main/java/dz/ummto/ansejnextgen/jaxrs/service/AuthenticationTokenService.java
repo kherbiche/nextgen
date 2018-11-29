@@ -8,6 +8,7 @@ import java.time.ZonedDateTime;
 import java.util.Set;
 import java.util.UUID;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 import dz.ummto.ansejnextgen.cdiconfiguration.Configurable;
@@ -22,6 +23,8 @@ import dz.ummto.ansejnextgen.jaxrs.exception.AuthenticationTokenRefreshmentExcep
  * @author L KHERBICHE
  * @since 0.0.1-RELEASE
  */
+
+@ApplicationScoped
 public class AuthenticationTokenService {
 
 	@Inject

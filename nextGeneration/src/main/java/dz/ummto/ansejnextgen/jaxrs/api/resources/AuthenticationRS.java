@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.annotation.security.PermitAll;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -41,6 +42,8 @@ import dz.ummto.ansejnextgen.jaxrs.service.CredentialValidator;
  * @author L KHERBICHE
  * @since 0.0.1-RELEASE
  */
+
+@RequestScoped
 @Path("/rest")
 public class AuthenticationRS {
 

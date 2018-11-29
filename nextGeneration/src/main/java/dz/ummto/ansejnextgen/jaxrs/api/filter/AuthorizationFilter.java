@@ -37,7 +37,7 @@ public class AuthorizationFilter implements ContainerRequestFilter {
 	private ResourceInfo resourceInfo;
 
 	@Override
-	public void filter(ContainerRequestContext requestContext) throws IOException {
+	public void filter(final ContainerRequestContext requestContext) throws IOException {
 
 		Method method = resourceInfo.getResourceMethod();
 

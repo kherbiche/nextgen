@@ -9,6 +9,7 @@ import java.io.InputStream;
 import java.util.Properties;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
 import javax.enterprise.inject.spi.InjectionPoint;
 
@@ -25,6 +26,8 @@ import javax.enterprise.inject.spi.InjectionPoint;
  * @author L KHERBICHE
  * @since 0.0.1-RELEASE
  */
+
+@ApplicationScoped
 public class ConfigurationProducer {
 
 	private Properties properties;

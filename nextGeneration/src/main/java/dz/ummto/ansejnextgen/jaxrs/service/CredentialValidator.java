@@ -4,6 +4,9 @@
  */
 package dz.ummto.ansejnextgen.jaxrs.service;
 
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+
 import dz.ummto.ansejNextGen.jpa.entities.User;
 import dz.ummto.ansejnextgen.jaxrs.exception.AuthenticationException;
 
@@ -14,9 +17,12 @@ import dz.ummto.ansejnextgen.jaxrs.exception.AuthenticationException;
  * @author L KHERBICHE
  * @since 0.0.1-RELEASE
  */
+@ApplicationScoped
 public class CredentialValidator {
 
+	@Inject
 	private UserService userService;
+	@Inject
 	private PasswordEncoder passwordEncoder;
 
 	public User validate(String userName, String pwd) {

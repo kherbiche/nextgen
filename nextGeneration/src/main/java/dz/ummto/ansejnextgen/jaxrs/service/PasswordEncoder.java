@@ -4,6 +4,8 @@
  */
 package dz.ummto.ansejnextgen.jaxrs.service;
 
+import javax.enterprise.context.ApplicationScoped;
+
 import org.mindrot.jbcrypt.BCrypt;
 
 /**
@@ -12,6 +14,7 @@ import org.mindrot.jbcrypt.BCrypt;
  * @author L KHERBICHE
  * @since 0.0.1-RELEASE
  */
+@ApplicationScoped
 public class PasswordEncoder {
 
 	/**
