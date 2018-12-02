@@ -35,6 +35,7 @@ public class RegisterAuth implements IDelegate {
 	@Override
 	public void register(Object... args) {
 		logger.info("--- RegisterAuth.register(Object... args)");
+		@SuppressWarnings("rawtypes")
 		List list = (List)args[0];
 		logger.info("-- UserName:"+list.get(0).toString());
 		System.out.println("-- UserName:"+list.get(0).toString());
@@ -47,6 +48,7 @@ public class RegisterAuth implements IDelegate {
 		logger.info("--- message.getStatus(): " + message.getStatus());
 		logger.info("--- message.getEntity(): " + message.getEntity());
 		logger.info("--- message.toString(): " + message.toString());
+		logger.info("--- message.readEntity(): " + message.readEntity(String.class));
 	}
 
 }

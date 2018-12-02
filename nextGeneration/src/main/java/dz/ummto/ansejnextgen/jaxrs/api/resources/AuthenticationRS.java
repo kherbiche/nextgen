@@ -61,7 +61,7 @@ public class AuthenticationRS {
 	@Produces(MediaType.APPLICATION_JSON)
 	@PermitAll
 	/* @Consumes(MediaType.APPLICATION_FORM_URLENCODED) */
-	public Response processAuthenticateUser(List list) {
+	public Response processAuthenticateUser(List<Object> list) {
 
 		logger.info("-- /auth");
 		logger.info("-- UserName:"+list.get(0).toString());
@@ -78,7 +78,7 @@ public class AuthenticationRS {
 		AuthenticationToken authenticationToken = new AuthenticationToken();
 		authenticationToken.setToken(token);
 
-		return Response.ok(authenticationToken).build();
+		return Response.ok(token).build();
 	}
 
 	@SuppressWarnings("unused")
