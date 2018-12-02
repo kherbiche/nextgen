@@ -148,9 +148,9 @@ public class Login extends JPanel implements ActionListener {
 				@Override
 				protected Void doInBackground() throws Exception {
 					RegisterDelegate rd = new RegisterDelegate();
-					rd.setRegisterType("One");
+					rd.setRegisterType("Auth");
 					Client client = new Client(rd);
-					client.doTask(Arrays.asList(jTFieldLogin.getText(), jTFieldPwd.getText()));
+					client.doTask(Arrays.asList(jTFieldLogin.getText(), String.valueOf(((HintPwdField)jTFieldPwd).getPassword())));
 					for (int i = 0; i <= 10; i++) {
 						Thread.sleep(1000);
 					}

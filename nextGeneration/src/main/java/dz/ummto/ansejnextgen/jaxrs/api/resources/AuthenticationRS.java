@@ -63,6 +63,9 @@ public class AuthenticationRS {
 	/* @Consumes(MediaType.APPLICATION_FORM_URLENCODED) */
 	public Response processAuthenticateUser(UserCredentials credentials) {
 
+		logger.info("-- /auth");
+		logger.info("-- UserName:"+credentials.getUsername());
+
 		User user = credentialValidator.validate(credentials.getUsername(), credentials.getPassword());
 
 		Set<Authority> setAuth = new HashSet<Authority>();

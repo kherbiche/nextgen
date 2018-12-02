@@ -7,6 +7,9 @@ package dz.ummto.ansejnextgen.jaxrs.service;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import dz.ummto.ansejNextGen.jpa.entities.User;
 import dz.ummto.ansejnextgen.jaxrs.exception.AuthenticationException;
 
@@ -20,6 +23,7 @@ import dz.ummto.ansejnextgen.jaxrs.exception.AuthenticationException;
 @ApplicationScoped
 public class CredentialValidator {
 
+	private static final Log logger = LogFactory.getLog(CredentialValidator.class);
 	@Inject
 	private UserService userService;
 	@Inject
@@ -27,6 +31,7 @@ public class CredentialValidator {
 
 	public User validate(String userName, String pwd) {
 
+		logger.info("-- validate(String userName, String pwd), userName="+userName+" pwd="+pwd);
 		User user = userService.findById(userName);
 
 		if (null == user) {

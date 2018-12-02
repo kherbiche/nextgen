@@ -24,6 +24,9 @@ class RegisterLookUp {
 		if (str.equalsIgnoreCase("One")) {
 			return new RegisterOne();
 		}
+		if(str.equalsIgnoreCase("Auth")) {
+			return new RegisterAuth();
+		}
 		return null;
 	}
 }

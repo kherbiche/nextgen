@@ -4,30 +4,27 @@
  */
 package dz.ummto.ansejnextgen.users;
 
-import java.util.HashSet;
-import java.util.Set;
-
 /**
  * The <code>NextGenUser</code> class represents the application's user.
  * 
  * @author L KHERBICHE
  * @since 0.0.1-RELEASE
  */
-public class NextGenUser {
+public class UserCredentials {
 
 	private String userName;
 	private String passWord;
-	private boolean enabled;
-	private Set<String> userRole = new HashSet<String>(0);
+	//private boolean enabled;
+	//private Set<String> userRole = new HashSet<String>(0);
 
 	@SuppressWarnings("unused")
-	private NextGenUser() {}
+	private UserCredentials() {}
 
-	public NextGenUser(String userName, String passWord, boolean enabled) {
+	public UserCredentials(String userName, String passWord/*, boolean enabled*/) {
 		super();
 		this.userName = userName;
 		this.passWord = passWord;
-		this.enabled = enabled;
+		//this.enabled = enabled;
 	}
 
 	public String getUserName() {
@@ -46,6 +43,7 @@ public class NextGenUser {
 		this.passWord = passWord;
 	}
 
+	/*
 	public boolean isEnabled() {
 		return enabled;
 	}
@@ -61,5 +59,6 @@ public class NextGenUser {
 	public void setUserRole(Set<String> userRole) {
 		this.userRole = userRole;
 	}
+	*/
 
 }

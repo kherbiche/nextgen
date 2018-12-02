@@ -4,13 +4,18 @@
  */
 package dz.ummto.ansejnextgen.registers;
 
+import java.util.List;
+
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import dz.ummto.ansejnextgen.users.UserCredentials;
 
 /**
  * The <code>RegisterOne</code> class represents
@@ -32,9 +37,11 @@ public class RegisterAuth implements IDelegate {
 	@Override
 	public void register(Object... args) {
 		logger.info("--- RegisterAuth.register(Object... args)");
+		@SuppressWarnings("unchecked")
+		UserCredentials ngu = new UserCredentials(((List<String>) args[0]).get(0), ((List<String>) args[0]).get(1));
 		final WebTarget target = JaxRsClient.getClient().target(IDelegate.getBaseURI());
 		Response message = target.path("/rest").path("/auth").request(MediaType.APPLICATION_JSON)
-				.post(Entity.entity(null, MediaType.APPLICATION_JSON));
+				.header(HttpHeaders.AUTHORIZATION, "Yugarten ").post(Entity.entity(ngu, MediaType.APPLICATION_JSON));
 
 		logger.info("--- message.getStatus(): " + message.getStatus());
 		logger.info("--- message.getEntity(): " + message.getEntity());
