@@ -15,8 +15,6 @@ import javax.ws.rs.core.Response;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import dz.ummto.ansejnextgen.users.UserCredentials;
-
 /**
  * The <code>RegisterOne</code> class represents
  * 
@@ -37,11 +35,14 @@ public class RegisterAuth implements IDelegate {
 	@Override
 	public void register(Object... args) {
 		logger.info("--- RegisterAuth.register(Object... args)");
-		@SuppressWarnings("unchecked")
-		UserCredentials ngu = new UserCredentials(((List<String>) args[0]).get(0), ((List<String>) args[0]).get(1));
+		List list = (List)args[0];
+		logger.info("-- UserName:"+list.get(0).toString());
+		System.out.println("-- UserName:"+list.get(0).toString());
+		logger.info("-- pwd to str:"+list.get(1).toString());
+		System.out.println("-- pwd to str:"+list.get(1).toString());
 		final WebTarget target = JaxRsClient.getClient().target(IDelegate.getBaseURI());
 		Response message = target.path("/rest").path("/auth").request(MediaType.APPLICATION_JSON)
-				.header(HttpHeaders.AUTHORIZATION, "Yugarten ").post(Entity.entity(ngu, MediaType.APPLICATION_JSON));
+				.header(HttpHeaders.AUTHORIZATION, "Yugarten ").post(Entity.entity(list, MediaType.APPLICATION_JSON));
 
 		logger.info("--- message.getStatus(): " + message.getStatus());
 		logger.info("--- message.getEntity(): " + message.getEntity());

@@ -150,11 +150,9 @@ public class Login extends JPanel implements ActionListener {
 					RegisterDelegate rd = new RegisterDelegate();
 					rd.setRegisterType("Auth");
 					Client client = new Client(rd);
-					client.doTask(Arrays.asList(jTFieldLogin.getText(), String.valueOf(((HintPwdField)jTFieldPwd).getPassword())));
-					for (int i = 0; i <= 10; i++) {
-						Thread.sleep(1000);
-					}
+					client.doTask(Arrays.asList(jTFieldLogin.getText(), ((HintPwdField)jTFieldPwd).getPassword()));
 
+					/** Erase content of jTFieldPwd */
 					return null;
 				}
 			}.execute();

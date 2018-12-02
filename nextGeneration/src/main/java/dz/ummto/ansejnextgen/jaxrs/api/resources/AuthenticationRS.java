@@ -5,6 +5,7 @@
 package dz.ummto.ansejnextgen.jaxrs.api.resources;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.annotation.security.PermitAll;
@@ -28,7 +29,6 @@ import dz.ummto.ansejnextgen.jaxrs.Authority;
 import dz.ummto.ansejnextgen.jaxrs.api.AuthenticationToken;
 import dz.ummto.ansejnextgen.jaxrs.api.AuthenticationTokenDetails;
 import dz.ummto.ansejnextgen.jaxrs.api.TokenBasedSecurityContext;
-import dz.ummto.ansejnextgen.jaxrs.api.model.UserCredentials;
 import dz.ummto.ansejnextgen.jaxrs.service.AuthenticationTokenService;
 import dz.ummto.ansejnextgen.jaxrs.service.CredentialValidator;
 
@@ -61,12 +61,13 @@ public class AuthenticationRS {
 	@Produces(MediaType.APPLICATION_JSON)
 	@PermitAll
 	/* @Consumes(MediaType.APPLICATION_FORM_URLENCODED) */
-	public Response processAuthenticateUser(UserCredentials credentials) {
+	public Response processAuthenticateUser(List list) {
 
 		logger.info("-- /auth");
-		logger.info("-- UserName:"+credentials.getUsername());
+		logger.info("-- UserName:"+list.get(0).toString());
+		System.out.println("-- UserName:"+list.get(0).toString());
 
-		User user = credentialValidator.validate(credentials.getUsername(), credentials.getPassword());
+		User user = credentialValidator.validate(list.get(0).toString(), list.get(1).toString());
 
 		Set<Authority> setAuth = new HashSet<Authority>();
 		for (UserRole ur : user.getUserRoles()) {
