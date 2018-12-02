@@ -65,7 +65,6 @@ public class AuthenticationRS {
 
 		logger.info("-- /auth");
 		logger.info("-- UserName:"+list.get(0).toString());
-		System.out.println("-- UserName:"+list.get(0).toString());
 
 		User user = credentialValidator.validate(list.get(0).toString(), list.get(1).toString());
 
@@ -78,7 +77,7 @@ public class AuthenticationRS {
 		AuthenticationToken authenticationToken = new AuthenticationToken();
 		authenticationToken.setToken(token);
 
-		return Response.ok(token).build();
+		return Response.ok(authenticationToken).build();
 	}
 
 	@SuppressWarnings("unused")

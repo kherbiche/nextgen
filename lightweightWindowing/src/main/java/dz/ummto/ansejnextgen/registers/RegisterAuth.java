@@ -38,13 +38,11 @@ public class RegisterAuth implements IDelegate {
 		@SuppressWarnings("rawtypes")
 		List list = (List)args[0];
 		logger.info("-- UserName:"+list.get(0).toString());
-		System.out.println("-- UserName:"+list.get(0).toString());
-		logger.info("-- pwd to str:"+list.get(1).toString());
-		System.out.println("-- pwd to str:"+list.get(1).toString());
 		final WebTarget target = JaxRsClient.getClient().target(IDelegate.getBaseURI());
 		Response message = target.path("/rest").path("/auth").request(MediaType.APPLICATION_JSON)
 				.header(HttpHeaders.AUTHORIZATION, "Yugarten ").post(Entity.entity(list, MediaType.APPLICATION_JSON));
 
+		System.out.println("--- message.readEntity(): " + message.readEntity(String.class));
 		logger.info("--- message.getStatus(): " + message.getStatus());
 		logger.info("--- message.getEntity(): " + message.getEntity());
 		logger.info("--- message.toString(): " + message.toString());

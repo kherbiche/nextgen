@@ -31,7 +31,7 @@ public class CredentialValidator {
 
 	public User validate(String userName, String pwd) {
 
-		logger.info("-- validate(String userName, String pwd), userName="+userName+" pwd="+pwd);
+		logger.info("-- validate(String userName, String pwd), userName="+userName);
 		User user = userService.findById(userName);
 
 		if (null == user) {
