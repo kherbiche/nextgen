@@ -38,6 +38,7 @@ import org.apache.commons.logging.LogFactory;
  */
 
 @SuppressWarnings("serial")
+@Deprecated
 public class Registration extends JFrame implements ActionListener {
 
 	private static final Log loggerrr = LogFactory.getLog(Registration.class);

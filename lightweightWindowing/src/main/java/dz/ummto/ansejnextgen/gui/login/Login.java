@@ -169,9 +169,10 @@ public class Login extends JPanel implements ActionListener {
 					RegisterDelegate rd = new RegisterDelegate();
 					rd.setRegisterType("Auth");
 					Client client = new Client(rd);
-					return (Integer)client.doTask(Arrays.asList(jTFieldLogin.getText(), ((HintPwdField) jTFieldPwd).getPassword()));
+					return (Integer) client
+							.doTask(Arrays.asList(jTFieldLogin.getText(), ((HintPwdField) jTFieldPwd).getPassword()));
 
-					//return null;
+					// return null;
 				}
 
 				@Override
@@ -185,13 +186,13 @@ public class Login extends JPanel implements ActionListener {
 					logger.info("-- done()-jTFieldPwd=" + String.valueOf(((HintPwdField) jTFieldPwd).getPassword()));
 
 					try {
-						logger.info("-- Swing Worker get()="+get().intValue());
-						if(403 == get().intValue()) {
+						logger.info("-- Swing Worker get()=" + get().intValue());
+						if (403 == get().intValue()) {
 							JOptionPane.showMessageDialog(null, "Credentials not valid!!!");
 						}
 					} catch (HeadlessException | InterruptedException | ExecutionException e) {
-						logger.info("-- Exception on SWorker.get():"+e.getMessage());
-							/* e.printStackTrace(); */
+						logger.info("-- Exception on SWorker.get():" + e.getMessage());
+						/* e.printStackTrace(); */
 					}
 					return;
 				}
@@ -203,6 +204,7 @@ public class Login extends JPanel implements ActionListener {
 	 * Clear password for security concern.
 	 * <p>
 	 * this code must run in the EDT.
+	 * 
 	 * @see <a href=
 	 *      "https://stackoverflow.com/questions/8881291/why-is-char-preferred-over-string-for-passwords">link</a>
 	 * @param jpassword

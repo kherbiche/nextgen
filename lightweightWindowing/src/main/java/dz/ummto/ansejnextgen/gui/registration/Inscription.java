@@ -11,6 +11,7 @@ import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
+import java.util.concurrent.ExecutionException;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -18,6 +19,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -48,7 +50,7 @@ import dz.ummto.ansejnextgen.registers.RegisterDelegate;
 @SuppressWarnings("serial")
 public class Inscription extends JPanel implements ActionListener {
 
-	private static final Log loggerrr = LogFactory.getLog(Inscription.class);
+	private static final Log logger = LogFactory.getLog(Inscription.class);
 
 	private static final String EXTENTION = ".png";
 
@@ -76,9 +78,9 @@ public class Inscription extends JPanel implements ActionListener {
 	private void jbInit() {
 
 		if (SwingUtilities.isEventDispatchThread()) {
-			loggerrr.info("--- Inscription.jbInit: In the EDT");
+			logger.info("--- Inscription.jbInit: In the EDT");
 		} else {
-			loggerrr.info("--- Inscription.jbInit: Out of EDT");
+			logger.info("--- Inscription.jbInit: Out of EDT");
 		}
 
 		this.setLayout(null);
@@ -310,15 +312,14 @@ public class Inscription extends JPanel implements ActionListener {
 		if (clicked == jButton2) {
 		} else {
 			if (clicked == jButton1) {
-				new SwingWorker<Void, Void>() {
+				new SwingWorker<Integer, Void>() {
 					@Override
-					protected Void doInBackground() throws Exception {
+					protected Integer doInBackground() throws Exception {
 						RegisterDelegate rd = new RegisterDelegate();
 						rd.setRegisterType("One");
 						Client client = new Client(rd);
-						client.doTask(
-								Arrays.asList(jTFieldFirstName.getText(), jTFieldLastName.getText(),
-										jTFieldDBirth.getText(),
+						return (Integer) client.doTask(Arrays.asList(jTFieldFirstName.getText(),
+								jTFieldLastName.getText(), jTFieldDBirth.getText(),
 								jComboGender.getSelectedItem().toString(), jTFieldFather.getText(),
 								jTFieldMother.getText(), jTFieldBCNum.getText(), jTFieldBirthCity.getText(),
 								jTFieldBirthZipCode.getText(), jTFieldBirthCountry.getText(),
@@ -328,9 +329,21 @@ public class Inscription extends JPanel implements ActionListener {
 								jTFieldFax.getText(), jComboFami.getSelectedItem().toString(),
 								jTFieldAnemCard.getText(), jComBoxDegree.getSelectedItem().toString(),
 								jComBoxExperience.getSelectedItem().toString(), jTFieldSpecialty.getText()));
-
-						return null;
 					}
+
+					@Override
+					protected void done() {
+						try {
+							logger.info("-- Swing Worker get()=" + get().intValue());
+							if(200 == get().intValue()) {
+								JOptionPane.showMessageDialog(null, "Done");
+							}
+						} catch (InterruptedException | ExecutionException e) {
+							/* e.printStackTrace(); */
+							logger.info("-- Exception on SWorker.get():" + e.getMessage());
+						}
+					}
+
 				}.execute();
 			}
 		}
