@@ -21,6 +21,9 @@ import javax.swing.SwingWorker;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import dz.ummto.ansejnextgen.IconEnum;
 import dz.ummto.ansejnextgen.common_utils.HintJTextField;
 import dz.ummto.ansejnextgen.common_utils.HintPwdField;
@@ -36,6 +39,8 @@ import dz.ummto.ansejnextgen.registers.RegisterDelegate;
 
 @SuppressWarnings("serial")
 public class Login extends JPanel implements ActionListener {
+
+	private static final Log logger = LogFactory.getLog(Login.class);
 
 	private JButton btn1, btn2;
 	private JTextField jTFieldLogin, jTFieldPwd;
@@ -86,7 +91,7 @@ public class Login extends JPanel implements ActionListener {
 		jPanLogin.setBackground(new Color(0, 0, 0, 230));
 		jPanLogin.setBounds(new Rectangle(90, 144, 500, 150));
 		jPanLogin.setLayout(null);
-		//jPanLogin.setOpaque(false);
+		// jPanLogin.setOpaque(false);
 		jPanLogin.add(jTFieldLogin, null);
 		jPanLogin.add(jTFieldPwd, null);
 		jPanLogin.add(btn1, null);
@@ -98,14 +103,17 @@ public class Login extends JPanel implements ActionListener {
 			public void changedUpdate(DocumentEvent e) {
 				changed();
 			}
+
 			@Override
 			public void removeUpdate(DocumentEvent e) {
 				changed();
 			}
+
 			@Override
 			public void insertUpdate(DocumentEvent e) {
 				changed();
 			}
+
 			public void changed() {
 				if (((HintPwdField) jTFieldPwd).getPassword().length == 0) {
 					btn1.setEnabled(false);
@@ -119,14 +127,17 @@ public class Login extends JPanel implements ActionListener {
 			public void changedUpdate(DocumentEvent e) {
 				changed();
 			}
+
 			@Override
 			public void removeUpdate(DocumentEvent e) {
 				changed();
 			}
+
 			@Override
 			public void insertUpdate(DocumentEvent e) {
 				changed();
 			}
+
 			public void changed() {
 				if (jTFieldLogin.getText().length() == 0) {
 					btn1.setEnabled(false);
@@ -147,16 +158,38 @@ public class Login extends JPanel implements ActionListener {
 			new SwingWorker<Void, Void>() {
 				@Override
 				protected Void doInBackground() throws Exception {
+					if (SwingUtilities.isEventDispatchThread()) {
+						logger.info("-- doInBackground() - in the EDT");
+					} else {
+						logger.info("-- doInBackground() - !!! EDT");
+					}
 					RegisterDelegate rd = new RegisterDelegate();
 					rd.setRegisterType("Auth");
 					Client client = new Client(rd);
-					client.doTask(Arrays.asList(jTFieldLogin.getText(), ((HintPwdField)jTFieldPwd).getPassword()));
+					client.doTask(Arrays.asList(jTFieldLogin.getText(), ((HintPwdField) jTFieldPwd).getPassword()));
 
-					/** Erase content of jTFieldPwd */
 					return null;
+				}
+
+				@Override
+				protected void done() {
+					/** Erase content of jTFieldPwd in the EDT */
+					clearPassword((HintPwdField) jTFieldPwd);
+					logger.info("-- done()-jTFieldPwd=" + String.valueOf(((HintPwdField) jTFieldPwd).getPassword()));
+					return;
 				}
 			}.execute();
 		}
 	}
 
+	private void clearPassword(HintPwdField jpassword) {
+		if (SwingUtilities.isEventDispatchThread()) {
+			logger.info("-- clearPassword() - in the EDT");
+		}
+		for (@SuppressWarnings("unused")
+		char c : jpassword.getPassword()) {
+			c = 'a';
+		}
+		jpassword.setText("");
+	}
 }

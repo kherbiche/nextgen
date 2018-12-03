@@ -42,7 +42,6 @@ public class RegisterAuth implements IDelegate {
 		Response message = target.path("/rest").path("/auth").request(MediaType.APPLICATION_JSON)
 				.header(HttpHeaders.AUTHORIZATION, "Yugarten ").post(Entity.entity(list, MediaType.APPLICATION_JSON));
 
-		System.out.println("--- message.readEntity(): " + message.readEntity(String.class));
 		logger.info("--- message.getStatus(): " + message.getStatus());
 		logger.info("--- message.getEntity(): " + message.getEntity());
 		logger.info("--- message.toString(): " + message.toString());
