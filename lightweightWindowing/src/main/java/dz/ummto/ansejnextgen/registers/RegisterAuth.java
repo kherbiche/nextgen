@@ -23,7 +23,7 @@ import org.apache.commons.logging.LogFactory;
  * {@link RegisterDelegate}, {@link RegisterOne}, {@link IDelegate}
  * 
  * @see <a href=
- *      "link">https://www.geeksforgeeks.org/business-delegate-pattern/</a>
+ *      "https://www.geeksforgeeks.org/business-delegate-pattern/">link</a>
  *
  * @author L KHERBICHE
  * @since 0.0.1-RELEASE

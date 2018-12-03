@@ -182,13 +182,15 @@ public class Login extends JPanel implements ActionListener {
 		}
 	}
 
+	/**
+	 * Clear password for security concern.
+	 * @see <a href=
+	 *      "https://stackoverflow.com/questions/8881291/why-is-char-preferred-over-string-for-passwords">link</a>
+	 * @param jpassword
+	 */
 	private void clearPassword(HintPwdField jpassword) {
 		if (SwingUtilities.isEventDispatchThread()) {
 			logger.info("-- clearPassword() - in the EDT");
-		}
-		for (@SuppressWarnings("unused")
-		char c : jpassword.getPassword()) {
-			c = 'a';
 		}
 		jpassword.setText("");
 	}
