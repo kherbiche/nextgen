@@ -6,14 +6,17 @@ package dz.ummto.ansejnextgen.gui.login;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.HeadlessException;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
+import java.util.concurrent.ExecutionException;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
@@ -155,9 +158,9 @@ public class Login extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		JButton clicked = (JButton) arg0.getSource();
 		if (clicked == btn1) {
-			new SwingWorker<Void, Void>() {
+			new SwingWorker<Integer, Void>() {
 				@Override
-				protected Void doInBackground() throws Exception {
+				protected Integer doInBackground() throws Exception {
 					if (SwingUtilities.isEventDispatchThread()) {
 						logger.info("-- doInBackground() - in the EDT");
 					} else {
@@ -166,16 +169,30 @@ public class Login extends JPanel implements ActionListener {
 					RegisterDelegate rd = new RegisterDelegate();
 					rd.setRegisterType("Auth");
 					Client client = new Client(rd);
-					client.doTask(Arrays.asList(jTFieldLogin.getText(), ((HintPwdField) jTFieldPwd).getPassword()));
+					return (Integer)client.doTask(Arrays.asList(jTFieldLogin.getText(), ((HintPwdField) jTFieldPwd).getPassword()));
 
-					return null;
+					//return null;
 				}
 
 				@Override
 				protected void done() {
+
+					if (SwingUtilities.isEventDispatchThread()) {
+						logger.info("-- done() - in the EDT");
+					}
 					/** Erase content of jTFieldPwd in the EDT */
 					clearPassword((HintPwdField) jTFieldPwd);
 					logger.info("-- done()-jTFieldPwd=" + String.valueOf(((HintPwdField) jTFieldPwd).getPassword()));
+
+					try {
+						logger.info("-- Swing Worker get()="+get().intValue());
+						if(403 == get().intValue()) {
+							JOptionPane.showMessageDialog(null, "Credentials not valid!!!");
+						}
+					} catch (HeadlessException | InterruptedException | ExecutionException e) {
+						logger.info("-- Exception on SWorker.get():"+e.getMessage());
+							/* e.printStackTrace(); */
+					}
 					return;
 				}
 			}.execute();
@@ -184,14 +201,13 @@ public class Login extends JPanel implements ActionListener {
 
 	/**
 	 * Clear password for security concern.
+	 * <p>
+	 * this code must run in the EDT.
 	 * @see <a href=
 	 *      "https://stackoverflow.com/questions/8881291/why-is-char-preferred-over-string-for-passwords">link</a>
 	 * @param jpassword
 	 */
 	private void clearPassword(HintPwdField jpassword) {
-		if (SwingUtilities.isEventDispatchThread()) {
-			logger.info("-- clearPassword() - in the EDT");
-		}
 		jpassword.setText("");
 	}
 }

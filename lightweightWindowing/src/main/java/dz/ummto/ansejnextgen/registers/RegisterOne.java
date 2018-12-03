@@ -33,7 +33,7 @@ class RegisterOne implements IDelegate {
 	private static final Log logger = LogFactory.getLog(RegisterOne.class);
 
 	@Override
-	public void register(Object... args) {
+	public Object register(Object... args) {
 		logger.info("--- RegisterOne.register(Object... args)");
 		@SuppressWarnings("unchecked")
 		List<String> list = (List<String>) args[0];
@@ -44,6 +44,7 @@ class RegisterOne implements IDelegate {
 		logger.info("--- message.getStatus(): " + message.getStatus());
 		logger.info("--- message.getEntity(): " + message.getEntity());
 		logger.info("--- message.toString(): " + message.toString());
+		return message.getStatus();
 	}
 
 }

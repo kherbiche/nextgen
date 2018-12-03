@@ -29,6 +29,6 @@ interface IDelegate {
 		return UriBuilder.fromUri(BASE_URI).build();
 	}
 
-	void register(Object... args);
+	Object register(Object... args);
 
 }

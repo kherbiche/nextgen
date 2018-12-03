@@ -24,8 +24,8 @@ public class Client {
 		this.registerDelegate = registerDelegate;
 	}
 
-	public void doTask(Object... args) {
-		this.registerDelegate.doTask(args);
+	public Object doTask(Object... args) {
+		return this.registerDelegate.doTask(args);
 	}
 
 }

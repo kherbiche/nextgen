@@ -33,7 +33,7 @@ public class RegisterAuth implements IDelegate {
 	private static final Log logger = LogFactory.getLog(RegisterAuth.class);
 
 	@Override
-	public void register(Object... args) {
+	public Object register(Object... args) {
 		logger.info("--- RegisterAuth.register(Object... args)");
 		@SuppressWarnings("rawtypes")
 		List list = (List)args[0];
@@ -46,6 +46,8 @@ public class RegisterAuth implements IDelegate {
 		logger.info("--- message.getEntity(): " + message.getEntity());
 		logger.info("--- message.toString(): " + message.toString());
 		logger.info("--- message.readEntity(): " + message.readEntity(String.class));
+
+		return message.getStatus();
 	}
 
 }

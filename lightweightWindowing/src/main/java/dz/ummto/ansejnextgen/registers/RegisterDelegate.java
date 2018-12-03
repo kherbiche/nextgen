@@ -27,8 +27,8 @@ public class RegisterDelegate {
 		this.registerType = registerType;
 	}
 
-	protected void doTask(Object... args) {
+	protected Object doTask(Object... args) {
 		delegate = lookUp.getRegister(registerType);
-		delegate.register(args);
+		return delegate.register(args);
 	}
 }
