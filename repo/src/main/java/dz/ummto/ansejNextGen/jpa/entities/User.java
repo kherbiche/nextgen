@@ -7,6 +7,7 @@ package dz.ummto.ansejNextGen.jpa.entities;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,6 +31,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "USER")
+@Cacheable(true)
 public class User {
 
 	@Id

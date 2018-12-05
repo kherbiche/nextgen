@@ -4,6 +4,7 @@
  */
 package dz.ummto.ansejNextGen.jpa.entities;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -35,6 +36,7 @@ import dz.ummto.ansejNextGen.jpa.Role;
  */
 @Entity
 @Table(name = "USERROLE")
+@Cacheable(true)
 public class UserRole {
 
 	@Id
