@@ -10,6 +10,7 @@ package dz.ummto.ansejnextgen.users;
  * @author L KHERBICHE
  * @since 0.0.1-RELEASE
  */
+@Deprecated
 public class UserCredentials {
 
 	private String userName;

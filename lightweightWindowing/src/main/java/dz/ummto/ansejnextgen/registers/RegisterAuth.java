@@ -15,6 +15,10 @@ import javax.ws.rs.core.Response;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.fasterxml.jackson.databind.JsonNode;
+
+import dz.ummto.ansejnextgen.users.UserSession;
+
 /**
  * The <code>RegisterOne</code> class represents
  * 
@@ -43,10 +47,15 @@ public class RegisterAuth implements IDelegate {
 				.header(HttpHeaders.AUTHORIZATION, "Yugarten ").post(Entity.entity(list, MediaType.APPLICATION_JSON));
 
 		logger.info("--- message.getStatus(): " + message.getStatus());
-		logger.info("--- message.getEntity(): " + message.getEntity());
 		logger.info("--- message.toString(): " + message.toString());
-		logger.info("--- message.readEntity(): " + message.readEntity(String.class));
+		/* logger.info("--- message.getEntity(): " + message.getEntity()); */
+		/* logger.info("--- message.readEntity(): " + message.readEntity(JsonNode.class)); */
 
+		if(200 == message.getStatus()) {
+			new UserSession(message.readEntity(JsonNode.class).get("token").asText());
+			logger.info("-- userName="+UserSession.getUsername());
+			logger.info("-- Role Zero="+UserSession.getRoles().get(0));
+		}
 		return message.getStatus();
 	}
 
