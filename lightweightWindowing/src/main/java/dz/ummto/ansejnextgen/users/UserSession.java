@@ -30,7 +30,20 @@ public class UserSession {
 	private static String username;
 	private static List<String> roles;
 
-	public UserSession(String token) {
+	private static UserSession instance = null;
+
+
+	public static synchronized UserSession getInstance(String token) {
+		if(instance == null) {
+			instance = new UserSession(token);
+		}
+		return instance;
+	}
+
+	private UserSession() {
+	}
+
+	private UserSession(String token) {
 		UserSession.token = token;
 		parseToken(token);
 	}

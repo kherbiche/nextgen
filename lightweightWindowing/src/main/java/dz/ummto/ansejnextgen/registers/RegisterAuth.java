@@ -52,7 +52,7 @@ public class RegisterAuth implements IDelegate {
 		/* logger.info("--- message.readEntity(): " + message.readEntity(JsonNode.class)); */
 
 		if(200 == message.getStatus()) {
-			new UserSession(message.readEntity(JsonNode.class).get("token").asText());
+			UserSession.getInstance(message.readEntity(JsonNode.class).get("token").asText());
 			logger.info("-- userName="+UserSession.getUsername());
 			logger.info("-- Role Zero="+UserSession.getRoles().get(0));
 		}
