@@ -97,11 +97,30 @@
 			<artifactId>undertow-servlet</artifactId>
 			<version>2.0.15.Final</version>
 		</dependency>
-		<dependency>
 
-		<groupId>org.jboss.weld.servlet</groupId>
+		<dependency>
+			<groupId>org.jboss.weld.servlet</groupId>
 			<artifactId>weld-servlet</artifactId>
 			<version>2.4.8.Final</version>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.arquillian.junit</groupId>
+			<artifactId>arquillian-junit-container</artifactId>
+			<version>1.4.0.Final</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.arquillian.container</groupId>
+			<artifactId>undertow-embedded</artifactId>
+			<version>1.0.0.Alpha2</version>
+			<scope>test</scope>
 		</dependency>
 
 	</dependencies>
