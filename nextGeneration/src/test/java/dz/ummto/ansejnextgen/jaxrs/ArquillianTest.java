@@ -1,0 +1,88 @@
+/*
+ * Copyright 2008, 2018 Lyes Kherbiche
+ * <kerbiche@gmail.com>
+ */
+package dz.ummto.ansejnextgen.jaxrs;
+
+import java.net.URI;
+
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.Application;
+import javax.ws.rs.core.MediaType;
+
+import org.glassfish.jersey.servlet.ServletContainer;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.test.api.ArquillianResource;
+import org.jboss.shrinkwrap.api.Archive;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.jboss.shrinkwrap.undertow.api.UndertowWebArchive;
+import org.jboss.weld.environment.servlet.Listener;
+import org.junit.Before;
+
+import dz.ummto.ansejnextgen.jaxrs.api.AuthenticationToken;
+import dz.ummto.ansejnextgen.jaxrs.api.model.UserCredentials;
+import io.undertow.servlet.Servlets;
+
+import static io.undertow.servlet.Servlets.deployment;
+import static io.undertow.servlet.Servlets.listener;
+
+/**
+ * The <code>ArquillianTest</code> class represents simple Base Arquillian test
+ * class.
+ * 
+ * @author L KHERBICHE
+ * @since 0.0.1-RELEASE
+ */
+public abstract class ArquillianTest {
+
+	@ArquillianResource
+	protected URI uri;
+
+	protected Client client;
+
+	@Deployment(testable = false)
+	public static Archive<WebArchive> createDeployment() {
+
+		return ShrinkWrap.create(UndertowWebArchive.class).from(deployment()
+				.setClassLoader(Application.class.getClassLoader()).setContextPath("/")
+				.addListeners(listener(Listener.class))
+				.addServlets(Servlets.servlet("jerseyServlet", ServletContainer.class).setLoadOnStartup(1)
+						.addInitParam("javax.ws.rs.Application", JaxRsApp.class.getName()).addMapping("/*"))
+				.setDeploymentName("nextGeneration-0.0.1-RELEASE.jar"));
+	}
+
+	@Before
+	public void beforeTest() throws Exception {
+		this.client = ClientBuilder.newClient();
+	}
+
+	protected String getTokenForAdmin() {
+
+		UserCredentials credentials = new UserCredentials();
+		credentials.setUsername("admin");
+		credentials.setPassword("password");
+
+		AuthenticationToken authenticationToken = client.target(uri).path("rest").path("auth").request()
+				.post(Entity.entity(credentials, MediaType.APPLICATION_JSON), AuthenticationToken.class);
+		return authenticationToken.getToken();
+	}
+
+	protected String getTokenForUser() {
+
+		UserCredentials credentials = new UserCredentials();
+		credentials.setUsername("user");
+		credentials.setPassword("password");
+
+		AuthenticationToken authenticationToken = client.target(uri).path("rest").path("auth").request()
+				.post(Entity.entity(credentials, MediaType.APPLICATION_JSON), AuthenticationToken.class);
+		return authenticationToken.getToken();
+	}
+
+	protected String composeAuthorizationHeader(String authenticationToken) {
+		return "Yugarten" + " " + authenticationToken;
+	}
+
+}
