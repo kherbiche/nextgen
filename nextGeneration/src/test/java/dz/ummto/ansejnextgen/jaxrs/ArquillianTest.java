@@ -4,7 +4,11 @@
  */
 package dz.ummto.ansejnextgen.jaxrs;
 
+import static io.undertow.servlet.Servlets.deployment;
+import static io.undertow.servlet.Servlets.listener;
+
 import java.net.URI;
+import java.util.Arrays;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -12,6 +16,8 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.MediaType;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.glassfish.jersey.servlet.ServletContainer;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.test.api.ArquillianResource;
@@ -23,11 +29,7 @@ import org.jboss.weld.environment.servlet.Listener;
 import org.junit.Before;
 
 import dz.ummto.ansejnextgen.jaxrs.api.AuthenticationToken;
-import dz.ummto.ansejnextgen.jaxrs.api.model.UserCredentials;
 import io.undertow.servlet.Servlets;
-
-import static io.undertow.servlet.Servlets.deployment;
-import static io.undertow.servlet.Servlets.listener;
 
 /**
  * The <code>ArquillianTest</code> class represents simple Base Arquillian test
@@ -37,6 +39,8 @@ import static io.undertow.servlet.Servlets.listener;
  * @since 0.0.1-RELEASE
  */
 public abstract class ArquillianTest {
+
+	private static final Log logger = LogFactory.getLog(ArquillianTest.class);
 
 	@ArquillianResource
 	protected URI uri;
@@ -61,23 +65,15 @@ public abstract class ArquillianTest {
 
 	protected String getTokenForAdmin() {
 
-		UserCredentials credentials = new UserCredentials();
-		credentials.setUsername("admin");
-		credentials.setPassword("password");
-
-		AuthenticationToken authenticationToken = client.target(uri).path("rest").path("auth").request()
-				.post(Entity.entity(credentials, MediaType.APPLICATION_JSON), AuthenticationToken.class);
+		AuthenticationToken authenticationToken = client.target(uri).path("/rest").path("/auth").request()
+				.post(Entity.entity(Arrays.asList("lyes", "lyes"), MediaType.APPLICATION_JSON), AuthenticationToken.class);
 		return authenticationToken.getToken();
 	}
 
 	protected String getTokenForUser() {
 
-		UserCredentials credentials = new UserCredentials();
-		credentials.setUsername("user");
-		credentials.setPassword("password");
-
-		AuthenticationToken authenticationToken = client.target(uri).path("rest").path("auth").request()
-				.post(Entity.entity(credentials, MediaType.APPLICATION_JSON), AuthenticationToken.class);
+		AuthenticationToken authenticationToken = client.target(uri).path("/rest").path("/auth").request()
+				.post(Entity.entity(Arrays.asList("lyes", "lyes"), MediaType.APPLICATION_JSON), AuthenticationToken.class);
 		return authenticationToken.getToken();
 	}
 
