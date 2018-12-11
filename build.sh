@@ -7,18 +7,18 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
   echo "Syphax Building and analyzing a regular branch"
   
   if [ "$TRAVIS_BRANCH" == "master" ]; then
-    mvn clean install sonar:sonar \
+    mvn -DskipTests clean install sonar:sonar \
 	  -Dsonar.organization=$SONAR_ORGANIZATION \
 	  -Dsonar.host.url=$SONAR_HOST_URL \
 	  -Dsonar.login=$SONAR_TOKEN
   elif [ "$TRAVIS_BRANCH" == "release" ]; then
-    mvn clean install sonar:sonar \
+    mvn -DskipTests clean install sonar:sonar \
           -Prelease
 	  -Dsonar.organization=$SONAR_ORGANIZATION \
 	  -Dsonar.host.url=$SONAR_HOST_URL \
 	  -Dsonar.login=$SONAR_TOKEN
   else
-    mvn clean verify sonar:sonar \
+    mvn -DskipTests clean verify sonar:sonar \
 	  -Dsonar.organization=$SONAR_ORGANIZATION \
 	  -Dsonar.host.url=$SONAR_HOST_URL \
 	  -Dsonar.login=$SONAR_TOKEN \
