@@ -1,12 +1,21 @@
 #/bin/bash
 
+green=`tput setaf 2`
+reset=`tput sgr0`
+
 export SONAR_HOST_URL='https://sonarcloud.io'
 export SONAR_ORGANIZATION='kherbiche-github'
 
 if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
-  echo "Syphax Building and analyzing a regular branch"
+  echo "${reset} ${green} ${bold}======================================================${reset}"
+  echo "=== Syphax Building and analyzing a regular branch ==="
+  echo "${reset} ${green} ${bold}======================================================${reset}"
   
   if [ "$TRAVIS_BRANCH" == "master" ]; then
+
+    echo "${reset} ${green} ${bold}======================================================${reset}"
+    echo "=== Building and analyzing master branch ==="
+    echo "${reset} ${green} ${bold}======================================================${reset}"
     mvn clean install sonar:sonar \
 	  -Dsonar.organization=$SONAR_ORGANIZATION \
 	  -Dsonar.host.url=$SONAR_HOST_URL \
