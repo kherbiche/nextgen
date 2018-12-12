@@ -40,8 +40,7 @@ import io.undertow.servlet.Servlets;
  */
 public abstract class ArquillianTest {
 
-	@SuppressWarnings("unused")
-	private static final Log logger = LogFactory.getLog(ArquillianTest.class);
+	protected static final Log logger = LogFactory.getLog(ArquillianTest.class);
 
 	@ArquillianResource
 	protected URI uri;
@@ -74,7 +73,7 @@ public abstract class ArquillianTest {
 	protected String getTokenForUser() {
 
 		AuthenticationToken authenticationToken = client.target(uri).path("/rest").path("/auth").request()
-				.post(Entity.entity(Arrays.asList("lyes", "lyes"), MediaType.APPLICATION_JSON), AuthenticationToken.class);
+				.post(Entity.entity(Arrays.asList("kher", "kher"), MediaType.APPLICATION_JSON), AuthenticationToken.class);
 		return authenticationToken.getToken();
 	}
 
