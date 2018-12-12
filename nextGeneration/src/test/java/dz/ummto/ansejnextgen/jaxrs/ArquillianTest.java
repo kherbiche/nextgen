@@ -40,6 +40,7 @@ import io.undertow.servlet.Servlets;
  */
 public abstract class ArquillianTest {
 
+	@SuppressWarnings("unused")
 	private static final Log logger = LogFactory.getLog(ArquillianTest.class);
 
 	@ArquillianResource

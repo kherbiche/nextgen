@@ -16,7 +16,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
     echo "${reset} ${green} ${bold}======================================================${reset}"
     echo "=== Building and analyzing master branch ==="
     echo "${reset} ${green} ${bold}======================================================${reset}"
-    mvn clean install sonar:sonar \
+    mvn -DskipTests clean install sonar:sonar \
 	  -Dsonar.organization=$SONAR_ORGANIZATION \
 	  -Dsonar.host.url=$SONAR_HOST_URL \
 	  -Dsonar.login=$SONAR_TOKEN
