@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -54,6 +55,7 @@ public class RegistrationRs {
 	@POST
 	@Produces("application/json")
 	@Consumes(MediaType.APPLICATION_JSON)
+	@RolesAllowed(value = { "ROLE_COUNSELOR" })
 	/**
 	 * MultiThreaded method @see qtp Queuded Thread Pool of jetty
 	 * @param asyncResponse
@@ -112,8 +114,7 @@ public class RegistrationRs {
 					promo.setExperience(obj.get(22));
 					promo.setDegree(obj.get(23));
 
-					pDao.save(promo);
-					asyncResponse.resume("TODO");
+					asyncResponse.resume(pDao.save(promo));
 				} finally {
 					pDao.closeResource();
 				}

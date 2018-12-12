@@ -8,11 +8,14 @@ import java.util.List;
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import dz.ummto.ansejnextgen.users.UserSession;
 
 /**
  * The <code>RegisterOne</code> class represents JaxRs Client that saves a
@@ -38,7 +41,9 @@ class RegisterOne implements IDelegate {
 		@SuppressWarnings("unchecked")
 		List<String> list = (List<String>) args[0];
 		final WebTarget target = JaxRsClient.getClient().target(IDelegate.getBaseURI());
-		Response message = target.path("/rest").path("/savepromoter").request(MediaType.APPLICATION_JSON)
+		Response message = target.path("/rest").path("/savepromoter")
+				.request(MediaType.APPLICATION_JSON)
+				.header(HttpHeaders.AUTHORIZATION, "Yugarten" + " " +UserSession.getToken())
 				.post(Entity.entity(list, MediaType.APPLICATION_JSON));
 
 		logger.info("--- message.getStatus(): " + message.getStatus());
