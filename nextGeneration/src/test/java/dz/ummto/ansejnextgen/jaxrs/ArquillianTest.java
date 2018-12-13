@@ -50,12 +50,18 @@ public abstract class ArquillianTest {
 	@Deployment(testable = false)
 	public static Archive<WebArchive> createDeployment() {
 
-		return ShrinkWrap.create(UndertowWebArchive.class).from(deployment()
-				.setClassLoader(Application.class.getClassLoader()).setContextPath("/")
-				.addListeners(listener(Listener.class))
-				.addServlets(Servlets.servlet("jerseyServlet", ServletContainer.class).setLoadOnStartup(1)
-						.addInitParam("javax.ws.rs.Application", JaxRsApp.class.getName()).addMapping("/*"))
-				.setDeploymentName("nextGeneration-0.0.1-RELEASE.jar"));
+		return ShrinkWrap.create(UndertowWebArchive.class)
+				.from(deployment()
+						.setClassLoader(Application.class.getClassLoader())
+						.setContextPath("/")
+						.addListeners(listener(Listener.class))
+						.addServlets(Servlets
+								.servlet("jerseyServlet", ServletContainer.class)
+									.setLoadOnStartup(1)
+									.addInitParam("javax.ws.rs.Application", JaxRsApp.class.getName())
+									.setAsyncSupported(true)
+									.addMapping("/*"))
+						.setDeploymentName("nextGeneration-0.0.1-RELEASE.jar"));
 	}
 
 	@Before
@@ -65,15 +71,15 @@ public abstract class ArquillianTest {
 
 	protected String getTokenForAdmin() {
 
-		AuthenticationToken authenticationToken = client.target(uri).path("/rest").path("/auth").request()
-				.post(Entity.entity(Arrays.asList("lyes", "lyes"), MediaType.APPLICATION_JSON), AuthenticationToken.class);
+		AuthenticationToken authenticationToken = client.target(uri).path("/rest").path("/auth").request().post(
+				Entity.entity(Arrays.asList("lyes", "lyes"), MediaType.APPLICATION_JSON), AuthenticationToken.class);
 		return authenticationToken.getToken();
 	}
 
 	protected String getTokenForUser() {
 
-		AuthenticationToken authenticationToken = client.target(uri).path("/rest").path("/auth").request()
-				.post(Entity.entity(Arrays.asList("kher", "kher"), MediaType.APPLICATION_JSON), AuthenticationToken.class);
+		AuthenticationToken authenticationToken = client.target(uri).path("/rest").path("/auth").request().post(
+				Entity.entity(Arrays.asList("kher", "kher"), MediaType.APPLICATION_JSON), AuthenticationToken.class);
 		return authenticationToken.getToken();
 	}
 

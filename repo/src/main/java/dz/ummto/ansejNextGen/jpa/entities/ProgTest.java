@@ -76,7 +76,7 @@ public class ProgTest {
 		user.addUserRole(ur2);
 
 		IDao<String, User> uDao = DaoFactory.getUserDao();
-		IDao<Long, UserRole> urDao = DaoFactory.getUserRoleDao();
+		//IDao<Long, UserRole> urDao = DaoFactory.getUserRoleDao();
 		uDao.save(user);
 		//urDao.save(ur1);
 		//urDao.save(ur2);

@@ -42,6 +42,7 @@ public class JettyServer {
 		ServletContainer jerseyServletContainer = new ServletContainer(resourceConfig);
 
 		ServletHolder jettyServlet = new ServletHolder(jerseyServletContainer);
+		jettyServlet.setAsyncSupported(true);
 	
 		ServletContextHandler context = new ServletContextHandler(/*ServletContextHandler.NO_SESSIONS*/);
 		context.setContextPath("/");

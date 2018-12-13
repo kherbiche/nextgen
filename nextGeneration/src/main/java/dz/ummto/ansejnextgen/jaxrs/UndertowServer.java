@@ -44,12 +44,19 @@ public class UndertowServer {
 		server = Undertow.builder().addHttpListener(port, "localhost").setHandler(path).build();
 		server.start();
 
-		DeploymentInfo servletBuilder = Servlets.deployment().setClassLoader(UndertowServer.class.getClassLoader())
-				.setContextPath("/").addListeners(listener(Listener.class))
-				.setResourceManager(new ClassPathResourceManager(UndertowServer.class.getClassLoader()))
-				.addServlets(Servlets.servlet("jerseyServlet", ServletContainer.class).setLoadOnStartup(1)
-						.addInitParam("javax.ws.rs.Application", JaxRsApp.class.getName()).addMapping("/*"))
-				.setDeploymentName("nextGeneration-0.0.1-RELEASE.jar");
+		DeploymentInfo servletBuilder = Servlets
+				.deployment()
+					.setClassLoader(UndertowServer.class.getClassLoader())
+					.setContextPath("/")
+					.addListeners(listener(Listener.class))
+					.setResourceManager(new ClassPathResourceManager(UndertowServer.class.getClassLoader()))
+					.addServlets(Servlets
+							.servlet("jerseyServlet", ServletContainer.class)
+								.setLoadOnStartup(1)
+								.addInitParam("javax.ws.rs.Application", JaxRsApp.class.getName())
+								.addMapping("/*")
+								.setAsyncSupported(true))
+					.setDeploymentName("nextGeneration-0.0.1-RELEASE.jar");
 
 		deploymentManager = Servlets.defaultContainer().addDeployment(servletBuilder);
 		deploymentManager.deploy();
