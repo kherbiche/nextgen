@@ -23,6 +23,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import dz.ummto.ansejnextgen.IconEnum;
+import dz.ummto.ansejnextgen.users.UserSession;
 
 /**
  * The <code>Menu</code> class represents
@@ -62,17 +63,38 @@ public class Menu {
 		jLabMenu.setOpaque(true);
 
 		DefaultMutableTreeNode root = new DefaultMutableTreeNode("Action");
-		DefaultMutableTreeNode promoterAction = new DefaultMutableTreeNode("Promoter");
-		promoterAction.add(new DefaultMutableTreeNode("New"));
-		promoterAction.add(new DefaultMutableTreeNode("UpDate"));
-		DefaultMutableTreeNode eligibilityAction = new DefaultMutableTreeNode("Eligibility");
-		eligibilityAction.add(new DefaultMutableTreeNode("Assign"));
-		root.add(promoterAction);
-		root.add(eligibilityAction);
+
+		if(UserSession.getRoles()!=null && UserSession.getRoles().contains("ROLE_COUNSELOR")) {
+			DefaultMutableTreeNode promoterAction = new DefaultMutableTreeNode("Promoter");
+			promoterAction.add(new DefaultMutableTreeNode("New"));
+			promoterAction.add(new DefaultMutableTreeNode("UpDate"));
+
+			DefaultMutableTreeNode eligibilityAction = new DefaultMutableTreeNode("Eligibility");
+			eligibilityAction.add(new DefaultMutableTreeNode("Assign"));
+
+			root.add(promoterAction);
+			root.add(eligibilityAction);
+		}
+		if(UserSession.getRoles()!=null && UserSession.getRoles().contains("ROLE_ADMIN")) {
+			DefaultMutableTreeNode userManagerAction = new DefaultMutableTreeNode("Users Manager");
+			userManagerAction.add(new DefaultMutableTreeNode("new"));
+
+			root.add(userManagerAction);
+		}
+
+		if(UserSession.getRoles()!=null && !UserSession.getRoles().isEmpty()) {
+			DefaultMutableTreeNode profileAction = new DefaultMutableTreeNode("Profile");
+			profileAction.add(new DefaultMutableTreeNode("Edit"));
+			profileAction.add(new DefaultMutableTreeNode("Change pwd"));
+
+			root.add(profileAction);
+		}
+
 		JTree tree = new JTree(root);
 		tree.setFont(new java.awt.Font(Font.DIALOG, 1, 13));
 		tree.setShowsRootHandles(true);
 		tree.setRootVisible(true);
+
 		DefaultTreeCellRenderer renderer = new DefaultTreeCellRenderer();
 		renderer.setOpenIcon(new ImageIcon(new ImageIcon(getClass().getResource("/" + IconEnum.OPEN_FOLD + ".png"))
 				.getImage().getScaledInstance(20, 15, Image.SCALE_SMOOTH)));
@@ -80,6 +102,7 @@ public class Menu {
 				.getImage().getScaledInstance(20, 15, Image.SCALE_SMOOTH)));
 		renderer.setLeafIcon(new ImageIcon(new ImageIcon(getClass().getResource("/" + IconEnum.LEAF + ".png"))
 				.getImage().getScaledInstance(15, 15, Image.SCALE_SMOOTH)));
+
 		tree.setCellRenderer(renderer);
 
 		JScrollPane sp = new JScrollPane(tree);
