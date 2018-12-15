@@ -16,6 +16,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTree;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
@@ -31,10 +33,11 @@ import dz.ummto.ansejnextgen.users.UserSession;
  * @author L KHERBICHE
  * @since 0.0.1-RELEASE
  */
-public class Menu {
+public class Menu implements TreeSelectionListener {
 
-	private static final Log loggerrr = LogFactory.getLog(Menu.class);
+	private static final Log logger = LogFactory.getLog(Menu.class);
 	private JPanel menuJpanel;
+	private JTree tree;
 
 	public Menu() {
 		Runnable code = new Runnable() {
@@ -43,10 +46,10 @@ public class Menu {
 			}
 		};
 		if (SwingUtilities.isEventDispatchThread()) {
-			loggerrr.info("--- Menu.jbInit: In the EDT");
+			logger.info("--- Menu.jbInit: In the EDT");
 			code.run();
 		} else {
-			loggerrr.info("--- Menu.jbInit: Out of EDT");
+			logger.info("--- Menu.jbInit: Out of EDT");
 			SwingUtilities.invokeLater(code);
 		}
 	}
@@ -90,10 +93,11 @@ public class Menu {
 			root.add(profileAction);
 		}
 
-		JTree tree = new JTree(root);
+		tree = new JTree(root);
 		tree.setFont(new java.awt.Font(Font.DIALOG, 1, 13));
 		tree.setShowsRootHandles(true);
 		tree.setRootVisible(true);
+		tree.addTreeSelectionListener(this);
 
 		DefaultTreeCellRenderer renderer = new DefaultTreeCellRenderer();
 		renderer.setOpenIcon(new ImageIcon(new ImageIcon(getClass().getResource("/" + IconEnum.OPEN_FOLD + ".png"))
@@ -118,5 +122,11 @@ public class Menu {
 
 	public JPanel getJPanel() {
 		return menuJpanel;
+	}
+
+	@Override
+	public void valueChanged(TreeSelectionEvent e) {
+		DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
+		logger.info("-- Menu selected node= "+selectedNode.getUserObject().toString());
 	}
 }
