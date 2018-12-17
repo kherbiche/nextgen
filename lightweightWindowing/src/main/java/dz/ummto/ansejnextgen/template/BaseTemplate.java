@@ -115,6 +115,10 @@ public class BaseTemplate {
 	}
 
 	public void setBody(JPanel body) {
+		if (base.getContentPane().getComponentAt(140, 73) != null) {
+			base.getContentPane().getComponentAt(140, 73).setVisible(false);
+		}
+			
 		body.setBounds(new Rectangle(140, 73, 704, 438));
 		base.getContentPane().add(body, null);
 	}

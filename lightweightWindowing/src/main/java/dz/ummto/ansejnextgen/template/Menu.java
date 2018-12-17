@@ -67,9 +67,9 @@ public class Menu implements TreeSelectionListener {
 
 		DefaultMutableTreeNode root = new DefaultMutableTreeNode("Action");
 
-		if(UserSession.getRoles()!=null && UserSession.getRoles().contains("ROLE_COUNSELOR")) {
+		//if(UserSession.getRoles()!=null && UserSession.getRoles().contains("ROLE_COUNSELOR")) {
 			DefaultMutableTreeNode promoterAction = new DefaultMutableTreeNode("Promoter");
-			promoterAction.add(new DefaultMutableTreeNode("New"));
+			promoterAction.add(new DefaultMutableTreeNode("New Pro"));
 			promoterAction.add(new DefaultMutableTreeNode("UpDate"));
 
 			DefaultMutableTreeNode eligibilityAction = new DefaultMutableTreeNode("Eligibility");
@@ -77,21 +77,21 @@ public class Menu implements TreeSelectionListener {
 
 			root.add(promoterAction);
 			root.add(eligibilityAction);
-		}
-		if(UserSession.getRoles()!=null && UserSession.getRoles().contains("ROLE_ADMIN")) {
+		//}
+		//if(UserSession.getRoles()!=null && UserSession.getRoles().contains("ROLE_ADMIN")) {
 			DefaultMutableTreeNode userManagerAction = new DefaultMutableTreeNode("Users Manager");
 			userManagerAction.add(new DefaultMutableTreeNode("new"));
 
 			root.add(userManagerAction);
-		}
+		//}
 
-		if(UserSession.getRoles()!=null && !UserSession.getRoles().isEmpty()) {
+		//if(UserSession.getRoles()!=null && !UserSession.getRoles().isEmpty()) {
 			DefaultMutableTreeNode profileAction = new DefaultMutableTreeNode("Profile");
 			profileAction.add(new DefaultMutableTreeNode("Edit"));
 			profileAction.add(new DefaultMutableTreeNode("Change pwd"));
 
 			root.add(profileAction);
-		}
+		//}
 
 		tree = new JTree(root);
 		tree.setFont(new java.awt.Font(Font.DIALOG, 1, 13));
@@ -128,5 +128,18 @@ public class Menu implements TreeSelectionListener {
 	public void valueChanged(TreeSelectionEvent e) {
 		DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
 		logger.info("-- Menu selected node= "+selectedNode.getUserObject().toString());
+
+		switch (selectedNode.getUserObject().toString()) {
+			case "New Pro" : Renderer.render("inscription").setVisible(true);
+					break;
+			case "UpDate" : ;
+					break;
+			case "Assign" : ;
+					break;
+			case "Edit" : ;
+					break;
+			case "Change pwd" : ;
+					break;
+		}
 	}
 }
