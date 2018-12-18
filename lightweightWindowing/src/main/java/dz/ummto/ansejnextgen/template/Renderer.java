@@ -22,10 +22,11 @@ import dz.ummto.ansejnextgen.gui.registration.Inscription;
 public class Renderer {
 
 	private final static BaseTemplate baseTemplate = new BaseTemplate("medium");
+	private static Menu menu = new Menu();
 	static {
 		baseTemplate.setHeader(new Header().getJPanel());
 		baseTemplate.setFooter(new Footer().getJPanel());
-		baseTemplate.setMenu(new Menu().getJPanel());
+		baseTemplate.setMenu(menu.getJPanel());
 	}
 
 	@SuppressWarnings("serial")
@@ -53,5 +54,9 @@ public class Renderer {
 			break;
 		}
 		return baseTemplate.getJFrame();
+	}
+
+	public static Menu getMenu() {
+		return menu;
 	}
 }

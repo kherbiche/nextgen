@@ -8,6 +8,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Rectangle;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -33,7 +35,7 @@ import dz.ummto.ansejnextgen.users.UserSession;
  * @author L KHERBICHE
  * @since 0.0.1-RELEASE
  */
-public class Menu implements TreeSelectionListener {
+public class Menu implements TreeSelectionListener, Observer {
 
 	private static final Log logger = LogFactory.getLog(Menu.class);
 	private JPanel menuJpanel;
@@ -65,59 +67,11 @@ public class Menu implements TreeSelectionListener {
 		jLabMenu.setBounds(new Rectangle(0, 0, 135, 19));
 		jLabMenu.setOpaque(true);
 
-		DefaultMutableTreeNode root = new DefaultMutableTreeNode("Action");
-
-		//if(UserSession.getRoles()!=null && UserSession.getRoles().contains("ROLE_COUNSELOR")) {
-			DefaultMutableTreeNode promoterAction = new DefaultMutableTreeNode("Promoter");
-			promoterAction.add(new DefaultMutableTreeNode("New Pro"));
-			promoterAction.add(new DefaultMutableTreeNode("UpDate"));
-
-			DefaultMutableTreeNode eligibilityAction = new DefaultMutableTreeNode("Eligibility");
-			eligibilityAction.add(new DefaultMutableTreeNode("Assign"));
-
-			root.add(promoterAction);
-			root.add(eligibilityAction);
-		//}
-		//if(UserSession.getRoles()!=null && UserSession.getRoles().contains("ROLE_ADMIN")) {
-			DefaultMutableTreeNode userManagerAction = new DefaultMutableTreeNode("Users Manager");
-			userManagerAction.add(new DefaultMutableTreeNode("new"));
-
-			root.add(userManagerAction);
-		//}
-
-		//if(UserSession.getRoles()!=null && !UserSession.getRoles().isEmpty()) {
-			DefaultMutableTreeNode profileAction = new DefaultMutableTreeNode("Profile");
-			profileAction.add(new DefaultMutableTreeNode("Edit"));
-			profileAction.add(new DefaultMutableTreeNode("Change pwd"));
-
-			root.add(profileAction);
-		//}
-
-		tree = new JTree(root);
-		tree.setFont(new java.awt.Font(Font.DIALOG, 1, 13));
-		tree.setShowsRootHandles(true);
-		tree.setRootVisible(true);
-		tree.addTreeSelectionListener(this);
-
-		DefaultTreeCellRenderer renderer = new DefaultTreeCellRenderer();
-		renderer.setOpenIcon(new ImageIcon(new ImageIcon(getClass().getResource("/" + IconEnum.OPEN_FOLD + ".png"))
-				.getImage().getScaledInstance(20, 15, Image.SCALE_SMOOTH)));
-		renderer.setClosedIcon(new ImageIcon(new ImageIcon(getClass().getResource("/" + IconEnum.CLOSE_FOLD + ".png"))
-				.getImage().getScaledInstance(20, 15, Image.SCALE_SMOOTH)));
-		renderer.setLeafIcon(new ImageIcon(new ImageIcon(getClass().getResource("/" + IconEnum.LEAF + ".png"))
-				.getImage().getScaledInstance(15, 15, Image.SCALE_SMOOTH)));
-
-		tree.setCellRenderer(renderer);
-
-		JScrollPane sp = new JScrollPane(tree);
-		sp.setBounds(2, 25, 130, 150);
-
 		menuJpanel = new JPanel();
 		menuJpanel.setLayout(null);
 		menuJpanel.setFont(new java.awt.Font(Font.DIALOG, 1, 10));
 		menuJpanel.setBackground(new Color(224, 217, 168));
 		menuJpanel.add(jLabMenu, null);
-		menuJpanel.add(sp, null);
 	}
 
 	public JPanel getJPanel() {
@@ -141,5 +95,64 @@ public class Menu implements TreeSelectionListener {
 			case "Change pwd" : ;
 					break;
 		}
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+
+		if (SwingUtilities.isEventDispatchThread()) {
+			logger.info("-- update(Observable o, Object arg) - in the EDT");
+		}
+
+		DefaultMutableTreeNode root = new DefaultMutableTreeNode("Action");
+
+		if(UserSession.getRoles()!=null && UserSession.getRoles().contains("ROLE_COUNSELOR")) {
+			DefaultMutableTreeNode promoterAction = new DefaultMutableTreeNode("Promoter");
+			promoterAction.add(new DefaultMutableTreeNode("New Pro"));
+			promoterAction.add(new DefaultMutableTreeNode("UpDate"));
+
+			DefaultMutableTreeNode eligibilityAction = new DefaultMutableTreeNode("Eligibility");
+			eligibilityAction.add(new DefaultMutableTreeNode("Assign"));
+
+			root.add(promoterAction);
+			root.add(eligibilityAction);
+		}
+		if(UserSession.getRoles()!=null && UserSession.getRoles().contains("ROLE_ADMIN")) {
+			DefaultMutableTreeNode userManagerAction = new DefaultMutableTreeNode("Users Manager");
+			userManagerAction.add(new DefaultMutableTreeNode("new"));
+
+			root.add(userManagerAction);
+		}
+
+		if(UserSession.getRoles()!=null && !UserSession.getRoles().isEmpty()) {
+			DefaultMutableTreeNode profileAction = new DefaultMutableTreeNode("Profile");
+			profileAction.add(new DefaultMutableTreeNode("Edit"));
+			profileAction.add(new DefaultMutableTreeNode("Change pwd"));
+
+			root.add(profileAction);
+		}
+
+		tree = new JTree(root);
+		tree.setFont(new java.awt.Font(Font.DIALOG, 1, 13));
+		tree.setShowsRootHandles(true);
+		tree.setRootVisible(true);
+		tree.addTreeSelectionListener(this);
+
+		DefaultTreeCellRenderer renderer = new DefaultTreeCellRenderer();
+		renderer.setOpenIcon(new ImageIcon(new ImageIcon(getClass().getResource("/" + IconEnum.OPEN_FOLD + ".png"))
+				.getImage().getScaledInstance(20, 15, Image.SCALE_SMOOTH)));
+		renderer.setClosedIcon(new ImageIcon(new ImageIcon(getClass().getResource("/" + IconEnum.CLOSE_FOLD + ".png"))
+				.getImage().getScaledInstance(20, 15, Image.SCALE_SMOOTH)));
+		renderer.setLeafIcon(new ImageIcon(new ImageIcon(getClass().getResource("/" + IconEnum.LEAF + ".png"))
+				.getImage().getScaledInstance(15, 15, Image.SCALE_SMOOTH)));
+
+		tree.setCellRenderer(renderer);
+
+		JScrollPane sp = new JScrollPane(tree);
+		sp.setBounds(2, 25, 130, 150);
+
+		menuJpanel.add(sp, null);
+		menuJpanel.revalidate();
+		menuJpanel.repaint();
 	}
 }

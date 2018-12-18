@@ -32,6 +32,7 @@ import dz.ummto.ansejnextgen.common_utils.HintJTextField;
 import dz.ummto.ansejnextgen.common_utils.HintPwdField;
 import dz.ummto.ansejnextgen.registers.Client;
 import dz.ummto.ansejnextgen.registers.RegisterDelegate;
+import dz.ummto.ansejnextgen.template.Renderer;
 
 /**
  * The <code>Login</code> class represents users login page swing window.
@@ -189,6 +190,17 @@ public class Login extends JPanel implements ActionListener {
 						logger.info("-- Swing Worker get()=" + get().intValue());
 						if (403 == get().intValue()) {
 							JOptionPane.showMessageDialog(null, "Credentials not valid!!!");
+						}
+						if (200 == get().intValue()) {
+							ObservableMenu om = new ObservableMenu() {
+								@Override
+								void changeMenu() {
+									setChanged();
+									notifyObservers("");
+								}
+							};
+							om.addObserver(Renderer.getMenu());
+							om.changeMenu();
 						}
 					} catch (HeadlessException | InterruptedException | ExecutionException e) {
 						logger.info("-- Exception on SWorker.get():" + e.getMessage());

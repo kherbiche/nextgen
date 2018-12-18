@@ -35,7 +35,7 @@ import dz.ummto.ansejnextgen.IconEnum;
  */
 public class BaseTemplate {
 
-	private static final Log loggerrr = LogFactory.getLog(BaseTemplate.class);
+	private static final Log logger = LogFactory.getLog(BaseTemplate.class);
 	private static final Map<String, int[]> DIMENSION;
 	private JFrame base;
 	private JMenuItem jMenuFileExit;
@@ -55,10 +55,10 @@ public class BaseTemplate {
 			}
 		};
 		if (SwingUtilities.isEventDispatchThread()) {
-			loggerrr.info("--- BaseTemplate.jbInit: In the EDT");
+			logger.info("--- BaseTemplate.jbInit: In the EDT");
 			code.run();
 		} else {
-			loggerrr.info("--- BaseTemplate.jbInit: Out of EDT");
+			logger.info("--- BaseTemplate.jbInit: Out of EDT");
 			SwingUtilities.invokeLater(code);
 		}
 	}
