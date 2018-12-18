@@ -115,12 +115,20 @@ public class BaseTemplate {
 	}
 
 	public void setBody(JPanel body) {
+		if (SwingUtilities.isEventDispatchThread()) {
+			logger.info("-- setBody(JPanel body) - in the EDT");
+		} else {
+			logger.info("-- setBody(JPanel body) - out the EDT");
+		}
 		if (base.getContentPane().getComponentAt(140, 73) != null) {
-			base.getContentPane().getComponentAt(140, 73).setVisible(false);
+			logger.info("-- setBody()  base.getContentPane().getComponentAt(140, 73) != null");
+			base.remove(base.getContentPane().getComponentAt(140, 73));
 		}
 			
 		body.setBounds(new Rectangle(140, 73, 704, 438));
 		base.getContentPane().add(body, null);
+		body.revalidate();
+		body.repaint();
 	}
 
 	public JFrame getJFrame() {

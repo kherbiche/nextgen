@@ -201,6 +201,7 @@ public class Login extends JPanel implements ActionListener {
 							};
 							om.addObserver(Renderer.getMenu());
 							om.changeMenu();
+							close();
 						}
 					} catch (HeadlessException | InterruptedException | ExecutionException e) {
 						logger.info("-- Exception on SWorker.get():" + e.getMessage());
@@ -223,5 +224,10 @@ public class Login extends JPanel implements ActionListener {
 	 */
 	private void clearPassword(HintPwdField jpassword) {
 		jpassword.setText("");
+	}
+
+	private void close() {
+		logger.info("-- close() setVisible(false)");
+		this.setVisible(false);
 	}
 }
