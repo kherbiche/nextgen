@@ -90,6 +90,8 @@ public class Menu implements TreeSelectionListener, Observer {
 					break;
 			case "Assign" : ;
 					break;
+			case "Manage Promoters": Renderer.render("manager").setVisible(true);
+					break;
 			case "Edit" : ;
 					break;
 			case "Change pwd" : ;
@@ -110,6 +112,7 @@ public class Menu implements TreeSelectionListener, Observer {
 			DefaultMutableTreeNode promoterAction = new DefaultMutableTreeNode("Promoter");
 			promoterAction.add(new DefaultMutableTreeNode("New Pro"));
 			promoterAction.add(new DefaultMutableTreeNode("UpDate"));
+			promoterAction.add(new DefaultMutableTreeNode("Manage Promoters"));
 
 			DefaultMutableTreeNode eligibilityAction = new DefaultMutableTreeNode("Eligibility");
 			eligibilityAction.add(new DefaultMutableTreeNode("Assign"));

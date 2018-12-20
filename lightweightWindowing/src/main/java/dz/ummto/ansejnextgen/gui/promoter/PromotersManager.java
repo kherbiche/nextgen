@@ -56,13 +56,13 @@ public class PromotersManager extends JPanel {
 		tablePanel.setBorder(BorderFactory.createTitledBorder("Promoters manager"));
 		tablePanel.setFont(new java.awt.Font(Font.DIALOG, 1, 14));
 		tablePanel.setBackground(new Color(0, 0, 0, 230));
-		tablePanel.setBounds(new Rectangle(2, 0, 700, 120));
+		tablePanel.setBounds(new Rectangle(2, 0, 700, 350));
 		tablePanel.setLayout(null);
 
 		JPanel boutonsPanel = new JPanel();
 		boutonsPanel.setFont(new java.awt.Font(Font.DIALOG, 1, 14));
 		boutonsPanel.setBackground(new Color(0, 0, 0, 230));
-		boutonsPanel.setBounds(new Rectangle(2, 125, 700, 113));
+		boutonsPanel.setBounds(new Rectangle(2, 370, 700, 50));
 		boutonsPanel.setLayout(null);
 		boutonsPanel.add(new JButton(new AddRowsAction()));
 		boutonsPanel.add(new JButton(new RemoveRowsAction()));
@@ -72,10 +72,16 @@ public class PromotersManager extends JPanel {
 		/* end */
 		table = new JTable(tableModel);
 		table.setAutoCreateRowSorter(true);
+		table.setFont(new java.awt.Font(Font.DIALOG, 1, 10));
 
-		tablePanel.add(new JScrollPane(table), null);
+		JScrollPane sp = new JScrollPane(table);
+		sp.setBounds(4, 14, 692, 230);
+
+		tablePanel.add(sp, null);
 
 		this.add(tablePanel, null);
+		this.add(boutonsPanel, null);
+		
 	}
 
 	private class AddRowsAction extends AbstractAction {

@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 
 import dz.ummto.ansejnextgen.IconEnum;
 import dz.ummto.ansejnextgen.gui.login.Login;
+import dz.ummto.ansejnextgen.gui.promoter.PromotersManager;
 import dz.ummto.ansejnextgen.gui.registration.Inscription;
 
 /**
@@ -43,6 +44,15 @@ public class Renderer {
 			break;
 		case "inscription":
 			baseTemplate.setBody(new Inscription(null) {
+				protected void paintComponent(Graphics g) {
+					super.paintComponent(g);
+					g.drawImage(new ImageIcon(getClass().getResource("/" + IconEnum.DZAIR + ".png")).getImage(), 0, 0,
+							704, 438, this);
+				}
+			});
+			break;
+		case "manager":
+			baseTemplate.setBody(new PromotersManager() {
 				protected void paintComponent(Graphics g) {
 					super.paintComponent(g);
 					g.drawImage(new ImageIcon(getClass().getResource("/" + IconEnum.DZAIR + ".png")).getImage(), 0, 0,
