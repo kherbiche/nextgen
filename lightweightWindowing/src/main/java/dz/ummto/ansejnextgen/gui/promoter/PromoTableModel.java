@@ -7,7 +7,11 @@ package dz.ummto.ansejnextgen.gui.promoter;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.SwingWorker;
 import javax.swing.table.AbstractTableModel;
+
+import dz.ummto.ansejnextgen.registers.Client;
+import dz.ummto.ansejnextgen.registers.RegisterDelegate;
 
 /**
  * The <code>PromoTableModel</code> class extends
@@ -21,10 +25,25 @@ import javax.swing.table.AbstractTableModel;
 @SuppressWarnings("serial")
 public class PromoTableModel extends AbstractTableModel {
 
-	private final String[] header = {};
+	private final String[] header = {"firstname", "lastname", "birth", "father", "mother"};
 	private final List<DataModel> data = new ArrayList<DataModel>();
 
 	public PromoTableModel() {
+		data.add(new DataModel("first1", "last1", "12/12/1990", "fa", "mo"));
+		data.add(new DataModel("first2", "last2", "12/12/1990", "fa", "mo"));
+		data.add(new DataModel("first3", "last3", "12/12/1990", "fa", "mo"));
+		
+		new SwingWorker<Integer, Void>() {
+
+			@Override
+			protected Integer doInBackground() throws Exception {
+				RegisterDelegate rd = new RegisterDelegate();
+				rd.setRegisterType("PromotersManager");
+				new Client(rd).doTask("");
+				return null;
+			}
+			
+		}.execute();
 	}
 
 	@Override

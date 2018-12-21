@@ -28,19 +28,24 @@ import org.apache.commons.logging.LogFactory;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
+import dz.ummto.ansejnextgen.users.UserSession;
+
 public class RegisterPromotersManager implements IDelegate {
 
 	private static final Log logger = LogFactory.getLog(RegisterPromotersManager.class);
 
 	@Override
 	public Object register(Object... args) {
+
 		logger.info("-- RegisterPromotersManager.register(Object... args)");
 		final WebTarget target = JaxRsClient.getClient().target(IDelegate.getBaseURI());
-		Response message = target.path("/rest").path("/allpromoters").request(MediaType.APPLICATION_JSON)
-				.header(HttpHeaders.AUTHORIZATION, "Yugarten ").get();
+		Response message = target.path("/rest").path("/allpromoters")
+				.request(MediaType.APPLICATION_JSON)
+				.header(HttpHeaders.AUTHORIZATION, "Yugarten "+ " " +UserSession.getToken())
+				.get();
 
-		logger.info("-- message.readEntity(JsonNode.class)="+message.readEntity(JsonNode.class));
-		return null;
+		logger.info("-- message.readEntity(JsonNode.class)"+message.readEntity(JsonNode.class));
+		return message.getStatus();
 	}
 
 }

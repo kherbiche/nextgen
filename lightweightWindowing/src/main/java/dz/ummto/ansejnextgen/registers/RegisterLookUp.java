@@ -27,6 +27,9 @@ class RegisterLookUp {
 		if(str.equalsIgnoreCase("Auth")) {
 			return new RegisterAuth();
 		}
+		if(str.equalsIgnoreCase("PromotersManager")) {
+			return new RegisterPromotersManager();
+		}
 		return null;
 	}
 }
