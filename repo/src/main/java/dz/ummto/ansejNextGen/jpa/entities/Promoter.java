@@ -16,10 +16,13 @@ import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import dz.ummto.ansejNextGen.jpa.EducLevel;
 import dz.ummto.ansejNextGen.jpa.Gender;
+import dz.ummto.ansejNextGen.jpa.dao.AbstractJpaDao;
 
 /**
  * The <code>Promoter</code> class represents the abstraction of the project
@@ -36,6 +39,7 @@ import dz.ummto.ansejNextGen.jpa.Gender;
 
 @Entity
 @Table(name = "PROMOTER")
+@NamedQueries({ @NamedQuery(name = AbstractJpaDao.FIND_ALL, query = "select p from Promoter p") })
 public class Promoter {
 
 	@EmbeddedId

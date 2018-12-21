@@ -14,6 +14,7 @@ import dz.ummto.ansejnextgen.jaxrs.api.ObjectMapperProvider;
 import dz.ummto.ansejnextgen.jaxrs.api.filter.AuthenticationFilter;
 import dz.ummto.ansejnextgen.jaxrs.api.filter.AuthorizationFilter;
 import dz.ummto.ansejnextgen.jaxrs.api.resources.AuthenticationRS;
+import dz.ummto.ansejnextgen.jaxrs.api.resources.PromotersManagerRs;
 import dz.ummto.ansejnextgen.jaxrs.api.resources.RegistrationRs;
 import dz.ummto.ansejnextgen.jaxrs.exception.AccessDeniedExceptionMapper;
 import dz.ummto.ansejnextgen.jaxrs.exception.AuthenticationExceptionMapper;
@@ -41,6 +42,7 @@ public class JaxRsApp extends ResourceConfig {
 
 		register(RegistrationRs.class);
 		register(AuthenticationRS.class);
+		register(PromotersManagerRs.class);
 
 		register(AuthenticationFilter.class);
 		register(AuthorizationFilter.class);

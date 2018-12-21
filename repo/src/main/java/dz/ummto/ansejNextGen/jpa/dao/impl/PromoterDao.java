@@ -4,9 +4,6 @@
  */
 package dz.ummto.ansejNextGen.jpa.dao.impl;
 
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-
 import dz.ummto.ansejNextGen.jpa.dao.AbstractJpaDao;
 import dz.ummto.ansejNextGen.jpa.dao.IDao;
 import dz.ummto.ansejNextGen.jpa.entities.Promoter;
@@ -20,7 +17,7 @@ import dz.ummto.ansejNextGen.jpa.entities.PromoterId;
  * @author L KHERBICHE
  * @since 0.0.1-RELEASE
  */
-@NamedQueries({ @NamedQuery(name = AbstractJpaDao.FIND_ALL, query = "select p from Promoter p") })
+
 public class PromoterDao extends AbstractJpaDao<PromoterId, Promoter> {
 
 }

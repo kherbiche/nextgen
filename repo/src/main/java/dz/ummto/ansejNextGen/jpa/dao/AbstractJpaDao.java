@@ -100,7 +100,7 @@ public abstract class AbstractJpaDao<K, E> implements IDao<K, E> {
 	public List<E> findAll() {
 		logger.info("-- AbstractJpaDao findAll() methode");
 		logger.info("-- AbstractJpaDao threadName: "+Thread.currentThread().getName()+" threadId: "+Thread.currentThread().getId());
-		return EMProvider.getEntityManager().createNamedQuery(FIND_ALL).getResultList();
+		return EMProvider.getEntityManager().createNamedQuery(AbstractJpaDao.FIND_ALL).getResultList();
 	}
 
 	@Override
