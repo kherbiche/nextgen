@@ -11,7 +11,15 @@ package dz.ummto.ansejnextgen.gui.promoter;
  * @author L KHERBICHE
  * @since 0.0.1-RELEASE
  */
-
+/*
+ * {"promoterId":{"lastName":"kh","firstName":"lys","birthDate":"12/01/1990"},
+ * "gender":"M","father":"sl","mother":"al","birthCertNum":"12019099",
+ * "birthPlace":{"city":"lni","zipCode":15550,"country":"Dz"},
+ * "residence":{"id":2,"numAddress":111,"typeAddress":"ROAD","streetName":"massensen road","embeddedAddress":{"city":"otr","zipCode":15550,"country":"dz"},
+ * "handler":{},"hibernateLazyInitializer":{}},
+ * "email":"sith","phone":6666,"fax":9999,"famiSitu":"Single","anemCard":151699,
+ * "educLevel":"OTH","experience":"Without","degree":"Miage"}
+ */
 public class DataModel {
 
 	private String firstname;

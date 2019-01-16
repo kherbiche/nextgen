@@ -7,8 +7,12 @@ package dz.ummto.ansejnextgen.gui.promoter;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 import javax.swing.table.AbstractTableModel;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import dz.ummto.ansejnextgen.registers.Client;
 import dz.ummto.ansejnextgen.registers.RegisterDelegate;
@@ -25,6 +29,8 @@ import dz.ummto.ansejnextgen.registers.RegisterDelegate;
 @SuppressWarnings("serial")
 public class PromoTableModel extends AbstractTableModel {
 
+	private static final Log logger = LogFactory.getLog(PromoTableModel.class);
+
 	private final String[] header = {"firstname", "lastname", "birth", "father", "mother"};
 	private final List<DataModel> data = new ArrayList<DataModel>();
 
@@ -33,6 +39,11 @@ public class PromoTableModel extends AbstractTableModel {
 		data.add(new DataModel("first2", "last2", "12/12/1990", "fa", "mo"));
 		data.add(new DataModel("first3", "last3", "12/12/1990", "fa", "mo"));
 		
+		if (SwingUtilities.isEventDispatchThread()) {
+			logger.info("-- PromoTableModel() in the EDT");
+		} else {
+			logger.info("-- PromoTableModel() out of the EDT");
+		}
 		new SwingWorker<Integer, Void>() {
 
 			@Override

@@ -4,7 +4,10 @@
  */
 package dz.ummto.ansejnextgen.registers;
 
+import java.util.List;
+
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -26,8 +29,7 @@ import javax.ws.rs.core.Response;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.fasterxml.jackson.databind.JsonNode;
-
+import dz.ummto.ansejnextgen.gui.promoter.DataModel;
 import dz.ummto.ansejnextgen.users.UserSession;
 
 public class RegisterPromotersManager implements IDelegate {
@@ -44,7 +46,10 @@ public class RegisterPromotersManager implements IDelegate {
 				.header(HttpHeaders.AUTHORIZATION, "Yugarten "+ " " +UserSession.getToken())
 				.get();
 
-		logger.info("-- message.readEntity(JsonNode.class)"+message.readEntity(JsonNode.class));
+		if(message.getStatus() == Response.Status.OK.getStatusCode()) {
+			logger.info("-- message.readEntity(JsonNode.class)"+message.readEntity(new GenericType<List<DataModel>>() {}));
+		}
+		
 		return message.getStatus();
 	}
 
