@@ -50,10 +50,17 @@ public class PromoTableModel extends AbstractTableModel {
 			protected Integer doInBackground() throws Exception {
 				RegisterDelegate rd = new RegisterDelegate();
 				rd.setRegisterType("PromotersManager");
-				new Client(rd).doTask("");
-				return null;
+				return (Integer) new Client(rd).doTask("");
 			}
-			
+
+			@Override
+			protected void done() {
+				try {
+					logger.info("-- Swing Worker get()=" + get().intValue());
+				} catch (Exception e) {
+					logger.info("-- error"+ e.getMessage());
+				}
+			}
 		}.execute();
 	}
 
