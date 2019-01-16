@@ -4,13 +4,17 @@
  */
 package dz.ummto.ansejnextgen.registers;
 
-import java.util.List;
+import java.util.Arrays;
 
 import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import dz.ummto.ansejnextgen.users.UserSession;
 
 /**
  * The <code>RegisterPromotersManager</code> class represents Jax-Rs client to manage promoters.
@@ -25,13 +29,6 @@ import javax.ws.rs.core.Response;
  * @author L KHERBICHE
  * @since 0.0.1-RELEASE
  */
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
-import dz.ummto.ansejnextgen.gui.promoter.DataModel;
-import dz.ummto.ansejnextgen.users.UserSession;
-
 public class RegisterPromotersManager implements IDelegate {
 
 	private static final Log logger = LogFactory.getLog(RegisterPromotersManager.class);
@@ -47,9 +44,9 @@ public class RegisterPromotersManager implements IDelegate {
 				.get();
 
 		if(message.getStatus() == Response.Status.OK.getStatusCode()) {
-			logger.info("-- message.readEntity(JsonNode.class)"+message.readEntity(new GenericType<List<DataModel>>() {}));
+			logger.info("-- message.readEntity(JsonNode.class)"+Arrays.asList(message.readEntity(Object[].class)).size());
 		}
-		
+		logger.info("-- end end end");
 		return message.getStatus();
 	}
 
