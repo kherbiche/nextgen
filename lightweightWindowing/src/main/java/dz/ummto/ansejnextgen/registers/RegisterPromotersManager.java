@@ -5,6 +5,8 @@
 package dz.ummto.ansejnextgen.registers;
 
 import java.util.Arrays;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.HttpHeaders;
@@ -44,9 +46,19 @@ public class RegisterPromotersManager implements IDelegate {
 				.get();
 
 		if(message.getStatus() == Response.Status.OK.getStatusCode()) {
-			logger.info("-- message.readEntity(JsonNode.class)"+Arrays.asList(message.readEntity(Object[].class)).size());
+			//logger.info("-- message.readEntity(JsonNode.class)"+Arrays.asList(message.readEntity(Object[].class)).size());
+			return Arrays.asList(message.readEntity(Object[].class)).stream()
+					.map(new Function<Object, String>() {
+						@Override
+						public String apply(Object t) {
+							
+							return null;
+						}
+						
+					})
+					.collect(Collectors.toList());
 		}
-		logger.info("-- end end end");
+
 		return message.getStatus();
 	}
 

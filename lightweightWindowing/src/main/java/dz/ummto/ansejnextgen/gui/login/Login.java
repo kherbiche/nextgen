@@ -6,12 +6,10 @@ package dz.ummto.ansejnextgen.gui.login;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.HeadlessException;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
-import java.util.concurrent.ExecutionException;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -203,7 +201,8 @@ public class Login extends JPanel implements ActionListener {
 							om.changeMenu();
 							close();
 						}
-					} catch (HeadlessException | InterruptedException | ExecutionException e) {
+					} catch (Exception e) {
+						//catch (HeadlessException | InterruptedException | ExecutionException e) {
 						logger.info("-- Exception on SWorker.get():" + e.getMessage());
 						/* e.printStackTrace(); */
 					}
