@@ -5,6 +5,9 @@
 package dz.ummto.ansejnextgen.registers;
 
 import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -51,7 +54,18 @@ public class RegisterPromotersManager implements IDelegate {
 					.map(new Function<Object, String>() {
 						@Override
 						public String apply(Object t) {
-							
+							if(t instanceof List) {
+								
+							} else {
+								logger.info("-- t: " +t.toString());
+								logger.info("-- the runtime class t.getClass(): " +t.getClass());
+								Set<String> keys = ((LinkedHashMap<String, Object>) t).keySet();
+								for(String key: keys) {
+									logger.info("-- the key: "+ key);
+									logger.info("-- the runtime class element: "+((LinkedHashMap<String, Object>) t).get(key).getClass());
+									logger.info("-- element: "+((LinkedHashMap<String, Object>) t).get(key));
+								}
+							}
 							return null;
 						}
 						
