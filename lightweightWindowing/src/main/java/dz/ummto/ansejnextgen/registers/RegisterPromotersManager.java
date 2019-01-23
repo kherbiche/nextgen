@@ -12,6 +12,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -49,7 +50,9 @@ public class RegisterPromotersManager implements IDelegate {
 				.get();
 
 		if(message.getStatus() == Response.Status.OK.getStatusCode()) {
-			//logger.info("-- message.readEntity(JsonNode.class)"+Arrays.asList(message.readEntity(Object[].class)).size());
+			logger.info("-- message.readEntity(JsonNode.class)"+message.readEntity(JsonArray.class));
+			/**
+			 * 
 			return Arrays.asList(message.readEntity(Object[].class)).stream()
 					.map(new Function<Object, String>() {
 						@Override
@@ -58,7 +61,7 @@ public class RegisterPromotersManager implements IDelegate {
 								
 							} else {
 								logger.info("-- t: " +t.toString());
-								logger.info("-- the runtime class t.getClass(): " +t.getClass());
+								logger.info("-- the runtime class t.getClass(): " +t.getClass()); // class java.util.LinkedHashMap
 								Set<String> keys = ((LinkedHashMap<String, Object>) t).keySet();
 								for(String key: keys) {
 									logger.info("-- the key: "+ key);
@@ -68,9 +71,20 @@ public class RegisterPromotersManager implements IDelegate {
 							}
 							return null;
 						}
-						
 					})
 					.collect(Collectors.toList());
+			*/
+			/**
+			return message.readEntity(new GenericType<List<Object>>() {}).stream()
+			.map(new Function<Object, String>() {
+				@Override
+				public String apply(Object t) {
+					logger.info("-- the runtime class t.getClass(): " +t.getClass()); // class java.util.LinkedHashMap
+					return "";
+				}
+			})
+			.collect(Collectors.toList());
+			*/
 		}
 
 		return message.getStatus();
