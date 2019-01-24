@@ -4,15 +4,10 @@
  */
 package dz.ummto.ansejnextgen.registers;
 
-import java.util.Arrays;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Set;
 import java.util.function.Function;
-import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -20,6 +15,10 @@ import javax.ws.rs.core.Response;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+
+import dz.ummto.ansejnextgen.gui.promoter.DataModel;
 import dz.ummto.ansejnextgen.users.UserSession;
 
 /**
@@ -50,9 +49,19 @@ public class RegisterPromotersManager implements IDelegate {
 				.get();
 
 		if(message.getStatus() == Response.Status.OK.getStatusCode()) {
-			logger.info("-- message.readEntity(JsonNode.class)"+message.readEntity(JsonArray.class));
+			ArrayNode node = message.readEntity(ArrayNode.class); //node runtime class=com.fasterxml.jackson.databind.node.ArrayNode
+			//logger.info("-- message.readEntity(JsonNode.class): "+node);
+			return IntStream.range(0, node.size()).mapToObj(node::get)
+			.map(new Function<JsonNode, DataModel>() {
+				@Override
+				public DataModel apply(JsonNode t) {
+					logger.info("the runtime class: "+t.getClass());
+					logger.info("-- t: "+t);
+					return null;
+				}
+			});
+			
 			/**
-			 * 
 			return Arrays.asList(message.readEntity(Object[].class)).stream()
 					.map(new Function<Object, String>() {
 						@Override
