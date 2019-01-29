@@ -4,8 +4,9 @@
  */
 package dz.ummto.ansejnextgen.registers;
 
-import java.util.function.Function;
-import java.util.stream.IntStream;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.Iterator;
 
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.HttpHeaders;
@@ -49,8 +50,36 @@ public class RegisterPromotersManager implements IDelegate {
 				.get();
 
 		if(message.getStatus() == Response.Status.OK.getStatusCode()) {
-			ArrayNode node = message.readEntity(ArrayNode.class); //node runtime class=com.fasterxml.jackson.databind.node.ArrayNode
-			//logger.info("-- message.readEntity(JsonNode.class): "+node);
+			ArrayNode arrynode = message.readEntity(ArrayNode.class); //node runtime class=com.fasterxml.jackson.databind.node.ArrayNode
+
+			try {
+				/** Class cls = Class.forName("dz.ummto.ansejnextgen.gui.promoter.DataModel"); */
+				Method methods[] = Class.forName("dz.ummto.ansejnextgen.gui.promoter.DataModel").getDeclaredMethods();
+
+				for (Iterator<JsonNode> iterator = arrynode.elements(); iterator.hasNext();) {
+					JsonNode jsonnode = iterator.next();
+					// logger.info("-- jsonnode: "+jsonnode);
+					DataModel dm = new DataModel();
+					for (Iterator<String> itera = jsonnode.fieldNames(); itera.hasNext();) {
+						String field = itera.next();
+						for (int i = 0; i < methods.length; i++) {
+							String methodname = methods[i].getName();
+							String submethodname = methodname.substring(3);
+							if(field.toLowerCase().equals(submethodname.toLowerCase())) {
+								logger.info("-- "+field+" == "+submethodname);
+								methods[i].invoke(dm, jsonnode.get(field).toString());
+							}
+							if (jsonnode.get(field).isContainerNode()) {
+								logger.info("-- "+field+" is ContainerNode: " + jsonnode.get(field));
+								jsonnode.get(field);
+							}
+						}
+					}
+				}
+			} catch (ClassNotFoundException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+				logger.error("-- error Java Reflect: " + e.getMessage());
+			}
+			/**
 			return IntStream.range(0, node.size()).mapToObj(node::get)
 			.map(new Function<JsonNode, DataModel>() {
 				@Override
@@ -60,7 +89,7 @@ public class RegisterPromotersManager implements IDelegate {
 					return null;
 				}
 			});
-			
+			*/
 			/**
 			return Arrays.asList(message.readEntity(Object[].class)).stream()
 					.map(new Function<Object, String>() {

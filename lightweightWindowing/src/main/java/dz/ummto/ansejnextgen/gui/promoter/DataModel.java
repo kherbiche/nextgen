@@ -23,9 +23,9 @@ package dz.ummto.ansejnextgen.gui.promoter;
  */
 public class DataModel {
 
-	private String firstname;
-	private String lastname;
-	private String birthdate;
+	private String firstName;
+	private String lastName;
+	private String birthDate;
 	private String gender;
 	private String father;
 	private String mother;
@@ -53,9 +53,9 @@ public class DataModel {
 
 	public DataModel(String firstname, String lastname, String birthdate, String father, String mother) {
 		super();
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.birthdate = birthdate;
+		this.firstName = firstname;
+		this.lastName = lastname;
+		this.birthDate = birthdate;
 		this.father = father;
 		this.mother = mother;
 	}
@@ -213,27 +213,27 @@ public class DataModel {
 	}
 
 	public String getFirstname() {
-		return firstname;
+		return firstName;
 	}
 
 	public void setFirstname(String firstname) {
-		this.firstname = firstname;
+		this.firstName = firstname;
 	}
 
 	public String getLastname() {
-		return lastname;
+		return lastName;
 	}
 
 	public void setLastname(String lastname) {
-		this.lastname = lastname;
+		this.lastName = lastname;
 	}
 
 	public String getBirthdate() {
-		return birthdate;
+		return birthDate;
 	}
 
 	public void setBirthdate(String birthdate) {
-		this.birthdate = birthdate;
+		this.birthDate = birthdate;
 	}
 
 	public String getFather() {
