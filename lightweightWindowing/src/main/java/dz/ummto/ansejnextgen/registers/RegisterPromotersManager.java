@@ -55,6 +55,7 @@ public class RegisterPromotersManager implements IDelegate {
 			try {
 				/** Class cls = Class.forName("dz.ummto.ansejnextgen.gui.promoter.DataModel"); */
 				Method methods[] = Class.forName("dz.ummto.ansejnextgen.gui.promoter.DataModel").getDeclaredMethods();
+				logger.info("-- number of methods= "+methods.length);
 
 				for (Iterator<JsonNode> iterator = arrynode.elements(); iterator.hasNext();) {
 					JsonNode jsonnode = iterator.next();
@@ -63,16 +64,18 @@ public class RegisterPromotersManager implements IDelegate {
 					for (Iterator<String> itera = jsonnode.fieldNames(); itera.hasNext();) {
 						String field = itera.next();
 						for (int i = 0; i < methods.length; i++) {
+
 							String methodname = methods[i].getName();
 							String submethodname = methodname.substring(3);
-							if(field.toLowerCase().equals(submethodname.toLowerCase())) {
-								logger.info("-- "+field+" == "+submethodname);
-								methods[i].invoke(dm, jsonnode.get(field).toString());
-							}
-							if (jsonnode.get(field).isContainerNode()) {
-								logger.info("-- "+field+" is ContainerNode: " + jsonnode.get(field));
-								jsonnode.get(field);
-							}
+
+							if(methods[i].getParameterTypes().length == 1 && field.toLowerCase().equals(submethodname.toLowerCase())) {
+								logger.info("-- methodName: "+methodname+" ** "+field+" == "+submethodname);
+								methods[i].invoke(dm, ""+jsonnode.get(field));
+							} else
+								if (jsonnode.get(field).isContainerNode()) {
+									logger.info("-- "+field+" is ContainerNode: " + jsonnode.get(field));
+									logger.info("-- findParent(): "+jsonnode.get(field).findParent(submethodname));
+								}
 						}
 					}
 				}
