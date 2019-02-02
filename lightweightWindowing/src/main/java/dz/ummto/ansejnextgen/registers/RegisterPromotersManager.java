@@ -6,6 +6,7 @@ package dz.ummto.ansejnextgen.registers;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Arrays;
 import java.util.Iterator;
 
 import javax.ws.rs.client.WebTarget;
@@ -55,6 +56,8 @@ public class RegisterPromotersManager implements IDelegate {
 			try {
 				/** Class cls = Class.forName("dz.ummto.ansejnextgen.gui.promoter.DataModel"); */
 				Method methods[] = Class.forName("dz.ummto.ansejnextgen.gui.promoter.DataModel").getDeclaredMethods();
+				logger.info("-- number of methods= "+methods.length);
+				methods = Arrays.stream(methods).filter(x -> x.getName().startsWith("Set")).toArray(Method[]:: new);
 				logger.info("-- number of methods= "+methods.length);
 
 				for (Iterator<JsonNode> iterator = arrynode.elements(); iterator.hasNext();) {
