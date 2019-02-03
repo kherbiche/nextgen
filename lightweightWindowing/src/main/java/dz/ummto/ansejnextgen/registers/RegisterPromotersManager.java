@@ -58,7 +58,6 @@ public class RegisterPromotersManager implements IDelegate {
 			try {
 				/** Class cls = Class.forName("dz.ummto.ansejnextgen.gui.promoter.DataModel"); */
 				Method methods[] = Class.forName("dz.ummto.ansejnextgen.gui.promoter.DataModel").getDeclaredMethods();
-				logger.info("-- number of methods= "+methods.length);
 				methods = Arrays.stream(methods).filter(x -> x.getName().startsWith("set")).toArray(Method[]:: new);
 				logger.info("-- number of methods= "+methods.length);
 
@@ -81,19 +80,18 @@ public class RegisterPromotersManager implements IDelegate {
 							if(field.equals(submethodname)) {
 								//logger.info("-- methodName: "+methodname+" ** "+field+" == "+submethodname);
 								methods[i].invoke(dm, ""+jsonnode.get(field));
-								list.add(dm);
 							} else
 								if (jsonnode.get(field).isContainerNode() && jsonnode.get(field).findParent(submethodname)!= null) {
 									//logger.info("-- methodName: "+methodname +" ** "+field+" is ContainerNode: " + jsonnode.get(field));
 									//logger.info("-- findParent(): "+jsonnode.get(field).findParent(submethodname).get(submethodname));
 									methods[i].invoke(dm, ""+jsonnode.get(field).findParent(submethodname).get(submethodname));
-									list.add(dm);
-									
 								}
 						}
 					}
+					list.add(dm);
 				}
-				logger.info("-- List<DataModel>.size():"+list.size());
+
+				return list;
 			} catch (ClassNotFoundException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 				logger.error("-- error Java Reflect: " + e.getMessage());
 			}
