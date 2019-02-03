@@ -6,8 +6,10 @@ package dz.ummto.ansejnextgen.registers;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.HttpHeaders;
@@ -57,9 +59,10 @@ public class RegisterPromotersManager implements IDelegate {
 				/** Class cls = Class.forName("dz.ummto.ansejnextgen.gui.promoter.DataModel"); */
 				Method methods[] = Class.forName("dz.ummto.ansejnextgen.gui.promoter.DataModel").getDeclaredMethods();
 				logger.info("-- number of methods= "+methods.length);
-				methods = Arrays.stream(methods).filter(x -> x.getName().startsWith("Set")).toArray(Method[]:: new);
+				methods = Arrays.stream(methods).filter(x -> x.getName().startsWith("set")).toArray(Method[]:: new);
 				logger.info("-- number of methods= "+methods.length);
 
+				List<DataModel> list = new ArrayList<DataModel>();
 				for (Iterator<JsonNode> iterator = arrynode.elements(); iterator.hasNext();) {
 					JsonNode jsonnode = iterator.next();
 					// logger.info("-- jsonnode: "+jsonnode);
@@ -69,19 +72,28 @@ public class RegisterPromotersManager implements IDelegate {
 						for (int i = 0; i < methods.length; i++) {
 
 							String methodname = methods[i].getName();
-							String submethodname = methodname.substring(3);
+							/**
+							 * @param submethodname
+							 * setNumAddress -> setnumAddress -> numAddress
+							 */
+							String submethodname = methodname.replace(methodname.charAt(3), Character.toLowerCase(methodname.charAt(3))).substring(3);
 
-							if(methods[i].getParameterTypes().length == 1 && field.toLowerCase().equals(submethodname.toLowerCase())) {
-								logger.info("-- methodName: "+methodname+" ** "+field+" == "+submethodname);
+							if(field.equals(submethodname)) {
+								//logger.info("-- methodName: "+methodname+" ** "+field+" == "+submethodname);
 								methods[i].invoke(dm, ""+jsonnode.get(field));
+								list.add(dm)
 							} else
-								if (jsonnode.get(field).isContainerNode()) {
-									logger.info("-- "+field+" is ContainerNode: " + jsonnode.get(field));
-									logger.info("-- findParent(): "+jsonnode.get(field).findParent(submethodname));
+								if (jsonnode.get(field).isContainerNode() && jsonnode.get(field).findParent(submethodname)!= null) {
+									//logger.info("-- methodName: "+methodname +" ** "+field+" is ContainerNode: " + jsonnode.get(field));
+									//logger.info("-- findParent(): "+jsonnode.get(field).findParent(submethodname).get(submethodname));
+									methods[i].invoke(dm, ""+jsonnode.get(field).findParent(submethodname).get(submethodname));
+									list.add(dm);
+									
 								}
 						}
 					}
 				}
+				logger.info("-- List<DataModel>.size():"+list.size());
 			} catch (ClassNotFoundException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 				logger.error("-- error Java Reflect: " + e.getMessage());
 			}

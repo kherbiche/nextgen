@@ -79,11 +79,11 @@ public class PromoTableModel extends AbstractTableModel {
 
 		switch (columnIndex) {
 		case 0:
-			return data.get(rowIndex).getFirstname();
+			return data.get(rowIndex).getFirstName();
 		case 1:
-			return data.get(rowIndex).getLastname();
+			return data.get(rowIndex).getLastName();
 		case 2:
-			return data.get(rowIndex).getBirthdate();
+			return data.get(rowIndex).getBirthDate();
 		case 3:
 			return data.get(rowIndex).getFather();
 		case 4:
