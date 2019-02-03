@@ -81,7 +81,7 @@ public class RegisterPromotersManager implements IDelegate {
 							if(field.equals(submethodname)) {
 								//logger.info("-- methodName: "+methodname+" ** "+field+" == "+submethodname);
 								methods[i].invoke(dm, ""+jsonnode.get(field));
-								list.add(dm)
+								list.add(dm);
 							} else
 								if (jsonnode.get(field).isContainerNode() && jsonnode.get(field).findParent(submethodname)!= null) {
 									//logger.info("-- methodName: "+methodname +" ** "+field+" is ContainerNode: " + jsonnode.get(field));
