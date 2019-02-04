@@ -35,48 +35,23 @@ public class PromoTableModel extends AbstractTableModel {
 	private final List<DataModel> data = new ArrayList<DataModel>();
 
 	public PromoTableModel() {
-		/*
-		data.add(new DataModel("first1", "last1", "12/12/1990", "fa", "mo"));
-		data.add(new DataModel("first2", "last2", "12/12/1990", "fa", "mo"));
-		data.add(new DataModel("first3", "last3", "12/12/1990", "fa", "mo"));
-		*/
+
 		if (SwingUtilities.isEventDispatchThread()) {
 			logger.info("-- PromoTableModel() in the EDT");
 		} else {
 			logger.info("-- PromoTableModel() out of the EDT");
 		}
-		new SwingWorker<Object, Void>() {
 
-			@Override
-			protected Object doInBackground() throws Exception {
-				RegisterDelegate rd = new RegisterDelegate();
-				rd.setRegisterType("PromotersManager");
-				return new Client(rd).doTask("");
-			}
+		RegisterDelegate rd = new RegisterDelegate();
+		rd.setRegisterType("PromotersManager");
 
-			@Override
-			protected void done() {
-				try {
-					if(get().getClass().equals(ArrayList.class) ) {
-						logger.info("-- Swing Worker get() = List size="+((ArrayList<DataModel>) get()).size());
-						for(DataModel dm: (ArrayList<DataModel>) get() ) {
-							logger.info("-- lastName="+dm.getLastName());
-							data.add(dm);
-						}
-					} else 
-						if(get().getClass().equals(Integer.class)) {
-							logger.info("-- Swing Worker get()=" + ((Integer) get()).intValue());
-						}
-				} catch (Exception e) {
-					logger.info("-- error"+ e.getMessage());
-				}
-			}
-		}.execute();
+		for(DataModel dm: (ArrayList<DataModel>) new Client(rd).doTask("")) {
+			data.add(dm);
+		}
 	}
 
 	@Override
 	public int getRowCount() {
-		logger.info("-- getRowCount():"+data.size());
 		return data.size();
 	}
 
@@ -87,7 +62,6 @@ public class PromoTableModel extends AbstractTableModel {
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		logger.info("-- getValueAt():"+data.size());
 		switch (columnIndex) {
 		case 0:
 			return data.get(rowIndex).getFirstName();

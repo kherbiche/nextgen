@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingUtilities;
+import javax.swing.SwingWorker;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -68,20 +69,30 @@ public class PromotersManager extends JPanel {
 		boutonsPanel.add(new JButton(new RemoveRowsAction()));
 
 		/* TODO this must be run on SwingWorker */
-		tableModel = new PromoTableModel();
-		/* end */
-		table = new JTable(tableModel);
-		table.setAutoCreateRowSorter(true);
-		table.setFont(new java.awt.Font(Font.DIALOG, 1, 10));
+		new SwingWorker<Void, Void>() {
 
-		JScrollPane sp = new JScrollPane(table);
-		sp.setBounds(4, 14, 692, 230);
+			@Override
+			protected Void doInBackground() throws Exception {
+				tableModel = new PromoTableModel();
+				return null;
+			}
 
-		tablePanel.add(sp, null);
+			@Override
+			protected void done() {
+				table = new JTable(tableModel);
+				table.setAutoCreateRowSorter(true);
+				table.setFont(new java.awt.Font(Font.DIALOG, 1, 10));
 
-		this.add(tablePanel, null);
-		this.add(boutonsPanel, null);
-		
+				JScrollPane sp = new JScrollPane(table);
+				sp.setBounds(4, 14, 692, 230);
+
+				tablePanel.add(sp, null);
+
+				add(tablePanel, null);
+				add(boutonsPanel, null);
+			}
+		}.execute();
+
 	}
 
 	private class AddRowsAction extends AbstractAction {
