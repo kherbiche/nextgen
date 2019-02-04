@@ -90,8 +90,8 @@ public class RegisterPromotersManager implements IDelegate {
 					}
 					list.add(dm);
 				}
-
 				return list;
+
 			} catch (ClassNotFoundException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 				logger.error("-- error Java Reflect: " + e.getMessage());
 			}
