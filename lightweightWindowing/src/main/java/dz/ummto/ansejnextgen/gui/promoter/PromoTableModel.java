@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.SwingUtilities;
-import javax.swing.SwingWorker;
 import javax.swing.table.AbstractTableModel;
 
 import org.apache.commons.logging.Log;
@@ -31,9 +30,11 @@ public class PromoTableModel extends AbstractTableModel {
 
 	private static final Log logger = LogFactory.getLog(PromoTableModel.class);
 
-	private final String[] header = {"firstname", "lastname", "birth", "father", "mother"};
+	private final String[] header = {"firstname", "lastname", "gender", "birth", "father", "mother", "birthCertNum", "numAddress", "typeAddress",
+			"streetName", "city", "zipCode", "country"};
 	private final List<DataModel> data = new ArrayList<DataModel>();
 
+	@SuppressWarnings("unchecked")
 	public PromoTableModel() {
 
 		if (SwingUtilities.isEventDispatchThread()) {
@@ -68,11 +69,27 @@ public class PromoTableModel extends AbstractTableModel {
 		case 1:
 			return data.get(rowIndex).getLastName();
 		case 2:
-			return data.get(rowIndex).getBirthDate();
+			return data.get(rowIndex).getGender();
 		case 3:
-			return data.get(rowIndex).getFather();
+			return data.get(rowIndex).getBirthDate();
 		case 4:
+			return data.get(rowIndex).getFather();
+		case 5:
 			return data.get(rowIndex).getMother();
+		case 6:
+			return data.get(rowIndex).getBirthCertNum();
+		case 7:
+			return data.get(rowIndex).getNumAddress();
+		case 8:
+			return data.get(rowIndex).getTypeAddress();
+		case 9:
+			return data.get(rowIndex).getStreetName();
+		case 10:
+			return data.get(rowIndex).getCity();
+		case 11:
+			return data.get(rowIndex).getZipCode();
+		case 12:
+			return data.get(rowIndex).getCountry();
 		default:
 			return null;
 		}
