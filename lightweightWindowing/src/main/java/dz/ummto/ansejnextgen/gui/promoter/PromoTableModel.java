@@ -62,6 +62,11 @@ public class PromoTableModel extends AbstractTableModel {
 	}
 
 	@Override
+	public String getColumnName(int columnIndex) {
+		return header[columnIndex];
+	}
+
+	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		switch (columnIndex) {
 		case 0:
