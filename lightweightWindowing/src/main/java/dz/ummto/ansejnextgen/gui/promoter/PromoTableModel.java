@@ -134,6 +134,59 @@ public class PromoTableModel extends AbstractTableModel {
 		}
 	}
 
+	@Override
+	public boolean isCellEditable(int rowIndex, int colIndex) {
+		switch (colIndex) {
+		case 0:
+			return false;
+		case 1:
+			return false;
+		case 2:
+			return false;
+		case 3:
+			return false;
+		default:
+			return true;
+		}
+	}
+
+	@Override
+	public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+
+		if(aValue != null){
+			DataModel dm = data.get(rowIndex);
+			switch(columnIndex){
+			case 4:
+				dm.setFather((String) aValue);
+				break;
+			case 5:
+				dm.setMother((String) aValue);
+				break;
+			case 6:
+				dm.setBirthCertNum((String) aValue);
+				break;
+			case 7:
+				dm.setNumAddress((String) aValue);
+				break;
+			case 8:
+				dm.setTypeAddress((String) aValue);
+				break;
+			case 9:
+				dm.setStreetName((String) aValue);
+				break;
+			case 10:
+				dm.setCity((String) aValue);
+				break;
+			case 11:
+				dm.setZipCode((String) aValue);
+				break;
+			case 12:
+				dm.setCountry((String) aValue);
+				break;
+			}
+		}
+	}
+
 	public void addData(DataModel item) {
 		data.add(item);
 		fireTableRowsInserted(data.size() - 1, data.size() - 1);
