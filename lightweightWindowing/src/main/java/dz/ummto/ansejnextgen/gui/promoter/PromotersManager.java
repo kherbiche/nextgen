@@ -79,9 +79,12 @@ public class PromotersManager extends JPanel {
 
 			@Override
 			protected void done() {
+
 				table = new JTable(tableModel);
 				table.setAutoCreateRowSorter(true);
 				table.setFont(new java.awt.Font(Font.DIALOG, 1, 10));
+				table.getColumnModel().getColumn(2).setCellRenderer(new GenderCellRenderer());
+				table.getColumnModel().getColumn(12).setCellRenderer(new CountryCellRenderer());
 
 				JScrollPane sp = new JScrollPane(table);
 				sp.setBounds(4, 14, 692, 230);
