@@ -163,10 +163,10 @@ public class PromoTableModel extends AbstractTableModel {
 				dm.setMother((String) aValue);
 				break;
 			case 6:
-				dm.setBirthCertNum((String) aValue);
+				dm.setBirthCertNum(String.valueOf((int) aValue));
 				break;
 			case 7:
-				dm.setNumAddress((String) aValue);
+				dm.setNumAddress(String.valueOf((int) aValue));
 				break;
 			case 8:
 				dm.setTypeAddress((String) aValue);
@@ -178,7 +178,7 @@ public class PromoTableModel extends AbstractTableModel {
 				dm.setCity((String) aValue);
 				break;
 			case 11:
-				dm.setZipCode((String) aValue);
+				dm.setZipCode(String.valueOf((int) aValue));
 				break;
 			case 12:
 				dm.setCountry((String) aValue);
