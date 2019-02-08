@@ -10,7 +10,6 @@ import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -53,20 +52,22 @@ public class PromotersManager extends JPanel {
 
 		this.setLayout(null);
 
-		JPanel tablePanel = new JPanel();
-		tablePanel.setBorder(BorderFactory.createTitledBorder("Promoters manager"));
-		tablePanel.setFont(new java.awt.Font(Font.DIALOG, 1, 14));
-		tablePanel.setBackground(new Color(0, 0, 0, 230));
-		tablePanel.setBounds(new Rectangle(2, 0, 700, 350));
-		tablePanel.setLayout(null);
+		JButton btnAdd = new JButton("Add");
+		btnAdd.setBackground(Color.ORANGE);
+		btnAdd.setBounds(new Rectangle(550, 400, 100, 22));
+		btnAdd.setFont(new java.awt.Font(Font.DIALOG, 1, 11));
+		btnAdd.setForeground(Color.gray);
+		btnAdd.addActionListener(new AddRowsAction());
 
-		JPanel boutonsPanel = new JPanel();
-		boutonsPanel.setFont(new java.awt.Font(Font.DIALOG, 1, 14));
-		boutonsPanel.setBackground(new Color(0, 0, 0, 230));
-		boutonsPanel.setBounds(new Rectangle(2, 370, 700, 50));
-		boutonsPanel.setLayout(null);
-		boutonsPanel.add(new JButton(new AddRowsAction()));
-		boutonsPanel.add(new JButton(new RemoveRowsAction()));
+		JButton btnRmv = new JButton("Remove");
+		btnRmv.setBackground(Color.GRAY);
+		btnRmv.setBounds(new Rectangle(50, 400, 100, 22));
+		btnRmv.setFont(new java.awt.Font(Font.DIALOG, 1, 11));
+		btnRmv.setForeground(Color.yellow);
+		btnRmv.addActionListener(new RemoveRowsAction());
+
+		this.add(btnAdd, null);
+		this.add(btnRmv, null);
 
 		/* TODO this must be run on SwingWorker */
 		new SwingWorker<Void, Void>() {
@@ -87,12 +88,9 @@ public class PromotersManager extends JPanel {
 				table.getColumnModel().getColumn(12).setCellRenderer(new CountryCellRenderer());
 
 				JScrollPane sp = new JScrollPane(table);
-				sp.setBounds(4, 14, 692, 230);
+				sp.setBounds(2, 14, 696, 150);
 
-				tablePanel.add(sp, null);
-
-				add(tablePanel, null);
-				add(boutonsPanel, null);
+				add(sp, null);
 			}
 		}.execute();
 
