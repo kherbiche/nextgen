@@ -10,6 +10,7 @@ import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -19,6 +20,8 @@ import javax.swing.SwingWorker;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import dz.ummto.ansejnextgen.IconEnum;
 
 /**
  * The <code>AllPromoters</code> class represents .
@@ -52,18 +55,20 @@ public class PromotersManager extends JPanel {
 
 		this.setLayout(null);
 
-		JButton btnAdd = new JButton("Add");
+		JButton btnAdd = new JButton("Add", new ImageIcon(new ImageIcon(getClass().getResource("/" + IconEnum.ADD + ".png"))
+				.getImage().getScaledInstance(25, 15, java.awt.Image.SCALE_SMOOTH)));
 		btnAdd.setBackground(Color.ORANGE);
 		btnAdd.setBounds(new Rectangle(550, 400, 100, 22));
 		btnAdd.setFont(new java.awt.Font(Font.DIALOG, 1, 11));
 		btnAdd.setForeground(Color.gray);
 		btnAdd.addActionListener(new AddRowsAction());
 
-		JButton btnRmv = new JButton("Remove");
+		JButton btnRmv = new JButton("Remove", new ImageIcon(new ImageIcon(getClass().getResource("/" + IconEnum.DELETE + ".png"))
+				.getImage().getScaledInstance(25, 15, java.awt.Image.SCALE_SMOOTH)));
 		btnRmv.setBackground(Color.GRAY);
 		btnRmv.setBounds(new Rectangle(50, 400, 100, 22));
-		btnRmv.setFont(new java.awt.Font(Font.DIALOG, 1, 11));
-		btnRmv.setForeground(Color.yellow);
+		btnRmv.setFont(new java.awt.Font(Font.DIALOG, 1, 9));
+		btnRmv.setForeground(Color.white);
 		btnRmv.addActionListener(new RemoveRowsAction());
 
 		this.add(btnAdd, null);
