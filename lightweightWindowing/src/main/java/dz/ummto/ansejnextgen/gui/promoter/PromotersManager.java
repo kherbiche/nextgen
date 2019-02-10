@@ -63,7 +63,7 @@ public class PromotersManager extends JPanel {
 		JButton btnAdd = new JButton("Add", new ImageIcon(new ImageIcon(getClass().getResource("/" + IconEnum.ADD + ".png"))
 				.getImage().getScaledInstance(25, 15, java.awt.Image.SCALE_SMOOTH)));
 		btnAdd.setBackground(Color.ORANGE);
-		btnAdd.setBounds(new Rectangle(550, 400, 100, 22));
+		btnAdd.setBounds(new Rectangle(550, 410, 100, 22));
 		btnAdd.setFont(new java.awt.Font(Font.DIALOG, 1, 11));
 		btnAdd.setForeground(Color.gray);
 		btnAdd.addActionListener(new AddRowsAction());
@@ -71,13 +71,22 @@ public class PromotersManager extends JPanel {
 		JButton btnRmv = new JButton("Remove", new ImageIcon(new ImageIcon(getClass().getResource("/" + IconEnum.DELETE + ".png"))
 				.getImage().getScaledInstance(25, 15, java.awt.Image.SCALE_SMOOTH)));
 		btnRmv.setBackground(Color.GRAY);
-		btnRmv.setBounds(new Rectangle(50, 400, 100, 22));
+		btnRmv.setBounds(new Rectangle(50, 410, 100, 22));
 		btnRmv.setFont(new java.awt.Font(Font.DIALOG, 1, 9));
 		btnRmv.setForeground(Color.white);
 		btnRmv.addActionListener(new RemoveRowsAction());
 
+		JButton btnFilter = new JButton("Filter", new ImageIcon(new ImageIcon(getClass().getResource("/" + IconEnum.FILTER + ".png"))
+				.getImage().getScaledInstance(30, 20, java.awt.Image.SCALE_SMOOTH)));
+		btnFilter.setBackground(Color.YELLOW);
+		btnFilter.setBounds(new Rectangle(300, 410, 100, 22));
+		btnFilter.setFont(new java.awt.Font(Font.DIALOG, 1, 10));
+		btnFilter.setForeground(Color.blue);
+		btnFilter.addActionListener(new FilterAction());
+
 		this.add(btnAdd, null);
 		this.add(btnRmv, null);
+		this.add(btnFilter, null);
 
 		/* TODO this must be run on SwingWorker */
 		new SwingWorker<Void, Void>() {
