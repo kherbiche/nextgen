@@ -13,11 +13,14 @@ import java.util.Arrays;
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.RowFilter;
 import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
+import javax.swing.table.TableRowSorter;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -38,6 +41,7 @@ public class PromotersManager extends JPanel {
 
 	private PromoTableModel tableModel;
 	private JTable table;
+	private TableRowSorter<PromoTableModel> sorter;
 
 	public PromotersManager() {
 		Runnable code = new Runnable() {
@@ -88,10 +92,13 @@ public class PromotersManager extends JPanel {
 			protected void done() {
 
 				table = new JTable(tableModel);
-				table.setAutoCreateRowSorter(true);
+				//table.setAutoCreateRowSorter(true);
 				table.setFont(new java.awt.Font(Font.DIALOG, 1, 10));
 				table.getColumnModel().getColumn(2).setCellRenderer(new GenderCellRenderer());
 				table.getColumnModel().getColumn(12).setCellRenderer(new CountryCellRenderer());
+
+				sorter = new TableRowSorter<PromoTableModel>(tableModel);
+				table.setRowSorter(sorter);
 
 				JScrollPane sp = new JScrollPane(table);
 				sp.setBounds(2, 14, 696, 150);
@@ -136,4 +143,15 @@ public class PromotersManager extends JPanel {
 		}
 	}
 
+	private class FilterAction extends AbstractAction {
+
+		private FilterAction() {
+			super("Filter");
+		}
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			String regex = JOptionPane.showInputDialog("Filter:");
+			sorter.setRowFilter(RowFilter.regexFilter(regex, 0));
+		}
+	}
 }
