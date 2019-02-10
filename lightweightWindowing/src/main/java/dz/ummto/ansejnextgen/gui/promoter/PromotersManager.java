@@ -8,6 +8,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
+import java.util.Arrays;
 
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
@@ -122,10 +123,17 @@ public class PromotersManager extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			logger.info("-- RemoveRowsAction.actionPerformed()");
 			int[] selection = table.getSelectedRows();
-			 
-			for(int i = selection.length - 1; i >= 0; i--){
-				tableModel.removeData(selection[i]);
+			int[] modelIndexes = new int[selection.length];
+			
+			for (int i = 0; i < selection.length; i++) {
+				modelIndexes[i] = table.getRowSorter().convertRowIndexToModel(selection[i]);
+			}
+			Arrays.sort(modelIndexes);
+
+			for(int i = modelIndexes.length - 1; i >= 0; i--){
+				tableModel.removeData(modelIndexes[i]);
 			}
 		}
 	}
+
 }
