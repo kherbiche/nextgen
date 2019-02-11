@@ -181,7 +181,9 @@ public class PromotersManager extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			String regex = JOptionPane.showInputDialog("Filter:");
-			sorter.setRowFilter(RowFilter.regexFilter(regex, 0));
+			if (regex != null && !regex.trim().isEmpty()) {
+				sorter.setRowFilter(RowFilter.regexFilter(regex, 0));
+			}
 		}
 	}
 }
