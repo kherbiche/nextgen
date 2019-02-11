@@ -60,13 +60,14 @@ public class PromotersManager extends JPanel {
 
 		this.setLayout(null);
 
-		JButton btnAdd = new JButton("Add", new ImageIcon(new ImageIcon(getClass().getResource("/" + IconEnum.ADD + ".png"))
+		JButton btnEnDis = new JButton("Edit", new ImageIcon(new ImageIcon(getClass().getResource("/" + IconEnum.EDIT + ".png"))
 				.getImage().getScaledInstance(25, 15, java.awt.Image.SCALE_SMOOTH)));
-		btnAdd.setBackground(Color.ORANGE);
-		btnAdd.setBounds(new Rectangle(550, 410, 100, 22));
-		btnAdd.setFont(new java.awt.Font(Font.DIALOG, 1, 11));
-		btnAdd.setForeground(Color.gray);
-		btnAdd.addActionListener(new AddRowsAction());
+		btnEnDis.setBackground(Color.RED);
+		btnEnDis.setBounds(new Rectangle(550, 410, 100, 22));
+		btnEnDis.setFont(new java.awt.Font(Font.DIALOG, 1, 11));
+		btnEnDis.setForeground(Color.gray);
+		btnEnDis.setIconTextGap(0);
+		btnEnDis.addActionListener(new DisEnableAction());
 
 		JButton btnRmv = new JButton("Remove", new ImageIcon(new ImageIcon(getClass().getResource("/" + IconEnum.DELETE + ".png"))
 				.getImage().getScaledInstance(25, 15, java.awt.Image.SCALE_SMOOTH)));
@@ -74,6 +75,7 @@ public class PromotersManager extends JPanel {
 		btnRmv.setBounds(new Rectangle(50, 410, 100, 22));
 		btnRmv.setFont(new java.awt.Font(Font.DIALOG, 1, 9));
 		btnRmv.setForeground(Color.white);
+		btnRmv.setIconTextGap(1);
 		btnRmv.addActionListener(new RemoveRowsAction());
 
 		JButton btnFilter = new JButton("Filter", new ImageIcon(new ImageIcon(getClass().getResource("/" + IconEnum.FILTER + ".png"))
@@ -84,7 +86,7 @@ public class PromotersManager extends JPanel {
 		btnFilter.setForeground(Color.blue);
 		btnFilter.addActionListener(new FilterAction());
 
-		this.add(btnAdd, null);
+		this.add(btnEnDis, null);
 		this.add(btnRmv, null);
 		this.add(btnFilter, null);
 
@@ -109,6 +111,8 @@ public class PromotersManager extends JPanel {
 				sorter = new TableRowSorter<PromoTableModel>(tableModel);
 				table.setRowSorter(sorter);
 
+				table.setEnabled(false);
+
 				JScrollPane sp = new JScrollPane(table);
 				sp.setBounds(2, 14, 696, 150);
 
@@ -118,15 +122,32 @@ public class PromotersManager extends JPanel {
 
 	}
 
-	private class AddRowsAction extends AbstractAction {
+	private class DisEnableAction extends AbstractAction {
 
-		private AddRowsAction() {
-			super("Add row");
+		private DisEnableAction() {
+			super("Enable or Disable JTable");
 		}
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			logger.info("-- AddRowsAction.actionPerformed()");
-			//TODO
+
+			JButton btn = (JButton) e.getSource();
+
+			if (table.isEnabled()) {
+
+				table.setEnabled(false);
+				btn.setText("Edit");
+				btn.setBackground(Color.red);
+				btn.setIcon( new ImageIcon(new ImageIcon(getClass().getResource("/" + IconEnum.EDIT + ".png"))
+				.getImage().getScaledInstance(25, 15, java.awt.Image.SCALE_SMOOTH)));
+
+			} else {
+
+				table.setEnabled(true);
+				btn.setText("Freeze");
+				btn.setBackground(Color.ORANGE);
+				btn.setIcon( new ImageIcon(new ImageIcon(getClass().getResource("/" + IconEnum.FREEZE + ".png"))
+				.getImage().getScaledInstance(25, 15, java.awt.Image.SCALE_SMOOTH)));
+			}
 		}
 	}
 
