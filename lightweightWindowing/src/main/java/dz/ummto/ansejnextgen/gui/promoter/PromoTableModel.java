@@ -158,30 +158,39 @@ public class PromoTableModel extends AbstractTableModel {
 			switch(columnIndex){
 			case 4:
 				dm.setFather((String) aValue);
+				fireTableCellUpdated(rowIndex, columnIndex);
 				break;
 			case 5:
 				dm.setMother((String) aValue);
+				fireTableCellUpdated(rowIndex, columnIndex);
 				break;
 			case 6:
 				dm.setBirthCertNum(String.valueOf((int) aValue));
+				fireTableCellUpdated(rowIndex, columnIndex);
 				break;
 			case 7:
 				dm.setNumAddress(String.valueOf((int) aValue));
+				fireTableCellUpdated(rowIndex, columnIndex);
 				break;
 			case 8:
 				dm.setTypeAddress((String) aValue);
+				fireTableCellUpdated(rowIndex, columnIndex);
 				break;
 			case 9:
 				dm.setStreetName((String) aValue);
+				fireTableCellUpdated(rowIndex, columnIndex);
 				break;
 			case 10:
 				dm.setCity((String) aValue);
+				fireTableCellUpdated(rowIndex, columnIndex);
 				break;
 			case 11:
 				dm.setZipCode(String.valueOf((int) aValue));
+				fireTableCellUpdated(rowIndex, columnIndex);
 				break;
 			case 12:
 				dm.setCountry((String) aValue);
+				fireTableCellUpdated(rowIndex, columnIndex);
 				break;
 			}
 		}
@@ -195,5 +204,9 @@ public class PromoTableModel extends AbstractTableModel {
 	public void removeData(int rowIndex) {
 		data.remove(rowIndex);
 		fireTableRowsDeleted(rowIndex, rowIndex);
+	}
+
+	public DataModel getItemAt(int rowIndex) {
+		return data.get(rowIndex);
 	}
 }

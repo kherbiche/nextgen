@@ -20,6 +20,8 @@ import javax.swing.JTable;
 import javax.swing.RowFilter;
 import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.TableRowSorter;
 
 import org.apache.commons.logging.Log;
@@ -113,6 +115,8 @@ public class PromotersManager extends JPanel {
 
 				table.setEnabled(false);
 
+				tableModel.addTableModelListener(new TabModelListener());
+
 				JScrollPane sp = new JScrollPane(table);
 				sp.setBounds(2, 14, 696, 150);
 
@@ -185,5 +189,20 @@ public class PromotersManager extends JPanel {
 				sorter.setRowFilter(RowFilter.regexFilter(regex, 0));
 			}
 		}
+	}
+
+	private class TabModelListener implements TableModelListener {
+
+		@Override
+		public void tableChanged(TableModelEvent e) {
+
+			if (e.getType() == TableModelEvent.UPDATE) {
+				System.out.println("Cell " + e.getFirstRow() + ", " + e.getColumn() + " changed."
+						+ " The new value: " + tableModel.getValueAt(e.getFirstRow(), e.getColumn()));
+				
+				System.out.println("-- firstName= "+tableModel.getItemAt(e.getFirstRow()).getFirstName());
+			}
+		}
+		
 	}
 }
