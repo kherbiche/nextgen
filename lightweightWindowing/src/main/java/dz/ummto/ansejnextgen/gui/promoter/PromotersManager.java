@@ -9,6 +9,7 @@ import java.awt.Font;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.util.Arrays;
+import java.util.List;
 
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
@@ -28,6 +29,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import dz.ummto.ansejnextgen.IconEnum;
+import dz.ummto.ansejnextgen.registers.Client;
+import dz.ummto.ansejnextgen.registers.RegisterDelegate;
 
 /**
  * The <code>AllPromoters</code> class represents .
@@ -197,10 +200,20 @@ public class PromotersManager extends JPanel {
 		public void tableChanged(TableModelEvent e) {
 
 			if (e.getType() == TableModelEvent.UPDATE) {
-				System.out.println("Cell " + e.getFirstRow() + ", " + e.getColumn() + " changed."
-						+ " The new value: " + tableModel.getValueAt(e.getFirstRow(), e.getColumn()));
-				
-				System.out.println("-- firstName= "+tableModel.getItemAt(e.getFirstRow()).getFirstName());
+
+				List<String> list = Arrays.asList(tableModel.getItemAt(e.getFirstRow()).getFirstName(), tableModel.getItemAt(e.getFirstRow()).getLastName(),
+						tableModel.getItemAt(e.getFirstRow()).getBirthDate(), tableModel.getColumnName(e.getColumn()),
+						tableModel.getValueAt(e.getFirstRow(), e.getColumn()).toString());
+
+				new SwingWorker<Void, Void>() {
+					@Override
+					protected Void doInBackground() throws Exception {
+						RegisterDelegate rd = new RegisterDelegate();
+						rd.setRegisterType("PromotersManager");
+						new Client(rd).doTask(list);
+						return null;
+					}
+				}.execute();
 			}
 		}
 		
