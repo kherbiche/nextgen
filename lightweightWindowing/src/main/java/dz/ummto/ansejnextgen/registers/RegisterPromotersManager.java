@@ -43,20 +43,16 @@ public class RegisterPromotersManager implements IDelegate {
 
 	private static final Log logger = LogFactory.getLog(RegisterPromotersManager.class);
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Object register(Object... args) {
 
 		logger.info("-- RegisterPromotersManager.register(Object... args)");
+
 		final WebTarget target = JaxRsClient.getClient().target(IDelegate.getBaseURI());
 
-		logger.info("-- runtime args[0].getClass():"+args[0].getClass());
-
-		if (args[0].getClass().equals(java.util.Arrays.class)) {
-			logger.info("-- hihi");
-			logger.info("-- ArrayList.size():"+((ArrayList<String>) args[0]).size());
-			for( String str : (ArrayList<String>) args[0] ) {
-				logger.info(str);
-			}
+		if (args[0].getClass().equals(ArrayList.class)) {
+			logger.info("-- /rest/");
 		}
 
 		if (args[0].getClass().equals(String.class)) {

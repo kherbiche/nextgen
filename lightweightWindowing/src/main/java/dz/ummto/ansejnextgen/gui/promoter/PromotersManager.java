@@ -8,6 +8,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -201,9 +202,12 @@ public class PromotersManager extends JPanel {
 
 			if (e.getType() == TableModelEvent.UPDATE) {
 
-				List<String> list = Arrays.asList(tableModel.getItemAt(e.getFirstRow()).getFirstName(), tableModel.getItemAt(e.getFirstRow()).getLastName(),
-						tableModel.getItemAt(e.getFirstRow()).getBirthDate(), tableModel.getColumnName(e.getColumn()),
-						tableModel.getValueAt(e.getFirstRow(), e.getColumn()).toString());
+				List<String> list = new ArrayList<String>();
+				list.add(tableModel.getItemAt(e.getFirstRow()).getFirstName());
+				list.add(tableModel.getItemAt(e.getFirstRow()).getLastName());
+				list.add(tableModel.getItemAt(e.getFirstRow()).getBirthDate());
+				list.add(tableModel.getColumnName(e.getColumn()));
+				list.add(tableModel.getValueAt(e.getFirstRow(), e.getColumn()).toString());
 
 				new SwingWorker<Void, Void>() {
 					@Override
