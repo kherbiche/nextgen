@@ -25,4 +25,24 @@
 		</properties>
 	</persistence-unit>
 
+	<persistence-unit name="ansePersiUnitH2" transaction-type="RESOURCE_LOCAL">
+		<shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
+		<properties>
+			<property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:ansej;DB_CLOSE_DELAY=-1"/>
+			<property name="javax.persistence.jdbc.user" value="sa" />
+			<property name="javax.persistence.jdbc.password" value="" />
+
+			<property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+			<!--property name="hibernate.hbm2ddl.auto" value="create"/-->
+			<property name="javax.persistence.sql-load-script-source" value="META-INF/data.sql"/>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+			<property name="hibernate.show_sql" value="true"/>
+			<property name="hibernate.format_sql" value="true"/>
+			<!--property name="hibernate.use_sql_comments" value="true"/-->
+			<property name="hibernate.cache.use_second_level_cache" value="true"/>
+			<property name="hibernate.cache.region.factory_class" value="org.hibernate.cache.ehcache.EhCacheRegionFactory"/>
+		</properties>
+	</persistence-unit>
+
 </persistence>

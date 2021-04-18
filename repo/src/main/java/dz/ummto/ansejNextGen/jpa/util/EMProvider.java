@@ -48,7 +48,7 @@ public class EMProvider {
 	 * This is the only setting that might need to be changed between applications.
 	 * Otherwise, this class can be dropped into any JPA application.
 	 */
-	private static final String persitenceUnitName = "ansePersiUnit";
+	private static final String persitenceUnitName = "ansePersiUnitH2";
 
 	private static final EntityManagerFactory emf;
 	private static final ThreadLocal<EntityManager> threadLocalEnityManager;
