@@ -41,7 +41,8 @@ public class UndertowServer {
 		logger.info("-- Starting Undertow ...");
 
 		PathHandler path = Handlers.path();
-		server = Undertow.builder().addHttpListener(port, "localhost").setHandler(path).build();
+		// server = Undertow.builder().addHttpListener(port, "localhost").setHandler(path).build();
+		server = Undertow.builder().addHttpListener(port, "0.0.0.0").setHandler(path).build();
 		server.start();
 
 		DeploymentInfo servletBuilder = Servlets
