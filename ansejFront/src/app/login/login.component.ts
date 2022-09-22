@@ -1,3 +1,5 @@
+import { environment } from '../../environments/environment';
+
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
@@ -17,7 +19,8 @@ export class LoginComponent implements OnInit {
   loginAnsej (): void {
 	  let login:any  = (<HTMLInputElement>window.document.getElementById('typeEmailX')).value;
 	  let password:any  = (<HTMLInputElement>window.document.getElementById('typePasswordX')).value;
-	  const url = 'http://192.168.1.109:8089/rest/auth';
+	  const url = environment.baseUrl + '/rest/auth';
+	  //const url = 'http://192.168.1.101:8089/rest/auth';
       //let formData: FormData = new FormData();
       //formData.append('login', login);
       //formData.append('password', password);
