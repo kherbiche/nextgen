@@ -44,7 +44,9 @@ export class LoginComponent implements OnInit {
 	  const options = { headers: headers };
       
       
-      this.http.post(url, postData, options).subscribe();
+      this.http.post(url, postData, options).subscribe(resp => {
+														console.log('token: ',resp)
+														});
 
   }
 
