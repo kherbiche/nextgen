@@ -4,18 +4,13 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>dz.ummto.ansejNextGen</groupId>
-		<artifactId>root</artifactId>
+		<artifactId>registrationApp</artifactId>
 		<version>0.0.1-RELEASE</version>
 	</parent>
 	<artifactId>nextGeneration</artifactId>
+	<name>registration App nextGeneration</name>
 
 	<dependencies>
-		<dependency>
-			<groupId>dz.ummto.ansejNextGen</groupId>
-			<artifactId>logg</artifactId>
-			<version>${project.parent.version}</version>
-			<type>jar</type>
-		</dependency>
 		<dependency>
 			<groupId>dz.ummto.ansejNextGen</groupId>
 			<artifactId>repo</artifactId>

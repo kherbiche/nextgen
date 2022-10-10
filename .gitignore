@@ -33,6 +33,12 @@
 /dist
 /tmp
 /out-tsc
+.browserslistrc
+.editorconfig
+.vscode/
+*/tsconfig.app.json
+*/tsconfig.json
+*/tsconfig.spec.json
 
 # dependencies
 /node_modules

@@ -92,8 +92,8 @@
 
 	<modules>
 		<module>lightweightWindowing</module>
-		<module>nextGeneration</module>
 		<module>logg</module>
-		<module>repo</module>
+		<module>registrationApp</module>
+		<module>eligibilityApp</module>
 	</modules>
 </project>
