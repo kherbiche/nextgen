@@ -7,12 +7,21 @@
 		<artifactId>eligibilityApp</artifactId>
 		<groupId>dz.ummto.ansejNextGen</groupId>
 		<version>0.0.1-RELEASE</version>
+		<relativePath>../pom.xml</relativePath>
 	</parent>
 
 	<artifactId>eligibilityAppService</artifactId>
 	<name>eligibility App service</name>
 
 	<dependencies>
+		<dependency>
+				<groupId>dz.ummto.ansejNextGen</groupId>
+				<artifactId>logg</artifactId>
+			</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
