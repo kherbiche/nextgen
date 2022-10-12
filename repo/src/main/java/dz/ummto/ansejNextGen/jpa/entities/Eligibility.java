@@ -13,6 +13,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Column;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -33,9 +35,12 @@ public class Eligibility {
 	@Column(name = "ID")
 	private Long id;
 	@OneToOne(fetch = FetchType.LAZY)
-    @MapsId
-    @Column(name = "FK_PROMOTERID")
-	private PromoterId promoterId;
+	@JoinColumns({
+		@JoinColumn(name = "FK_LAST_NAME", referencedColumnName="LAST_NAME", insertable = false, updatable = false),
+		@JoinColumn(name = "FK_FIRST_NAME", referencedColumnName="FIRST_NAME", insertable = false, updatable = false),
+		@JoinColumn(name = "FK_BIRTH_DATE", referencedColumnName="BIRTH_DATE", insertable = false, updatable = false)
+	})
+	private Promoter promoter;
 	@Column(name = "DECISION_DATE", length = 10)
 	private String decisionDate;
 	@Column(name = "STATUS")
@@ -54,11 +59,11 @@ public class Eligibility {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public PromoterId getPromoterId() {
-		return promoterId;
+	public Promoter getPromoter() {
+		return promoter;
 	}
-	public void setPromoterId(PromoterId promoterId) {
-		this.promoterId = promoterId;
+	public void setPromoter(Promoter promoter) {
+		this.promoter = promoter;
 	}
 	
 	public String getDecisionDate() {

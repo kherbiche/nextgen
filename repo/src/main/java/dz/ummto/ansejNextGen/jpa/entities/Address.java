@@ -39,6 +39,7 @@ public class Address {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
 	@GenericGenerator(name = "native", strategy = "native")
+	@Column(name = "ID")
 	private Long id;
 
 	@Column(name = "NUM_ADDRESS", nullable = false, length = 4)
