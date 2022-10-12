@@ -94,6 +94,7 @@
 		<module>lightweightWindowing</module>
 		<module>logg</module>
 		<module>registrationApp</module>
+		<module>repo</module>
 		<module>eligibilityApp</module>
 	</modules>
 </project>

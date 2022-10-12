@@ -26,7 +26,6 @@
 	</build>
 	
 	<modules>
-		<module>repo</module>
 		<module>nextGeneration</module>
 	</modules>
 </project>

@@ -4,18 +4,24 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>dz.ummto.ansejNextGen</groupId>
-		<artifactId>registrationApp</artifactId>
+		<artifactId>root</artifactId>
 		<version>0.0.1-RELEASE</version>
 	</parent>
 	
 	<artifactId>repo</artifactId>
-	<name>registration App Repo</name>
+	<name>Common Repo</name>
 
 	<properties>
 		<aspectj.version>1.9.1</aspectj.version>
 	</properties>
 
 	<dependencies>
+		<dependency>
+			<groupId>dz.ummto.ansejNextGen</groupId>
+			<artifactId>logg</artifactId>
+			<version>${project.parent.version}</version>
+			<type>jar</type>
+		</dependency>
 		<dependency>
 			<groupId>org.hibernate.javax.persistence</groupId>
 			<artifactId>hibernate-jpa-2.1-api</artifactId>
