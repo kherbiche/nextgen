@@ -5,7 +5,6 @@
 package dz.ummto.ansejNextGen.jpa.dao.impl;
 
 import dz.ummto.ansejNextGen.jpa.dao.AbstractJpaDao;
-import dz.ummto.ansejNextGen.jpa.dao.IDao;
 import dz.ummto.ansejNextGen.jpa.entities.Address;
 
 /**
