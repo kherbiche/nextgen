@@ -44,11 +44,13 @@ import dz.ummto.ansejNextGen.jpa.dao.impl.AddressDao;
 import dz.ummto.ansejNextGen.jpa.dao.impl.PromoterDao;
 import dz.ummto.ansejNextGen.jpa.dao.impl.UserDao;
 import dz.ummto.ansejNextGen.jpa.dao.impl.UserRoleDao;
+import dz.ummto.ansejNextGen.jpa.dao.impl.EligibilityDao;
 import dz.ummto.ansejNextGen.jpa.entities.Address;
 import dz.ummto.ansejNextGen.jpa.entities.Promoter;
 import dz.ummto.ansejNextGen.jpa.entities.PromoterId;
 import dz.ummto.ansejNextGen.jpa.entities.User;
 import dz.ummto.ansejNextGen.jpa.entities.UserRole;
+import dz.ummto.ansejNextGen.jpa.entities.Eligibility;
 
 /**
  * The <code>DaoFactory</code> interface represents DAO Factory implementation
@@ -78,5 +80,9 @@ public interface DaoFactory {
 
 	public static IDao<Long, UserRole> getUserRoleDao() {
 		return new UserRoleDao();
+	}
+
+	public static IDao<Long, Eligibility> getEligibilityDao() {
+		return new EligibilityDao();
 	}
 }
