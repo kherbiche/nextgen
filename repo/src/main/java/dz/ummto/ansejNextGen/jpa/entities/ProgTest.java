@@ -41,6 +41,8 @@ public class ProgTest {
 		promo.setAnemCard(1515151515);
 		promo.setEducLevel(EducLevel.UNIV);
 		promo.setDegree("ingineer");
+		promo.setExperience("expert");
+		promo.setFamiSitu("celib");
 
 		PromoterId proId2 = new PromoterId("lyes", "kherbiche", "01/01/2018");
 		Promoter promo2 = new Promoter();
@@ -63,7 +65,7 @@ public class ProgTest {
 
 
 		User user = new User();
-		user.setUserName("lyes");
+		user.setUserName("lyess");
 		user.setPassWord("pass1$word?");
 		user.setEnabled(true);
 		UserRole ur1 = new UserRole();
@@ -81,6 +83,21 @@ public class ProgTest {
 		//urDao.save(ur1);
 		//urDao.save(ur2);
 		logger.info("-- Main thread name: "+Thread.currentThread().getName()+" threadId: "+Thread.currentThread().getId());
+		
+		IDao<Long, Eligibility> eDao = DaoFactory.getEligibilityDao();
+		Eligibility e = new Eligibility();
+		Promoter p = new Promoter();
+		PromoterId pid = new PromoterId();
+		pid.setLastName("kh");
+		pid.setFirstName("lys");
+		pid.setBirthDate("12/01/1990");
+		p.setPromoterId(pid);
+		e.setPromoter(p);
+		e.setDecisionDate("13/10/2022");
+		e.setStatus(true);
+		e.setComment("comment");
+		eDao.save(e);
+		logger.info("-- Eligibility saved");
 	}
 
 }

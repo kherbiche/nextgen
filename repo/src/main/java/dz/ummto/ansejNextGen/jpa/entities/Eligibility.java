@@ -76,7 +76,7 @@ public class Eligibility {
 	public boolean getStatus() {
 		return status;
 	}
-	public void SetStatus(boolean status) {
+	public void setStatus(boolean status) {
 		this.status = status;
 	}
 	
