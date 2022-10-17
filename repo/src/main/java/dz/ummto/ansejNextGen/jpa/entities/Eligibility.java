@@ -13,10 +13,15 @@ import javax.persistence.OneToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Column;
 import javax.persistence.FetchType;
+import javax.persistence.CascadeType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 import org.hibernate.annotations.GenericGenerator;
+
+import dz.ummto.ansejNextGen.jpa.dao.AbstractJpaDao;
 
 /**
  * The <code>Eligibility</code> class represents
@@ -27,6 +32,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "ELIGIBILITY")
+@NamedQueries({ @NamedQuery(name = AbstractJpaDao.FIND_ALL+ "Eligibility", query = "select e from Eligibility e") })
 public class Eligibility {
 
 	@Id
@@ -34,11 +40,13 @@ public class Eligibility {
 	@GenericGenerator(name = "native", strategy = "native")
 	@Column(name = "ID")
 	private Long id;
+	/*, insertable = false, updatable = false, nullable = false*/
+	/*, cascade = CascadeType.ALL*/
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumns({
-		@JoinColumn(name = "FK_LAST_NAME", referencedColumnName="LAST_NAME", insertable = false, updatable = false),
-		@JoinColumn(name = "FK_FIRST_NAME", referencedColumnName="FIRST_NAME", insertable = false, updatable = false),
-		@JoinColumn(name = "FK_BIRTH_DATE", referencedColumnName="BIRTH_DATE", insertable = false, updatable = false)
+		@JoinColumn(name = "FK_LAST_NAME", referencedColumnName="LAST_NAME"),
+		@JoinColumn(name = "FK_FIRST_NAME", referencedColumnName="FIRST_NAME"),
+		@JoinColumn(name = "FK_BIRTH_DATE", referencedColumnName="BIRTH_DATE")
 	})
 	private Promoter promoter;
 	@Column(name = "DECISION_DATE", length = 10)

@@ -39,7 +39,7 @@ import dz.ummto.ansejNextGen.jpa.dao.AbstractJpaDao;
 
 @Entity
 @Table(name = "PROMOTER")
-@NamedQueries({ @NamedQuery(name = AbstractJpaDao.FIND_ALL, query = "select p from Promoter p") })
+@NamedQueries({ @NamedQuery(name = AbstractJpaDao.FIND_ALL + "Promoter", query = "select p from Promoter p") })
 public class Promoter {
 
 	@EmbeddedId
