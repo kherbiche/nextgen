@@ -32,7 +32,11 @@ import dz.ummto.ansejNextGen.jpa.dao.AbstractJpaDao;
 
 @Entity
 @Table(name = "ELIGIBILITY")
-@NamedQueries({ @NamedQuery(name = AbstractJpaDao.FIND_ALL+ "Eligibility", query = "select e from Eligibility e") })
+@NamedQueries({
+	@NamedQuery(name = AbstractJpaDao.FIND_ALL+ "Eligibility", query = "select e from Eligibility e"),
+	@NamedQuery(name = AbstractJpaDao.FIND + "Eligibility", query = "select e from Eligibility e where e.promoter.promoterId.firstName = ?1" +
+		 " and e.promoter.promoterId.lastName = ?2 and e.promoter.promoterId.birthDate = ?3")
+	})
 public class Eligibility {
 
 	@Id
