@@ -32,5 +32,7 @@ public interface IDao<K, E> {
 
 	List<E> findAll();
 
+	List<E> find(E entity);
+
 	void closeResource();
 }
