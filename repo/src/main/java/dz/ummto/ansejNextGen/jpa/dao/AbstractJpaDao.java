@@ -5,6 +5,7 @@
 package dz.ummto.ansejNextGen.jpa.dao;
 
 import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -29,8 +30,24 @@ public abstract class AbstractJpaDao<K, E> implements IDao<K, E> {
 
 	protected static final Log logger = LogFactory.getLog(AbstractJpaDao.class);
 	public static final String FIND_ALL = "Entity.findAll";
+	public static final String FIND = "Entity.find";
 	protected Class<E> entityClass;
 
+	/**
+	 * @see https://stackoverflow.com/questions/17841688/figure-out-t-class-without-passing-a-classt-parameter
+	 */
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//
+	// This Constructor program utilizes Java Reflection, which it initializes 
+	// to get the Type of generic param ES.
+	//
+	// The example uses the native JSSE provider, regardless of the
+	// properties specified by the java.security file.
+	//
+	// More info:
+	// @see https://stackoverflow.com/questions/17841688/figure-out-t-class-without-passing-a-classt-parameter
+	//
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	@SuppressWarnings("unchecked")
 	/* @PostConstruct */
 	public AbstractJpaDao() {
@@ -38,6 +55,7 @@ public abstract class AbstractJpaDao<K, E> implements IDao<K, E> {
 		ParameterizedType genericSuperclass = (ParameterizedType) getClass().getGenericSuperclass();
 		this.entityClass = (Class<E>) genericSuperclass.getActualTypeArguments()[1];
 	}
+
 
 	@Override
 	public E save(final E entity) {
@@ -100,7 +118,14 @@ public abstract class AbstractJpaDao<K, E> implements IDao<K, E> {
 	public List<E> findAll() {
 		logger.info("-- AbstractJpaDao findAll() methode");
 		logger.info("-- AbstractJpaDao threadName: "+Thread.currentThread().getName()+" threadId: "+Thread.currentThread().getId());
-		return EMProvider.getEntityManager().createNamedQuery(AbstractJpaDao.FIND_ALL).getResultList();
+		return EMProvider.getEntityManager().createNamedQuery(AbstractJpaDao.FIND_ALL + entityClass.getSimpleName()).getResultList();
+	}
+
+	@Override
+	public List<E> find(final E entity) {
+		logger.info("-- AbstractJpaDao find(E entity) methode");
+		logger.info("-- AbstractJpaDao threadName: "+Thread.currentThread().getName()+" threadId: "+Thread.currentThread().getId());
+		return EMProvider.getEntityManager().createNamedQuery(AbstractJpaDao.FIND + entityClass.getSimpleName()).getResultList();
 	}
 
 	@Override
