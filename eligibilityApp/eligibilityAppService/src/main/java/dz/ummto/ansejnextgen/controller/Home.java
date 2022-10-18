@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import dz.ummto.ansejNextGen.jpa.dao.DaoFactory;
 import dz.ummto.ansejNextGen.jpa.dao.IDao;
@@ -126,7 +127,7 @@ public class Home {
 	}
 
 	/**
-	 * curl -X PATCH http://localhost:8088/rest/eligibility/1 -d '{"decisionDate":"18/10/2022","status":"false","comment":"UpDate comment"}'
+	 * curl -X PATCH http://localhost:8088/rest/eligibility/1 -H "Content-Type:application/json" -d '{"decisionDate":"18/10/2022","status":"false","comment":"UpDate comment"}'
 	 */
 	@PatchMapping("/eligibility/{id}")
 	public void patchEligibility(@PathVariable("id") Long id, @RequestBody Map<String, String> patchMap) {
@@ -142,6 +143,43 @@ public class Home {
 				e.setComment(patchMap.get("comment"));
 			if(patchMap.containsKey("status") && !patchMap.get("status").trim().isEmpty())
 				e.setStatus(patchMap.get("status").equals("true") ? true : false);
+			
+			eDao.update(e);
+		} finally {
+			eDao.closeResource();
+		}
+	}
+	
+	/**
+	 * curl -X PUT http://localhost:8088/rest/eligibility?firstName=first2&lastName=last2&birthDate=13/12/1988 -d '{"decisionDate":"18/10/2022","status":"false","comment":"UpDated comment"}'
+	 */
+	@PutMapping("/eligibility")
+	public void upDateEligibility(@RequestBody Map<String, String> putMap, 
+					@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName, @RequestParam("birthDate") String birthDate) {
+		logger.info("--- URI: PUT: /rest/eligibility/="+firstName+"&lastName="+lastName+"&birthDate="+birthDate);
+		
+		IDao<Long, Eligibility> eDao = DaoFactory.getEligibilityDao();
+		Eligibility e = new Eligibility();
+		try {
+			Promoter p = new Promoter();
+			PromoterId pid = new PromoterId();
+			
+			pid.setLastName(lastName);
+			pid.setFirstName(firstName);
+			pid.setBirthDate(birthDate);
+			
+			p.setPromoterId(pid);
+			
+			e.setPromoter(p);
+			
+			e = eDao.find(e).get(0);
+
+			if(putMap.containsKey("decisionDate") && !putMap.get("decisionDate").trim().isEmpty())
+				e.setDecisionDate(putMap.get("decisionDate"));
+			if(putMap.containsKey("comment") && !putMap.get("comment").trim().isEmpty())
+				e.setComment(putMap.get("comment"));
+			if(putMap.containsKey("status") && !putMap.get("status").trim().isEmpty())
+				e.setStatus(putMap.get("status").equals("true") ? true : false);
 			
 			eDao.update(e);
 		} finally {
