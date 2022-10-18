@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PatchMapping;
 
 import dz.ummto.ansejNextGen.jpa.dao.DaoFactory;
 import dz.ummto.ansejNextGen.jpa.dao.IDao;
@@ -38,7 +39,8 @@ public class Home {
 
 	/**
 	 * curl -X POST localhost:8088/rest/eligibility -H "Content-Type:application/json" -d '{"firstName":"first1","lastName":"last1","birthDate":"12/12/1989", "status":"true","decisionDate":"14/10/2022", "comment":"noComment"}'
-	 * 
+	 * curl -X POST localhost:8088/rest/eligibility -H "Content-Type:application/json" -d '{"firstName":"first2","lastName":"last2","birthDate":"13/12/1988", "status":"true","decisionDate":"14/10/2022", "comment":"noComment"}'
+	 * curl -X POST localhost:8088/rest/eligibility -H "Content-Type:application/json" -d '{"firstName":"first3","lastName":"last3","birthDate":"14/12/1978", "status":"true","decisionDate":"14/10/2022", "comment":"noComment"}'
 	 */
 	@PostMapping("/eligibility")
 	public void makeEligible(@RequestBody Map<String, String> eligibilityMap) {
@@ -97,7 +99,7 @@ public class Home {
 	}
 
 	/**
-	 * curl localhost:8088/rest/eligibil?firstName=first1&lastName=last1&birthDate=12/12/1989
+	 * curl "localhost:8088/rest/eligibil?firstName=first2&lastName=last2&birthDate=13/12/1988"
 	 */
 	@GetMapping("/eligibil")
 	public List<Eligibility> getAllEligibil(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName, @RequestParam("birthDate") String birthDate) {
@@ -121,6 +123,30 @@ public class Home {
 		}
 		
 		return eDao.find(e);
+	}
+
+	/**
+	 * curl -X PATCH http://localhost:8088/rest/eligibility/1 -d '{"decisionDate":"18/10/2022","status":"false","comment":"UpDate comment"}'
+	 */
+	@PatchMapping("/eligibility/{id}")
+	public void patchEligibility(@PathVariable("id") Long id, @RequestBody Map<String, String> patchMap) {
+		logger.info("--- URI: PATCH: /rest/eligibility/" + id);
+		
+		IDao<Long, Eligibility> eDao = DaoFactory.getEligibilityDao();
+		try {
+			Eligibility e = eDao.findById(id);
+
+			if(patchMap.containsKey("decisionDate") && !patchMap.get("decisionDate").trim().isEmpty())
+				e.setDecisionDate(patchMap.get("decisionDate"));
+			if(patchMap.containsKey("comment") && !patchMap.get("comment").trim().isEmpty())
+				e.setComment(patchMap.get("comment"));
+			if(patchMap.containsKey("status") && !patchMap.get("status").trim().isEmpty())
+				e.setStatus(patchMap.get("status").equals("true") ? true : false);
+			
+			eDao.update(e);
+		} finally {
+			eDao.closeResource();
+		}
 	}
 	
 	/**
