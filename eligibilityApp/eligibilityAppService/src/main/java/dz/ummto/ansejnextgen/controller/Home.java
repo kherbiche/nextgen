@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 
 import dz.ummto.ansejNextGen.jpa.dao.DaoFactory;
 import dz.ummto.ansejNextGen.jpa.dao.IDao;
@@ -182,6 +183,22 @@ public class Home {
 				e.setStatus(putMap.get("status").equals("true") ? true : false);
 			
 			eDao.update(e);
+		} finally {
+			eDao.closeResource();
+		}
+	}
+
+	/**
+	 * curl -X DELETE http://localhost:8088/rest/eligibility/1
+	 */
+	@DeleteMapping("eligibility/{id}")
+	public void deleteEligibility(@PathVariable Long id) {
+		logger.info("--- URI: DELETE: /rest/eligibility/" + id);
+		IDao<Long, Eligibility> eDao = DaoFactory.getEligibilityDao();
+		Eligibility e = new Eligibility();
+		e.setId(id);
+		try {
+			eDao.remove(e);
 		} finally {
 			eDao.closeResource();
 		}
