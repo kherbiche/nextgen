@@ -4,27 +4,6 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 
-	<persistence-unit name="ansePersiUnit" transaction-type="RESOURCE_LOCAL">
-
-		<shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
-		<properties>
-			<property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
-			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/ansejInstance?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC"/>
-			<property name="javax.persistence.jdbc.user" value="root" />
-			<property name="javax.persistence.jdbc.password" value="becpg" />
-
-			<property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
-			<!--property name="hibernate.hbm2ddl.auto" value="create"/-->
-			<property name="javax.persistence.sql-load-script-source" value="META-INF/data.sql"/>
-			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
-			<property name="hibernate.show_sql" value="true"/>
-			<property name="hibernate.format_sql" value="true"/>
-			<!--property name="hibernate.use_sql_comments" value="true"/-->
-			<property name="hibernate.cache.use_second_level_cache" value="true"/>
-			<property name="hibernate.cache.region.factory_class" value="org.hibernate.cache.ehcache.EhCacheRegionFactory"/>
-		</properties>
-	</persistence-unit>
-
 	<persistence-unit name="ansePersiUnitH2" transaction-type="RESOURCE_LOCAL">
 		<shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
 		<properties>
