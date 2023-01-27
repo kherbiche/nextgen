@@ -4,23 +4,6 @@
  */
 package dz.ummto.ansejnextgen.jaxrs;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.glassfish.jersey.servlet.ServletContainer;
-import org.jboss.weld.environment.servlet.Listener;
-
-import io.undertow.Handlers;
-import io.undertow.Undertow;
-import io.undertow.server.handlers.PathHandler;
-import io.undertow.server.handlers.resource.ClassPathResourceManager;
-import io.undertow.servlet.Servlets;
-import io.undertow.servlet.api.DeploymentInfo;
-import io.undertow.servlet.api.DeploymentManager;
-
-import static io.undertow.servlet.Servlets.listener;
-
-import javax.servlet.ServletException;
-
 /**
  * The <code>UndertowServer</code> class represents the Starter.
  * 
@@ -29,7 +12,7 @@ import javax.servlet.ServletException;
  */
 
 public class UndertowServer {
-
+/*
 	private static final Log logger = LogFactory.getLog(UndertowServer.class);
 
 	private static Undertow server;
@@ -82,5 +65,5 @@ public class UndertowServer {
 	public static void main(String[] args) {
 		startServer(DEFAULT_PORT);
 	}
-
+*/
 }
