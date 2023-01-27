@@ -9,6 +9,7 @@
 	</parent>
 	<artifactId>nextGeneration</artifactId>
 	<name>registration App nextGeneration</name>
+	<packaging>jar</packaging>
 
 	<dependencies>
 		<dependency>
