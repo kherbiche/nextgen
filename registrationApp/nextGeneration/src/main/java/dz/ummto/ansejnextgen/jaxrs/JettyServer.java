@@ -3,6 +3,15 @@
  * <kerbiche@gmail.com>
  */
 package dz.ummto.ansejnextgen.jaxrs;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.servlet.ServletContextHandler;
+import org.eclipse.jetty.servlet.ServletHolder;
+import org.glassfish.jersey.server.ResourceConfig;
+import org.glassfish.jersey.servlet.ServletContainer;
+import org.jboss.weld.environment.servlet.Listener;
 /**
  * The <code>JettyServer</code> class represents 
  * 
@@ -11,7 +20,7 @@ package dz.ummto.ansejnextgen.jaxrs;
  */
 @Deprecated
 public class JettyServer {
-/*
+
 	private static final Log loggerr = LogFactory.getLog(JettyServer.class);
 	private static final int DEFAULT_PORT = 8089;
 	private int serverPort;
@@ -35,7 +44,7 @@ public class JettyServer {
 		ServletHolder jettyServlet = new ServletHolder(jerseyServletContainer);
 		jettyServlet.setAsyncSupported(true);
 	
-		ServletContextHandler context = new ServletContextHandler();
+		ServletContextHandler context = new ServletContextHandler(/*ServletContextHandler.NO_SESSIONS*/);
 		context.setContextPath("/");
 		context.addServlet(jettyServlet, "/*");
 		context.addEventListener(new Listener());
@@ -56,6 +65,6 @@ public class JettyServer {
 			}
 		}
 		new JettyServer(serverPort);	
-	}
-*/
+}
+
 }
