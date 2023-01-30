@@ -6,6 +6,7 @@ package dz.ummto.ansejnextgen.jaxrs.api.resources;
 
 import java.util.List;
 
+import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.GET;
@@ -41,7 +42,8 @@ public class PromotersManagerRs {
 	@Path("/allpromoters")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	@RolesAllowed(value = { "ROLE_COUNSELOR" })
+	//@RolesAllowed(value = { "ROLE_COUNSELOR" })
+	@PermitAll
 	public Response getAllPromotersProcess() {
 
 		logger.info("--- URI: /rest/allpromoters");

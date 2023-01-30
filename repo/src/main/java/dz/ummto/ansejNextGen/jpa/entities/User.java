@@ -30,7 +30,7 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name = "USER")
+@Table(name = "USER_ANSEJ")
 @Cacheable(true)
 public class User {
 
