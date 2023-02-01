@@ -21,6 +21,8 @@
 		<dependency>
 			<groupId>dz.ummto.ansejNextGen</groupId>
 			<artifactId>repo</artifactId>
+			<version>${project.parent.version}</version>
+			<type>jar</type>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

@@ -6,7 +6,7 @@ package dz.ummto.ansejnextgen;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -16,6 +16,7 @@ import org.apache.commons.logging.LogFactory;
  * @since 0.0.1-RELEASE
  */
 @SpringBootApplication
+@EntityScan( basePackages = {"dz.ummto.ansejNextGen.jpa.entities.*"})
 public class EligibilityAppService {
 	
 	protected static final Log logger = LogFactory.getLog(EligibilityAppService.class);

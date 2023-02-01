@@ -9,7 +9,6 @@
 	</parent>
 	<artifactId>nextGeneration</artifactId>
 	<name>registration App nextGeneration</name>
-	<packaging>jar</packaging>
 
 	<dependencies>
 		<dependency>
@@ -65,7 +64,7 @@
 		<dependency>
 			<groupId>com.fasterxml.jackson.datatype</groupId>
 			<artifactId>jackson-datatype-jsr310</artifactId>
-			<version>2.9.8</version>
+			<version>2.9.7</version><!--version>2.9.8</version-->
 		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.module</groupId>
@@ -76,7 +75,7 @@
 		<dependency>
 			<groupId>org.eclipse.jetty</groupId>
 			<artifactId>jetty-server</artifactId>
-			<version>9.4.41.v20210516</version>
+			<version>9.4.12.RC1</version><!--version>9.4.41.v20210516</version-->
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse.jetty</groupId>
