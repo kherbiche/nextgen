@@ -4,6 +4,7 @@
  */
 package dz.ummto.ansejNextGen.jpa.entities;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -32,7 +33,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "USER_ANSEJ")
 @Cacheable(true)
-public class User {
+public class User implements Serializable {
 
 	@Id
 	@Column(name = "USERNAME", unique = true)

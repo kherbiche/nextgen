@@ -23,7 +23,7 @@ import javax.ws.rs.core.UriBuilder;
  */
 interface IDelegate {
 
-	final String BASE_URI = "http://localhost:8089";
+	final String BASE_URI = "http://localhost:8080/nextgen";
 
 	static URI getBaseURI() {
 		return UriBuilder.fromUri(BASE_URI).build();

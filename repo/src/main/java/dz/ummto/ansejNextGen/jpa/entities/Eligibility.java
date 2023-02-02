@@ -13,6 +13,9 @@ import javax.persistence.OneToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Column;
 import javax.persistence.FetchType;
+
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
@@ -37,11 +40,11 @@ import dz.ummto.ansejNextGen.jpa.dao.AbstractJpaDao;
 	@NamedQuery(name = AbstractJpaDao.FIND + "Eligibility", query = "select e from Eligibility e where e.promoter.promoterId.firstName = ?1" +
 		 " and e.promoter.promoterId.lastName = ?2 and e.promoter.promoterId.birthDate = ?3")
 	})
-public class Eligibility {
+public class Eligibility implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
-	@GenericGenerator(name = "native", strategy = "native")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	//@GenericGenerator(name = "native", strategy = "native")
 	@Column(name = "ID")
 	private Long id;
 	/*, insertable = false, updatable = false, nullable = false*/

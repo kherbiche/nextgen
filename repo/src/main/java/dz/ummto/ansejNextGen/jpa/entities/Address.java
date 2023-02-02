@@ -4,6 +4,8 @@
  */
 package dz.ummto.ansejNextGen.jpa.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
@@ -29,7 +31,7 @@ import dz.ummto.ansejNextGen.jpa.TypeAddress;
 
 @Entity
 @Table(name = "ADDRESS")
-public class Address {
+public class Address implements Serializable {
 
 	/*
 	 * @see <a href=
@@ -37,8 +39,8 @@ public class Address {
 	 * >link</a>
 	 */
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
-	@GenericGenerator(name = "native", strategy = "native")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	//@GenericGenerator(name = "native", strategy = "native")
 	@Column(name = "ID")
 	private Long id;
 

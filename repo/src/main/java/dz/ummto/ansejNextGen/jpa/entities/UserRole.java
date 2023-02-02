@@ -4,6 +4,8 @@
  */
 package dz.ummto.ansejNextGen.jpa.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -37,11 +39,11 @@ import dz.ummto.ansejNextGen.jpa.Role;
 @Entity
 @Table(name = "USERROLE")
 @Cacheable(true)
-public class UserRole {
+public class UserRole implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
-	@GenericGenerator(name = "native", strategy = "native")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	//@GenericGenerator(name = "native", strategy = "native")
 	@Column(name = "ID")
 	private Long id;
 	@ManyToOne(fetch = FetchType.LAZY)

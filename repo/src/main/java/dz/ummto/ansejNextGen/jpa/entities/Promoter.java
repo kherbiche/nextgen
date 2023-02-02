@@ -4,6 +4,8 @@
  */
 package dz.ummto.ansejNextGen.jpa.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.CascadeType;
@@ -40,7 +42,7 @@ import dz.ummto.ansejNextGen.jpa.dao.AbstractJpaDao;
 @Entity
 @Table(name = "PROMOTER")
 @NamedQueries({ @NamedQuery(name = AbstractJpaDao.FIND_ALL + "Promoter", query = "select p from Promoter p") })
-public class Promoter {
+public class Promoter implements Serializable {
 
 	@EmbeddedId
 	private PromoterId promoterId;

@@ -24,6 +24,7 @@ public class ProgTest {
 		add.setStreetName("SyphaxStreet");
 		add.setTypeAddress(TypeAddress.STREET);
 		add.setEmbeddedAddress(embAdd);
+		//add.setId(1L);
 
 		Promoter promo = new Promoter();
 		PromoterId proId = new PromoterId("Ali", "kherbiche", "01/01/2018");
@@ -44,13 +45,14 @@ public class ProgTest {
 		promo.setExperience("expert");
 		promo.setFamiSitu("celib");
 
-		PromoterId proId2 = new PromoterId("lyes", "kherbiche", "01/01/2018");
+		PromoterId proId2 = new PromoterId("last1", "first1", "12/12/1989");
 		Promoter promo2 = new Promoter();
 		promo2.setPromoterId(proId2);
 
 		IDao<PromoterId, Promoter> pDao = DaoFactory.getPromoterDao();
 		IDao<Long, Address> addrDao = DaoFactory.getAddressDao();
-
+		
+		addrDao.save(add);
 		pDao.save(promo);
 		Promoter found = pDao.findById(proId2);
 		if (found != null) {
