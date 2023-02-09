@@ -4,8 +4,9 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 
-	<persistence-unit name="ansePersiUnitH2" transaction-type="RESOURCE_LOCAL">
+	<persistence-unit name="ansePersiUnitH2" transaction-type="JTA">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<jta-data-source>java:jboss/datasources/AnsejDS</jta-data-source>
 		<class>dz.ummto.ansejNextGen.jpa.entities.Eligibility</class>
 		<class>dz.ummto.ansejNextGen.jpa.entities.Promoter</class>
 		<class>dz.ummto.ansejNextGen.jpa.entities.Address</class>
@@ -13,12 +14,12 @@
 		<class>dz.ummto.ansejNextGen.jpa.entities.UserRole</class>
 		<shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
 		<properties>
-			<property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
-			<property name="javax.persistence.jdbc.url" value="jdbc:h2:tcp://localhost:9092//opt/data/h2/ansej;DB_CLOSE_DELAY=-1"/>
-			<property name="javax.persistence.jdbc.user" value="sa" />
-			<property name="javax.persistence.jdbc.password" value="" />
+			<!--property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/-->
+			<!--property name="javax.persistence.jdbc.url" value="jdbc:h2:tcp://localhost:9092//opt/data/h2/ansej;DB_CLOSE_DELAY=-1"/-->
+			<!--property name="javax.persistence.jdbc.user" value="sa" /-->
+			<!--property name="javax.persistence.jdbc.password" value="" /-->
 
-			<property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+			<property name="javax.persistence.schema-generation.database.action" value="none"/>
 			<!--property name="hibernate.hbm2ddl.auto" value="create"/-->
 			<!--property name="javax.persistence.sql-load-script-source" value="META-INF/data.sql"/-->
 			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>

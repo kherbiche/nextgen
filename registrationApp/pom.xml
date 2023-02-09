@@ -12,15 +12,23 @@
 	<artifactId>registrationApp</artifactId>
 	<name>registration App</name>
 	<packaging>pom</packaging>
-
-	<dependencies>
-		<dependency>
-			<groupId>dz.ummto.ansejNextGen</groupId>
-			<artifactId>logg</artifactId>
-			<version>${project.parent.version}</version>
-			<type>jar</type>
-		</dependency>
-	</dependencies>
+	
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>dz.ummto.ansejNextGen</groupId>
+				<artifactId>repo</artifactId>
+				<version>${project.parent.version}</version>
+				<type>jar</type>
+			</dependency>
+			<dependency>
+				<groupId>dz.ummto.ansejNextGen</groupId>
+				<artifactId>logg</artifactId>
+				<version>${project.parent.version}</version>
+				<type>jar</type>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<build>
 	</build>

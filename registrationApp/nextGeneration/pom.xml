@@ -15,7 +15,17 @@
 		<dependency>
 			<groupId>dz.ummto.ansejNextGen</groupId>
 			<artifactId>repo</artifactId>
-			<version>${project.parent.version}</version>
+			<type>jar</type>
+			<exclusions>
+				<exclusion>
+					<groupId>dz.ummto.ansejNextGen</groupId>
+					<artifactId>logg</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>dz.ummto.ansejNextGen</groupId>
+			<artifactId>logg</artifactId>
 			<type>jar</type>
 		</dependency>
 

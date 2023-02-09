@@ -4,25 +4,20 @@
  */
 package dz.ummto.ansejNextGen.jpa.entities;
 
-import javax.persistence.Table;
+import java.io.Serializable;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.MapsId;
-import javax.persistence.Column;
-import javax.persistence.FetchType;
-
-import java.io.Serializable;
-
-import javax.persistence.CascadeType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-
-import org.hibernate.annotations.GenericGenerator;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import dz.ummto.ansejNextGen.jpa.dao.AbstractJpaDao;
 
