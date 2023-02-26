@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: "http://172.20.10.3:8089"
+  baseUrl: "http://127.0.0.1:8080/nextgen"
 };
 
 /*

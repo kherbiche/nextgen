@@ -1,0 +1,184 @@
+<app-header></app-header>
+<div class="row justify-content-center p-2">
+	<div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+		<div class="card">
+			<div class="card-header text-center">
+				<h4> <span class="text-primary font-weight-bold">Promoter Information</span> </h4>
+			</div>
+			<div class="card-body">
+				<form [formGroup]="promoterForm" (ngSubmit)="onSubmit()">
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="name">First Name</label>
+							<input type="text" class="form-control" formControlName="firstname">
+							<div *ngIf="promoterForm.get('firstname')?.invalid && ( promoterForm.get('firstname')?.dirty || promoterForm.get('firstname')?.touched )">
+								Name is required
+							</div>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="lastname">Last Name</label>
+							<input type="text" class="form-control" formControlName="lastname">
+							<div *ngIf="promoterForm.get('lastname')?.invalid && ( promoterForm.get('lastname')?.dirty || promoterForm.get('lastname')?.touched )">
+								Last Name is required
+							</div>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="birthdate">Birth Date</label>
+							<input type="text" class="form-control" formControlName="birthdate">
+							<div *ngIf="promoterForm.get('birthdate')?.invalid && ( promoterForm.get('birthdate')?.dirty || promoterForm.get('birthdate')?.touched )">
+								Birth Date is required
+							</div>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="gender">Gender</label>
+							<select formControlName="gender">
+								<option *ngFor="let g of gendertab" [ngValue]="g">
+									{{g}}
+								</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="father">Father</label>
+							<input type="text" class="form-control" formControlName="father">
+							<div *ngIf="promoterForm.get('father')?.invalid && ( promoterForm.get('father')?.dirty || promoterForm.get('father')?.touched )">
+								Father is required
+							</div>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="mother">Mother</label>
+							<input type="text" class="form-control" formControlName="mother">
+							<div *ngIf="promoterForm.get('mother')?.invalid && ( promoterForm.get('mother')?.dirty || promoterForm.get('mother')?.touched )">
+								Mother is required
+							</div>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="birth_cert_num">Birth Cert Num</label>
+							<input type="text" class="form-control" formControlName="birth_cert_num">
+							<div *ngIf="promoterForm.get('birth_cert_num')?.invalid && ( promoterForm.get('birth_cert_num')?.dirty || promoterForm.get('birth_cert_num')?.touched )">
+								Birth Cert Num is required
+							</div>
+						</div>
+						<div class="form-group col-md-6">
+							<div class="card">
+								<div class="card-body">
+									<h5 class="card-title text-center"> <span class="text-primary font-weight-bold">Birth Place</span> </h5>								
+									<label for="birthcity">City</label>
+									<input type="text" class="form-control" formControlName="birthcity">
+									<label for="birthzip">ZipCode</label>
+									<input type="text" class="form-control" formControlName="birthzip">
+									<label for="birthcountry">Country</label>
+									<input type="text" class="form-control" formControlName="birthcountry">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<div class="card">
+								<div class="card-body">
+									<h5 class="card-title text-center"> <span class="text-primary font-weight-bold">Residence</span> </h5>		
+									<label for="numaddress">Num Address</label>
+									<input type="number" class="form-control" formControlName="numaddress">
+									<label for="typeaddress">Type Address</label>
+									<select formControlName="typeaddress">
+										<option *ngFor="let t of typeaddresstab" [ngValue]="t"> {{t}}</option>
+									</select>
+									<label for="streetname">Street Name</label>
+									<input type="text" class="form-control" formControlName="streetname">
+									<label for="city">City</label>
+									<input type="text" class="form-control" formControlName="city">
+									<label for="zipcode">ZipCode</label>
+									<input type="text" class="form-control" formControlName="zipcode">
+									<label for="country">Country</label>
+									<input type="text" class="form-control" formControlName="country">
+								</div>
+							</div>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="birth_cert_num">Birth Cert Num</label>
+							<input type="text" class="form-control" formControlName="birth_cert_num">
+							<div *ngIf="promoterForm.get('birth_cert_num')?.invalid && ( promoterForm.get('birth_cert_num')?.dirty || promoterForm.get('birth_cert_num')?.touched )">
+								Birth Cert Num is required
+							</div>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="email">Email</label>
+							<input type="email" class="form-control" formControlName="email">
+							<div *ngIf="promoterForm.get('email')?.invalid && ( promoterForm.get('email')?.dirty || promoterForm.get('email')?.touched )">
+								Email is required
+							</div>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="phone">Phone</label>
+							<input type="text" class="form-control" formControlName="phone">
+							<div *ngIf="promoterForm.get('phone')?.invalid && ( promoterForm.get('phone')?.dirty || promoterForm.get('phone')?.touched )">
+								Phone is required
+							</div>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="fax">Fax</label>
+							<input type="text" class="form-control" formControlName="fax">
+							<div *ngIf="promoterForm.get('fax')?.invalid && ( promoterForm.get('fax')?.dirty || promoterForm.get('fax')?.touched )">
+								Fax is required
+							</div>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="famisitu">Familly Situation</label>
+							<input type="text" class="form-control" formControlName="famisitu">
+							<div *ngIf="promoterForm.get('famisitu')?.invalid && ( promoterForm.get('famisitu')?.dirty || promoterForm.get('famisitu')?.touched )">
+								Phone is required
+							</div>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="anemcard">ANEM Card Num</label>
+							<input type="number" class="form-control" formControlName="anemcard">
+							<div *ngIf="promoterForm.get('anemcard')?.invalid && ( promoterForm.get('anemcard')?.dirty || promoterForm.get('anemcard')?.touched )">
+								ANEM card num is required
+							</div>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="educlevel">Education Level</label>
+							<select formControlName="educlevel">
+								<option *ngFor="let e of educleveltab" [ngValue]="e">
+									{{e}}
+								</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="experience">Experience</label>
+							<input type="text" class="form-control" formControlName="experience">
+							<div *ngIf="promoterForm.get('experience')?.invalid && ( promoterForm.get('experience')?.dirty || promoterForm.get('experience')?.touched )">
+								Experience is required
+							</div>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="degree">Degree</label>
+							<input type="text" class="form-control" formControlName="degree">
+							<div *ngIf="promoterForm.get('degree')?.invalid && ( promoterForm.get('degree')?.dirty || promoterForm.get('degree')?.touched )">
+								Degree is required
+							</div>
+						</div>
+					</div>
+					<button type="submit">Submit</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="form-group">
+	
+</div>
