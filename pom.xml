@@ -95,5 +95,6 @@
 		<module>logg</module>
 		<module>registrationApp</module>
 		<module>repo</module>
+		<module>nextgenweb</module>
 	</modules>
 </project>
