@@ -1,0 +1,80 @@
+@if (twoMainData) {
+<form id="infopersoForm" [formGroup]="infopersoForm" action="#">
+
+    <div class="">
+        <div class="">
+            <vn-row [controls]="infopersoForm.get('civilite')" label ="Civilité:" asterisk="true">
+                <input formControlName="civilite" type="text" />
+            </vn-row>
+        </div>
+    </div>
+
+    <div class="">
+        <div class="">
+            <vn-row [controls]="infopersoForm.get('nom')" label ="Nom de l'util:" asterisk="true">
+                <input formControlName="nom" type="text" />
+            </vn-row>
+        </div>
+    </div>
+
+    @if (infopersoForm.get('nomJF').value === '02') {
+    <div class="">
+        <div class="">
+            <vn-row [controls]="infopersoForm.get('nomJF')" label ="Nom de jeune fille:" asterisk="true">
+                <input formControlName="nomJF" type="text" />
+            </vn-row>
+        </div>
+    </div>
+    }
+
+    <div class="">
+        <div class="">
+            <vn-row [controls]="infopersoForm.get('prenom')" label ="Prénom de l'util:" asterisk="true">
+                <input formControlName="prenom" type="text" />
+            </vn-row>
+        </div>
+    </div>
+
+    <div class="">
+        <div class="">
+            <vn-row [controls]="infopersoForm.get('dateDeNaissance')" label ="Date de naissance:" asterisk="true">
+                <input formControlName="dateDeNaissance" type="text" />
+            </vn-row>
+        </div>
+    </div>
+
+    <div class="">
+        <div class="">
+            <vn-row [controls]="infopersoForm.get('paysDeNaissance')" label ="Pays de naissance:" asterisk="true">
+                <input formControlName="paysDeNaissance" type="text" />
+            </vn-row>
+        </div>
+    </div>
+
+    <div class="">
+        <div class="">
+            <vn-row [controls]="infopersoForm.get('lieuDeNaissance')" label ="Lieu de naissance:" asterisk="true">
+                <input formControlName="lieuDeNaissance" type="text" />
+            </vn-row>
+        </div>
+    </div>
+
+    <div class="">
+        <div class="">
+            <vn-row [controls]="infopersoForm.get('departementDeNaissance')" label ="Département de naissance:" asterisk="true">
+                <input formControlName="departementDeNaissance" type="text" />
+            </vn-row>
+        </div>
+    </div>
+
+    <p class="txt-small border-top mts pts">Champs obligatoire<span class="red">&nbsp;*</span></p>
+    <div class="">
+        <p class="">
+            <a class="button grey back" (click)="doPrevious()">Précédent</a>
+        </p>
+        <p class="">
+            <a class="button yellow" [ngClass]="{'disabled': false}" (click)="doNext()">Poursuivre</a>
+        </p>
+    </div>
+</form>
+}

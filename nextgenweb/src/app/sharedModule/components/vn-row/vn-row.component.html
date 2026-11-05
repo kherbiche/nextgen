@@ -1,0 +1,27 @@
+<div class="row {{rowCustomClass}}">
+    @if (label) {
+        <label [ngClass]="label + (asterisk ? '&nbsp;*' : '') | vnsafehtml">
+            {{ label }}
+            @if (tooltipModal) {
+                <a class="tooltip tooltip--02" (click)="openDialogFromLink($event, tooltipModal.title, tooltipModal.content)"></a>
+            }
+        </label>
+    }
+    @if (tooltip) {
+        <span class="af-helpBubble--icon">
+            <div class="af-helpBubble--container">
+                <p class="af-helpBubble--text" [innerHTML]="tooltip | vnsafehtml"></p>
+            </div>
+        </span>
+    }
+
+    <vn-error-wrapper [formRowCustomClass]="formRowClass + ' ' + formRowCustomClass" [controls]="controls">
+        <ng-content></ng-content>
+    </vn-error-wrapper>
+
+    @if (controls) {
+        @for (control of controls; track $index) {
+            <vn-control-message [control]="control"></vn-control-message>
+        }
+    }
+</div>
