@@ -36,9 +36,9 @@
 .browserslistrc
 .editorconfig
 .vscode/
-*/tsconfig.app.json
-*/tsconfig.json
-*/tsconfig.spec.json
+*/node_modules
+*/package-lock.json
+.angular
 
 # dependencies
 /node_modules

@@ -1,0 +1,22 @@
+{
+  "nextgen": {
+    "validators": {
+      "required": "Champ obligatoire",
+      "date": "Veuillez saisir une date valide",
+      "error.msg": "Message erreur server",
+      "siret": "Veuillez saisir un numéro valide"
+    },
+    "messages": {
+      "empilements.info": "Certains supports sont"
+    },
+    "arbeligi": {
+      "validators": {}
+    },
+    "preambule": {
+      "validators": {
+        "typeSaisie": "Veuillez choisir",
+        "typeArb": "Veuillez"
+      }
+    }
+  }
+}

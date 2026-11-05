@@ -1,0 +1,29 @@
+@if (twoMainData) {
+    <form id="preambuleForm" [formGroup]="preambuleForm" action="#">
+        <div class="">
+            <div class="">
+                <vn-row [controls]="preambuleForm.get('nom')" label = "Nom :" asterisk="true">
+                    <input formControlName="nom" type="text" />
+                </vn-row>
+            </div>
+        </div>
+
+        <div class="">
+            <div class="">
+                <vn-row [controls]="preambuleForm.get('prenom')" label = "Prenom:" asterisk="true">
+                    <input formControlName="prenom" type="text" />
+                </vn-row>
+            </div>
+        </div>
+
+        <p class="txt-small border-top mts pts">Champs obligatoire<span class="red">&nbsp;*</span></p>
+        <div class="">
+            <p class="">
+                <a class="button grey back" (click)="doPrevious()">Précédent</a>
+            </p>
+            <p class="">
+                <a class="button yellow" [ngClass]="{'disabled': false}" (click)="doNext()">Poursuivre</a>
+            </p>
+        </div>
+    </form>
+}

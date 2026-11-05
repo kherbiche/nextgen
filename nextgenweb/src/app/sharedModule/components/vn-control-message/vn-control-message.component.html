@@ -1,0 +1,7 @@
+@if (errorMessages?.length > 0) {
+    <ul class="errorList {{customClass}}">
+        @for (errorMessage of errorMessages; track $index) {
+            <li [innerHTML]="errorMessage | vnsafehtml"></li>
+        }
+    </ul>
+}

@@ -1,0 +1,16 @@
+@if (exceptionInfo.catched) {
+    <vn-info-message type="IMPORTANT">
+        @if (exceptionInfo.number) {
+            Nous somme désolés,
+            <u>N° Incident</u> : {{exceptionInfo.number}} <br>
+            <u>Date et heure</u> : {{exceptionInfo.datetime}} <br>
+        }
+        @if (exceptionInfo.messages) {
+            @for (message of exceptionInfo.messages; track $index) {
+                <span>{{message}}</span>
+            }
+        }
+    </vn-info-message>
+} @else {
+    <ng-content></ng-content>
+}
