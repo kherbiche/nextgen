@@ -3,7 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>dz.ummto.ansejNextGen</groupId>
+	<groupId>nmd.mzgh.nextgen</groupId>
 	<artifactId>root</artifactId>
 	<version>0.0.1-RELEASE</version>
 	<packaging>pom</packaging>
@@ -37,7 +37,7 @@
 			<name>GNU LESSER GENERAL PUBLIC LICENSE</name>
 			<url>http://www.gnu.org/licenses/lgpl-3.0.en.html</url>
 			<comments>
-				Copyright (C) 2008-2018 ansejNextGen. 
+				Copyright (C) 2008-2016 ansejNextGen.
 
 				ansejNextGen is free software: you can redistribute it and/or modify 
 				it under the terms of the GNU Lesser General Public License as published by 
@@ -96,5 +96,6 @@
 		<module>registrationApp</module>
 		<module>repo</module>
 		<module>nextgenweb</module>
-	</modules>
+        <module>editique</module>
+    </modules>
 </project>
