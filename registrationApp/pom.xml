@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<artifactId>root</artifactId>
-		<groupId>dz.ummto.ansejNextGen</groupId>
+		<groupId>nmd.mzgh.nextgen</groupId>
 		<version>0.0.1-RELEASE</version>
 	</parent>
 
@@ -15,7 +15,7 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>dz.ummto.ansejNextGen</groupId>
+			<groupId>nmd.mzgh.nextgen</groupId>
 			<artifactId>logg</artifactId>
 			<version>${project.parent.version}</version>
 			<type>jar</type>
