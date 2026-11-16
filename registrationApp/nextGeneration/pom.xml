@@ -19,24 +19,37 @@
 		</dependency>
 
 		<dependency>
+			<groupId>jakarta.servlet</groupId>
+			<artifactId>jakarta.servlet-api</artifactId>
+			<version>6.2.0-M2</version>
+		</dependency>
+
+		<dependency>
 			<artifactId>jersey-container-servlet</artifactId>
 			<groupId>org.glassfish.jersey.containers</groupId>
-			<version>2.26</version>
+			<version>5.0.0-M1</version>
 		</dependency>
+
 		<dependency>
 			<groupId>org.glassfish.jersey.media</groupId>
 			<artifactId>jersey-media-json-jackson</artifactId>
-			<version>2.26</version>
+			<version>5.0.0-M1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.glassfish.jersey.inject</groupId>
 			<artifactId>jersey-hk2</artifactId>
-			<version>2.26</version>
+			<version>5.0.0-M1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.glassfish.jersey.ext.cdi</groupId>
 			<artifactId>jersey-cdi1x</artifactId>
-			<version>2.26</version>
+			<version>5.0.0-M1</version>
+		</dependency>
+		<dependency>
+			<groupId>jakarta.cdi</groupId>
+			<artifactId>jakarta.cdi-api</artifactId>
+			<version>5.0.0</version>
+			<scope>compile</scope>
 		</dependency>
 
 		<dependency>
@@ -75,29 +88,35 @@
 		<dependency>
 			<groupId>org.eclipse.jetty</groupId>
 			<artifactId>jetty-server</artifactId>
-			<version>9.4.12.RC1</version><!--version>9.4.41.v20210516</version-->
+			<version>12.1.15</version>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse.jetty</groupId>
 			<artifactId>jetty-servlet</artifactId>
-			<version>9.4.12.RC1</version>
+			<version>11.0.26</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.eclipse.jetty</groupId>
+					<artifactId>jetty-server</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<dependency>
 			<groupId>io.undertow</groupId>
 			<artifactId>undertow-core</artifactId>
-			<version>2.2.19.Final</version>
+			<version>2.4.4.Final</version>
 		</dependency>
 		<dependency>
 			<groupId>io.undertow</groupId>
 			<artifactId>undertow-servlet</artifactId>
-			<version>2.0.15.Final</version>
+			<version>2.3.27.Final</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.jboss.weld.servlet</groupId>
-			<artifactId>weld-servlet</artifactId>
-			<version>2.4.8.Final</version>
+			<artifactId>weld-servlet-core</artifactId>
+			<version>7.0.0.Final</version>
 		</dependency>
 
 		<dependency>
@@ -109,13 +128,13 @@
 		<dependency>
 			<groupId>org.jboss.arquillian.junit</groupId>
 			<artifactId>arquillian-junit-container</artifactId>
-			<version>1.4.0.Final</version>
+			<version>1.11.0.CR1</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.jboss.arquillian.container</groupId>
 			<artifactId>undertow-embedded</artifactId>
-			<version>1.0.0.Alpha2</version>
+			<version>1.0.0.Final</version>
 			<scope>test</scope>
 		</dependency>
 

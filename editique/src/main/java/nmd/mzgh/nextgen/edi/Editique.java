@@ -8,7 +8,6 @@ import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.*;
 import com.itextpdf.layout.properties.TextAlignment;
 import com.itextpdf.layout.properties.UnitValue;
-import sun.misc.IOUtils;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -154,7 +153,7 @@ public class Editique {
 
     private static void readPdfByte(String src) throws IOException {
         FileInputStream inputStream = new FileInputStream(src);
-        byte[] pdfBytes = IOUtils.readAllBytes(inputStream);
+        byte[] pdfBytes = inputStream.readAllBytes();
         for (byte b : pdfBytes) { /*System.out.println((char) b);*/ }
         System.out.println("--------*****--------");
         OutputStream outputStream = new FileOutputStream("out.pdf");

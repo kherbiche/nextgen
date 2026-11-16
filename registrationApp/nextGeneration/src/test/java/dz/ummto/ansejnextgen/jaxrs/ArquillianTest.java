@@ -10,11 +10,11 @@ import static io.undertow.servlet.Servlets.listener;
 import java.net.URI;
 import java.util.Arrays;
 
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.Application;
-import javax.ws.rs.core.MediaType;
+import jakarta.ws.rs.client.Client;
+import jakarta.ws.rs.client.ClientBuilder;
+import jakarta.ws.rs.client.Entity;
+import jakarta.ws.rs.core.Application;
+import jakarta.ws.rs.core.MediaType;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -58,7 +58,7 @@ public abstract class ArquillianTest {
 						.addServlets(Servlets
 								.servlet("jerseyServlet", ServletContainer.class)
 									.setLoadOnStartup(1)
-									.addInitParam("javax.ws.rs.Application", JaxRsApp.class.getName())
+									.addInitParam("jakarta.ws.rs.core.Application", JaxRsApp.class.getName())
 									.setAsyncSupported(true)
 									.addMapping("/*"))
 						.setDeploymentName("nextGeneration-0.0.1-RELEASE.jar"));

@@ -11,9 +11,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import javax.enterprise.context.Dependent;
-import javax.inject.Inject;
-import javax.validation.constraints.NotNull;
+import jakarta.enterprise.context.Dependent;
+import jakarta.inject.Inject;
+import jakarta.validation.constraints.NotNull;
 
 import dz.ummto.ansejnextgen.jaxrs.Authority;
 import dz.ummto.ansejnextgen.jaxrs.api.AuthenticationTokenDetails;

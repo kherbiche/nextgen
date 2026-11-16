@@ -6,8 +6,8 @@ package dz.ummto.ansejnextgen.jaxrs.service;
 
 import java.util.Date;
 
-import javax.enterprise.context.Dependent;
-import javax.inject.Inject;
+import jakarta.enterprise.context.Dependent;
+import jakarta.inject.Inject;
 
 import dz.ummto.ansejnextgen.jaxrs.api.AuthenticationTokenDetails;
 import io.jsonwebtoken.Jwts;

@@ -4,9 +4,13 @@
  */
 package dz.ummto.ansejnextgen.jaxrs;
 
+import jakarta.servlet.ServletException;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
 import org.glassfish.jersey.servlet.ServletContainer;
+
 import org.jboss.weld.environment.servlet.Listener;
 
 import io.undertow.Handlers;
@@ -18,8 +22,6 @@ import io.undertow.servlet.api.DeploymentInfo;
 import io.undertow.servlet.api.DeploymentManager;
 
 import static io.undertow.servlet.Servlets.listener;
-
-import javax.servlet.ServletException;
 
 /**
  * The <code>UndertowServer</code> class represents the Starter.
@@ -41,8 +43,9 @@ public class UndertowServer {
 		logger.info("-- Starting Undertow ...");
 
 		PathHandler path = Handlers.path();
-		// server = Undertow.builder().addHttpListener(port, "localhost").setHandler(path).build();
-		server = Undertow.builder().addHttpListener(port, "0.0.0.0").setHandler(path).build();
+		// server = Undertow.builder().addHttpListener(port, "127.0.0.1").setHandler(path).build();
+		server = Undertow.builder().addHttpListener(port, "localhost").setHandler(path).build();
+		// server = Undertow.builder().addHttpListener(port, "0.0.0.0").setHandler(path).build();
 		server.start();
 
 		DeploymentInfo servletBuilder = Servlets
@@ -54,7 +57,7 @@ public class UndertowServer {
 					.addServlets(Servlets
 							.servlet("jerseyServlet", ServletContainer.class)
 								.setLoadOnStartup(1)
-								.addInitParam("javax.ws.rs.Application", JaxRsApp.class.getName())
+								.addInitParam("jakarta.ws.rs.core.Application", JaxRsApp.class.getName())
 								.addMapping("/*")
 								.setAsyncSupported(true))
 					.setDeploymentName("nextGeneration-0.0.1-RELEASE.jar");

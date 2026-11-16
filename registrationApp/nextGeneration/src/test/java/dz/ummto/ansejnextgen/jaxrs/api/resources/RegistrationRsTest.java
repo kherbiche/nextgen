@@ -11,10 +11,10 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.HttpHeaders;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.client.Entity;
+import jakarta.ws.rs.core.HttpHeaders;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 
 import org.jboss.arquillian.junit.Arquillian;
 import org.junit.Test;
@@ -50,6 +50,6 @@ public class RegistrationRsTest extends ArquillianTest {
 		
 		Response response = futureResponse.get();
 		assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
-		assertEquals(response.readEntity(JsonNode.class).get("father").asText(), "fathername");
+		assertEquals("fathername", response.readEntity(JsonNode.class).get("father").asText());
 	}
 }

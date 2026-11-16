@@ -8,8 +8,8 @@ import java.time.ZonedDateTime;
 import java.util.Set;
 import java.util.UUID;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 
 import dz.ummto.ansejnextgen.cdiconfiguration.Configurable;
 import dz.ummto.ansejnextgen.jaxrs.Authority;

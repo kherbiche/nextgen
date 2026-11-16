@@ -8,10 +8,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-import javax.annotation.PostConstruct;
-import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.inject.Produces;
-import javax.enterprise.inject.spi.InjectionPoint;
+import jakarta.annotation.PostConstruct;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.inject.Produces;
+import jakarta.enterprise.inject.spi.InjectionPoint;
 
 /**
  * The <code>ConfigurationProducer</code> represents configuration

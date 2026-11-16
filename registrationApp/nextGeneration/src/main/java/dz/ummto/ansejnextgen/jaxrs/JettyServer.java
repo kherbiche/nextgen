@@ -6,12 +6,17 @@ package dz.ummto.ansejnextgen.jaxrs;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
+
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.servlet.ServletContainer;
+
 import org.jboss.weld.environment.servlet.Listener;
+
+import jakarta.servlet.Servlet;
 /**
  * The <code>JettyServer</code> class represents 
  * 
@@ -39,10 +44,10 @@ public class JettyServer {
 		
 		ResourceConfig resourceConfig = new JaxRsApp();
 
-		ServletContainer jerseyServletContainer = new ServletContainer(resourceConfig);
+		Servlet jerseyServletContainer = new ServletContainer(resourceConfig);
 
-		ServletHolder jettyServlet = new ServletHolder(jerseyServletContainer);
-		jettyServlet.setAsyncSupported(true);
+		ServletHolder jettyServlet = new ServletHolder("jettyServlet", jerseyServletContainer);
+//		jettyServlet.setAsyncSupported(true);
 	
 		ServletContextHandler context = new ServletContextHandler(/*ServletContextHandler.NO_SESSIONS*/);
 		context.setContextPath("/");

@@ -6,7 +6,7 @@ package dz.ummto.ansejnextgen.jaxrs.api;
 
 import java.security.Principal;
 
-import javax.ws.rs.core.SecurityContext;
+import jakarta.ws.rs.core.SecurityContext;
 
 import dz.ummto.ansejnextgen.jaxrs.Authority;
 

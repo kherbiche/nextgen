@@ -9,9 +9,9 @@ import static org.junit.Assert.assertNotNull;
 
 import java.util.Arrays;
 
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.client.Entity;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 
 import org.jboss.arquillian.junit.Arquillian;
 import org.junit.Test;

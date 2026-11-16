@@ -4,7 +4,7 @@
  */
 package dz.ummto.ansejnextgen.jaxrs.service;
 
-import javax.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.ApplicationScoped;
 
 import dz.ummto.ansejNextGen.jpa.dao.DaoFactory;
 import dz.ummto.ansejNextGen.jpa.dao.IDao;
