@@ -67,6 +67,7 @@ public class JaxRsApp extends ResourceConfig {
 	}
 
 	public JaxRsApp() {
+		packages("dz.ummto.ansejnextgen.jaxrs");
 		configSwagger();
 		registerEndPoints();
 	}

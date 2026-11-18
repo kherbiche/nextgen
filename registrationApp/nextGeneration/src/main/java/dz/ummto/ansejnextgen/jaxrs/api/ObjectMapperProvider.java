@@ -1,56 +1,40 @@
 /*
- * Copyright 2008, 2018 Lyes Kherbiche
+ * Copyright 2008, 2026 Lyes Kherbiche
  * <kerbiche@gmail.com>
  */
 package dz.ummto.ansejnextgen.jaxrs.api;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.json.JsonMapper;
+
 import jakarta.ws.rs.ext.ContextResolver;
 import jakarta.ws.rs.ext.Provider;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
-
 /**
  * The <code>ObjectMapperProvider</code> class represents JAX-RS provider for
- * {@link ObjectMapper}.
+ * {@link JsonMapper}.
  * 
  * @author L KHERBICHE
  * @since 0.0.1-RELEASE
  */
 
 @Provider
-public class ObjectMapperProvider implements ContextResolver<ObjectMapper> {
+public class ObjectMapperProvider implements ContextResolver<JsonMapper> {
 
-	private final ObjectMapper mapper;
-
-	public ObjectMapperProvider() {
-		mapper = createObjectMapper();
-	}
+	private static final JsonMapper MAPPER = JsonMapper.builder()
+			.findAndAddModules() // Détecte automatiquement les modules (JavaTime, etc.)
+			.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
+			.enable(SerializationFeature.INDENT_OUTPUT)
+			.build();
 
 	@Override
-	public ObjectMapper getContext(Class<?> type) {
-		return mapper;
+	public JsonMapper getContext(Class<?> type) {
+		return MAPPER;
 	}
 
-	private static ObjectMapper createObjectMapper() {
-
-		ObjectMapper mapper = new ObjectMapper();
-
-		mapper.registerModule(new Jdk8Module());
-		mapper.registerModule(new JavaTimeModule());
-		mapper.registerModule(new ParameterNamesModule());
-
-		mapper.enable(SerializationFeature.INDENT_OUTPUT);
-		mapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
-		mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-
-		mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-		mapper.enable(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT);
-
-		return mapper;
+	// Méthode utilitaire pour un accès direct hors contexte JAX-RS
+	public static JsonMapper getMapper() {
+		return MAPPER;
 	}
 }

@@ -25,7 +25,7 @@ import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.undertow.api.UndertowWebArchive;
-import org.jboss.weld.environment.servlet.Listener;
+//import org.jboss.weld.environment.servlet.Listener;
 import org.junit.Before;
 
 import dz.ummto.ansejnextgen.jaxrs.api.AuthenticationToken;
@@ -54,7 +54,7 @@ public abstract class ArquillianTest {
 				.from(deployment()
 						.setClassLoader(Application.class.getClassLoader())
 						.setContextPath("/")
-						.addListeners(listener(Listener.class))
+						//.addListeners(listener(Listener.class))
 						.addServlets(Servlets
 								.servlet("jerseyServlet", ServletContainer.class)
 									.setLoadOnStartup(1)

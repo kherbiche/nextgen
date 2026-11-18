@@ -14,7 +14,7 @@ import org.eclipse.jetty.servlet.ServletHolder;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.servlet.ServletContainer;
 
-import org.jboss.weld.environment.servlet.Listener;
+//import org.jboss.weld.environment.servlet.Listener;
 
 import jakarta.servlet.Servlet;
 /**
@@ -52,7 +52,7 @@ public class JettyServer {
 		ServletContextHandler context = new ServletContextHandler(/*ServletContextHandler.NO_SESSIONS*/);
 		context.setContextPath("/");
 		context.addServlet(jettyServlet, "/*");
-		context.addEventListener(new Listener());
+		//context.addEventListener(new Listener());
 
 		Server server = new Server(serverPort);	
 		server.setHandler(context);
